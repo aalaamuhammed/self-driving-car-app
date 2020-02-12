@@ -7,27 +7,26 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class CreateAccountScreen extends Component {
+export default class Terms extends Component {
   constructor(props) {
     super(props);
-    this._create = this._create.bind(this);
+    this._continue = this._continue.bind(this);
 
     this.state = {
-      click: 0,
+      click: 1,
       top: 0,
     };
   }
 
-  _create() {
-    this.setState({click: 3, top: 150}, () => {
-      console.log('CreateAcc');
+  _continue() {
+    this.setState({click: 4, top: 50}, () => {
+      console.log('Termsssss');
       console.log(this.state.top);
 
       console.log(this.state.click);
       this.props.changeState(this.state.click, this.state.top);
     });
   }
-
   render() {
     return (
       <>
@@ -36,21 +35,15 @@ export default class CreateAccountScreen extends Component {
             keyboardType="email-address"
             autoCorrect={false}
             multiline={false}
-            placeholder="Email"
+            placeholder="Terms"
             underlineColorAndroid="#ffd420"></TextInput>
-        </View>
-        <View style={{marginBottom: 30}}>
-          <TextInput
-            underlineColorAndroid="#ffd420"
-            placeholder="Password"
-            name="Password"></TextInput>
         </View>
 
         <TouchableOpacity
           style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Terms')}>
+          onPress={() => this.props.navigation.navigate('BasicInfo')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Create account
+            Agree & Continue
           </Text>
         </TouchableOpacity>
 

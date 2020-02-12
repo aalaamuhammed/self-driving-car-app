@@ -7,20 +7,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class CreateAccountScreen extends Component {
+export default class BasicInfo extends Component {
   constructor(props) {
     super(props);
-    this._create = this._create.bind(this);
+
+    this._Next = this._Next.bind(this);
 
     this.state = {
       click: 0,
       top: 0,
     };
   }
-
-  _create() {
-    this.setState({click: 3, top: 150}, () => {
-      console.log('CreateAcc');
+  _Next() {
+    this.setState({click: 5, top: 200}, () => {
+      console.log('BasicInfo');
       console.log(this.state.top);
 
       console.log(this.state.click);
@@ -32,28 +32,61 @@ export default class CreateAccountScreen extends Component {
     return (
       <>
         <View style={{marginBottom: 20}}>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: 'center',
+              margin: 25,
+              marginBottom: 15,
+              color: '#242a37',
+              fontWeight: '600',
+            }}>
+            Create Account
+          </Text>
+
           <TextInput
             keyboardType="email-address"
             autoCorrect={false}
+            maxLength={30}
             multiline={false}
-            placeholder="Email"
+            placeholder="Full Name"
             underlineColorAndroid="#ffd420"></TextInput>
         </View>
+
+        <View style={{marginBottom: 15}}>
+          <TextInput
+            keyboardType="email-address"
+            autoCorrect={false}
+            maxLength={30}
+            multiline={false}
+            placeholder="Country"
+            underlineColorAndroid="#ffd420"></TextInput>
+        </View>
+
+        <View style={{marginBottom: 15}}>
+          <TextInput
+            keyboardType="email-address"
+            autoCorrect={false}
+            maxLength={30}
+            multiline={false}
+            placeholder="City"
+            underlineColorAndroid="#ffd420"></TextInput>
+        </View>
+
         <View style={{marginBottom: 30}}>
           <TextInput
             underlineColorAndroid="#ffd420"
-            placeholder="Password"
-            name="Password"></TextInput>
+            placeholder="Address"
+            name="Address"></TextInput>
         </View>
 
         <TouchableOpacity
           style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Terms')}>
+          onPress={() => this.props.navigation.navigate('PhoneNumber')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Create account
+            Next
           </Text>
         </TouchableOpacity>
-
         <Text style={{textAlign: 'center', color: '#242a37'}}>
           Need Support?
         </Text>
@@ -71,7 +104,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     height: 35,
     margin: 15,
-    marginBottom: 39,
     alignItems: 'center',
+    marginBottom: 30,
   },
 });

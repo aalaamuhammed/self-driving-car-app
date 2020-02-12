@@ -7,20 +7,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class CreateAccountScreen extends Component {
+export default class PhoneNumber extends Component {
   constructor(props) {
     super(props);
-    this._create = this._create.bind(this);
-
+    this._code = this._code.bind(this);
     this.state = {
       click: 0,
       top: 0,
     };
   }
 
-  _create() {
-    this.setState({click: 3, top: 150}, () => {
-      console.log('CreateAcc');
+  _code() {
+    this.setState({click: 6, top: 150}, () => {
+      console.log('PhoneNumber');
       console.log(this.state.top);
 
       console.log(this.state.click);
@@ -32,31 +31,34 @@ export default class CreateAccountScreen extends Component {
     return (
       <>
         <View style={{marginBottom: 20}}>
-          <TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            multiline={false}
-            placeholder="Email"
-            underlineColorAndroid="#ffd420"></TextInput>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: 'center',
+              margin: 25,
+              marginBottom: 30,
+              color: '#242a37',
+              fontWeight: '600',
+            }}>
+            Phone Number
+          </Text>
         </View>
+
         <View style={{marginBottom: 30}}>
           <TextInput
+            keyboardType="numeric"
             underlineColorAndroid="#ffd420"
-            placeholder="Password"
-            name="Password"></TextInput>
+            placeholder="Phone number"
+            name="phone number"></TextInput>
         </View>
 
         <TouchableOpacity
           style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Terms')}>
+          onPress={() => this.props.navigation.navigate('VerificationCode')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Create account
+            Verify
           </Text>
         </TouchableOpacity>
-
-        <Text style={{textAlign: 'center', color: '#242a37'}}>
-          Need Support?
-        </Text>
       </>
     );
   }
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
     height: 35,
     margin: 15,
-    marginBottom: 39,
     alignItems: 'center',
   },
 });
