@@ -22,19 +22,19 @@ const trips = [
       id: 1,
       status: 'bad',
       action: 'breaking',
-      icon: require('../assets/images/Icon/BreakingBad.png'),
+      // icon: require('../assets/images/Icon/BreakingBad.png'),
     },
     {
       id: 2,
       status: 'fair',
       action: 'speeding',
-      icon: require('../assets/images/Icon/SpeedingFair.png'),
+      // icon: require('../assets/images/Icon/SpeedingFair.png'),
     },
     {
       id: 3,
       status: 'good',
       action: 'breaking',
-      icon: require('../assets/images/Icon/BreakingGood.png'),
+      // icon: require('../assets/images/Icon/BreakingGood.png'),
     },
   ];
   

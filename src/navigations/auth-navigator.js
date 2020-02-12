@@ -13,7 +13,7 @@ import VerificationCodeScreen from '_scenes/verificationCode';
 const AuthNavigatorConfig = {
   initialRouteName: 'Welcome',
   header: null,
-  headerMode: 'none',
+    headerMode: 'none',
 };
 
 const RouteConfigs = {

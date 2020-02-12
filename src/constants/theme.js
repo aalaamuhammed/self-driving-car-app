@@ -1,7 +1,7 @@
 const colors = {
     accent: "#FF4957",
-    primary: "#27A9FF",
-    secondary: "#4DA1FF",
+    primary: "#0AC4BA",
+    secondary: "#2BDA8E",
     tertiary: "#FFE358",
     black: "#2F2F2F",
     white: "#FFFFFF",
@@ -17,6 +17,7 @@ const colors = {
     font: 14,
     border: 15,
     padding: 25,
+    radius:20,
   
     // font sizes
     h1: 39,

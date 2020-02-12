@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {Button,Text,Block} from '_atoms'
+import {theme} from '../../constants'
 
 export default class BasicInfo extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ export default class BasicInfo extends Component {
   render() {
     return (
       <>
+              <Block padding={[20, theme.sizes.base * 2]}>
+
         <View style={{marginBottom: 20}}>
           <Text
             style={{
@@ -50,7 +53,8 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="Full Name"
-            underlineColorAndroid="#ffd420"></TextInput>
+            underlineColorAndroid="#2BDA8E"
+            ></TextInput>
         </View>
 
         <View style={{marginBottom: 15}}>
@@ -60,7 +64,8 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="Country"
-            underlineColorAndroid="#ffd420"></TextInput>
+            underlineColorAndroid="#2BDA8E"
+            ></TextInput>
         </View>
 
         <View style={{marginBottom: 15}}>
@@ -70,26 +75,38 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="City"
-            underlineColorAndroid="#ffd420"></TextInput>
+            underlineColorAndroid="#2BDA8E"
+            ></TextInput>
         </View>
 
         <View style={{marginBottom: 30}}>
           <TextInput
-            underlineColorAndroid="#ffd420"
+            underlineColorAndroid="#2BDA8E"
             placeholder="Address"
             name="Address"></TextInput>
         </View>
+        <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
 
-        <TouchableOpacity
+
+        <Button gradient    onPress={() => this.props.navigation.navigate('PhoneNumber')}>
+
+<Text center semibold white>
+Next
+</Text>
+</Button>
+</Block>
+
+        {/* <TouchableOpacity
           style={styles.buttonContainer2}
           onPress={() => this.props.navigation.navigate('PhoneNumber')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
             Next
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={{textAlign: 'center', color: '#242a37'}}>
           Need Support?
         </Text>
+        </Block>
       </>
     );
   }
