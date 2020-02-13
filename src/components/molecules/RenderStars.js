@@ -13,11 +13,26 @@ import {theme, mocks} from '../../constants';
 const {width} = Dimensions.get('window');
 
 class renderStars extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.select=this.select.bind(this);
+
+  this.state = {
     hours: {},
     active: null,
     activeModal: null,
+    click: 1,
+
   };
+}
+
+  select(){
+    this.setState({click:4},()=>{
+
+      this.props.changeState(this.state.click);
+
+    })
+  }
 
   renderStars = item => {
     return (

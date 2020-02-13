@@ -18,13 +18,25 @@ import {parkingsSpots} from '../../constants/mocks';
 const {width} = Dimensions.get('window');
 
 class RenderCars extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.select=this.select.bind(this);
+
+  this.state = {
     FlatListItems: parkingsSpots,
     hours: {},
     active: null,
-    activeModal: null,      rating: 1
+    activeModal: null,      click: 1,
 
   };
+  }
+  select(){
+    this.setState({click:3},()=>{
+
+      this.props.changeState(this.state.click);
+
+    })
+  }
   renderButton = () => {
     return (
       <TouchableWithoutFeedback>
@@ -41,7 +53,7 @@ class RenderCars extends Component {
           <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
             <Button
               gradient
-              onPress={() => this.props.navigation.navigate('Login')}>
+              onPress={this.select}>
               <Text center semibold white>
                 Select Car
               </Text>

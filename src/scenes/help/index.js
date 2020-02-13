@@ -13,7 +13,7 @@ export default class HelpScreen extends React.Component {
   render() {
 
     return (
-      <View style={{flex: 1,backgroundColor:'gray'}}>
+      <View style={{flex: 1,backgroundColor:'#F0F0F0'}}>
         <NavigationDrawerStructure
           onClick={() => {
             this.props.navigation.toggleDrawer();

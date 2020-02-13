@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
- 
-} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {RenderCars, RenderStars, RenderFavourites} from '_molecules';
 // import Geolocation from '@react-native-community/geolocation';
 import MapView, {ProviderPropType} from 'react-native-maps';
@@ -11,10 +7,23 @@ import {theme} from '../../constants';
 import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
 
 export default class HomeScreen extends React.Component {
-  state = {
-    currentLongitude: 37.78825, //Initial Longitude
-    currentLatitude: 22.4324, //Initial Latitude
+  constructor(props) {
+    super(props);
+    this.changeState = this.changeState.bind(this);
+
+    this.state = {
+      currentLongitude: 37.78825, //Initial Longitude
+      currentLatitude: 22.4324, //Initial Latitude
+      clicked: 1,
+      startRide: false,
+      selectCar: false,
+      rateTrip: false,
+    };
+  }
+  changeState = clicked => {
+    this.setState({clicked: clicked});
   };
+
   //  componentDidMount = () => {
   //   var that =this;
   //   //Checking for the permission just after component loaded
@@ -96,15 +105,25 @@ export default class HomeScreen extends React.Component {
             longitudeDelta: 67.421,
           }}></MapView>
 
+        {this.state.clicked === 1 ? (
+          <RenderFavourites changeState={this.changeState} />
+        ) : this.state.clicked === 3 ? (
+          <RenderStars changeState={this.changeState} />
+        ) :  this.state.clicked===5? (
+          <RenderCars changeState={this.changeState} />
+        ) : 
+        
+        (
+          <RenderCars changeState={this.changeState} />
 
-         <RenderFavourites /> 
-         {/* <RenderStars/> */}
-        {/* <RenderCars/>  */}
+
+        )
+        
+        }
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -115,10 +134,9 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: 'black',
   },
-  
+
   container: {
     flex: 1,
     backgroundColor: theme.colors.white,
   },
-  
 });

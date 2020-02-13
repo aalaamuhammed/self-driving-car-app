@@ -17,12 +17,25 @@ import {favouritePlaces} from '../../constants/mocks';
 const {width} = Dimensions.get('window');
 
 class RenderFavourites extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.select=this.select.bind(this);
+
+  this.state = {
     hours: {},
     active: null,
     activeModal: null,
-  };
+    click: 1,
 
+  };}
+
+  select(){
+    this.setState({click:2},()=>{
+
+      this.props.changeState(this.state.click);
+
+    })
+  }
   renderFavourites = (item) => {
     return (
       <TouchableWithoutFeedback>
@@ -40,7 +53,7 @@ class RenderFavourites extends Component {
         <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
           <Button
             gradient
-            onPress={() => this.props.navigation.navigate('Login')}>
+            onPress={this.select}>
             <Text center semibold white>
               Start your trip 
            </Text>

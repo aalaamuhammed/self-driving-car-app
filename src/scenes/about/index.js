@@ -14,7 +14,7 @@ export default class AboutScreen extends React.Component {
     const {currentPosition, parkings} = this.props;
 
     return (
-      <View style={{flex: 1,backgroundColor:'gray'}}>
+      <View style={{flex: 1,backgroundColor:'#F0F0F0'}}>
         <NavigationDrawerStructure
           onClick={() => {
             this.props.navigation.toggleDrawer();

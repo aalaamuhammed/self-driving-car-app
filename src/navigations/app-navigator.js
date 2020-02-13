@@ -72,6 +72,7 @@ const AboutStack = createStackNavigator(
            backgroundColor: 'rgba(90, 0, 52, 0.1)',
        },
        headerTintColor: '#000000',
+       header:null
     }),
   },
   },
