@@ -55,7 +55,7 @@ export default class PhoneNumber extends Component {
         <View style={{marginBottom: 30}}>
           <TextInput
             keyboardType="numeric"
-            underlineColorAndroid="#2BDA8E"
+            underlineColorAndroid="#0094FC"
             placeholder="Phone number"
             name="phone number"></TextInput>
         </View>

@@ -25,43 +25,23 @@ import Trips from '_scenes/trips';
 import WalletScreen from '_scenes/wallet';
 import OffersScreen from '_scenes/offers';
 import NotificationScreen from '_scenes/notifications'
-import i2 from '_assets/images/i2.jpg'
+import HelpScreen from '_scenes/help'
 
 const TabNavigatorConfig = {
   initialRouteName: 'Home',
   header: null,
   headerMode: 'none',
 };
-class NavigationDrawerStructure extends Component {
-  constructor(props) {
-    super(props);
-    //this.toggleDrawer=this.toggleDrawer.bind(this);
-
-
-    this.state = {
-      icon2:i2,
-    }
-  }
-  //Structure for the navigatin Drawer
-  toggleDrawer = () => {
-    //Props to open/close the drawer
-    this.props.navigation.dispatch(DrawerActions.toggleDrawer());
-    
-  };
-  render() {
-    return (
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={()=>{this.props.navigation.toggleDrawer();console.log('1111111')}}>
-        <Image source={this.state.icon2}
-          style={{ width: 45,
-          height: 45,
-          resizeMode: 'contain'}}
-           />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
+export const NavigationDrawerStructure = ({onClick}) => (
+  <View style={{flexDirection: 'row'}}>
+    <TouchableOpacity onPress={onClick}>
+      <Image
+        source={require('_assets/images/i1.jpg')}
+        style={{width: 45, height: 45, resizeMode: 'contain'}}
+      />
+    </TouchableOpacity>
+  </View>
+);
 
 const HomeStack = createStackNavigator(
 
@@ -70,15 +50,17 @@ const HomeStack = createStackNavigator(
       title: '',
       headerLeft: <NavigationDrawerStructure navigation={navigation} />,
        headerStyle: {
-           backgroundColor: 'rgba(90, 0, 52, 0.1)',
+           backgroundColor: 'rgba(90,0, 52, 0.1)',
        },
-       headerTintColor: '#000000',
+       headerTintColor: '#0094FC',
+       header: null,
+
     }),
   },
   },
-  // {
-  //   headerMode:'none'
-  // }
+  {
+    headerMode:'none'
+  }
 )
 const AboutStack = createStackNavigator(
 
@@ -103,16 +85,22 @@ const CustomDrawer = props => {
     <SafeAreaView style={{flex: 1}}>
       <View
         style={{
-          backgroundColor: '#000',
+          backgroundColor: '#0094FC',
           height: 180,
-          marginBottom: 0,
+          marginBottom: 0,flexDirection:'row-reverse'
         }}>
-        <ImageBackground
+           <Image
           source={require('_assets/images/i2.jpg')}
           style={{
-            width: '100%',
-            height: '50%',
-          }}></ImageBackground>
+            width: '15%',
+            height: '18%',
+          }}></Image>
+          {/* <TouchableOpacity style={{width:40,height:40,backgroundColor:'white',borderRedius:26,          justifyContent:'center',alignItems:'center'
+}}>
+
+          </TouchableOpacity> */}
+      
+         
       </View>
 
       <ScrollView>
@@ -127,7 +115,8 @@ const RouteConfigs = {
 };
 const AppNavigator = createDrawerNavigator({
   Home:HomeStack,
- About: AboutStack,
+   About: AboutStack,
+   Help:HelpScreen,
   Trips,
   Notification:NotificationScreen,
   Offers:OffersScreen,

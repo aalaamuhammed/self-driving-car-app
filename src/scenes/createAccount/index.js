@@ -46,13 +46,13 @@ export default class CreateAccountScreen extends Component {
             autoCorrect={false}
             multiline={false}
             placeholder="Email"
-            underlineColorAndroid="#2BDA8E"
+            underlineColorAndroid="#0094FC"
 >              
             </TextInput>
         </View>
         <View style={{marginBottom: 5}}>
           <TextInput
-            underlineColorAndroid="#2BDA8E"
+            underlineColorAndroid="#0094FC"
             placeholder="Password"
             name="Password"></TextInput>
         </View>

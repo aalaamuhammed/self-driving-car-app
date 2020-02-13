@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet,  View,TextInput,TouchableOpacity,} from 'react-native';
 import {Button, Block,Text} from "_atoms";
 import {theme} from'../../constants';
-
+import {RenderTerms} from '_molecules'
 export default class WelcomeScreen extends Component {
     constructor(props) {
       super(props);
@@ -12,7 +12,8 @@ export default class WelcomeScreen extends Component {
   
       this.state = {
         click: 0,
-        top:0
+        top:0,
+showTerms:false
       };
     }
 
@@ -55,7 +56,7 @@ render()
 
 { return(
     
-  <Block>
+  <Block >
   <Block center bottom flex={0.4}>
     <Text h1 center bold>
       Your Taxi
@@ -63,7 +64,7 @@ render()
 
       <Text h1 primary>
         {" "}
-        Greener.
+        Blue.
     </Text>
     <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
       Enjoy the experience.
@@ -76,13 +77,19 @@ render()
               Login
             </Text>
           </Button>
-          <Button shadow onPress={() => this.props.navigation.navigate('CreateAccount')}>
-            <Text center semibold>
+          <Button shadow color={'#F0F0F0'} gray onPress={() => this.props.navigation.navigate('CreateAccount')}>
+            <Text center gray semibold>
               Create Account
             </Text>
           </Button>
           </Block>
 
+          <Button onPress={() => this.setState({ showTerms: true })}>
+            <Text center caption gray>
+              Terms of service
+            </Text>
+          </Button>
+          {this.state.showTerms && <RenderTerms />}
 
   </Block>
   
