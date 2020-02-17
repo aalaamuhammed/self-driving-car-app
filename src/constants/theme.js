@@ -1,11 +1,16 @@
 const colors = {
     accent: "#FF4957",
+<<<<<<< HEAD
     primary: "#27A9FF",
     secondary: "#4DA1FF",
+=======
+    primary: "#0094FC",
+    secondary: "#0046FC",
+>>>>>>> origin/master
     tertiary: "#FFE358",
     black: "#2F2F2F",
     white: "#FFFFFF",
-    gray: "#BDBFC7",
+    gray: "gray",
     gray2: "#D8D8D8",
     gray3: "#F0F0F0",
     gray4: "#F7F8FA",
