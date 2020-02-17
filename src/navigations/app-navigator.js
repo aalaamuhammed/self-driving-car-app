@@ -1,6 +1,3 @@
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
 
 import React, { Component } from "react";
 import {
@@ -25,7 +22,8 @@ import Trips from '_scenes/trips';
 import WalletScreen from '_scenes/wallet';
 import OffersScreen from '_scenes/offers';
 import NotificationScreen from '_scenes/notifications'
-import i2 from '_assets/images/i2.jpg'
+import i2 from '_assets/images/i20.png'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const TabNavigatorConfig = {
   initialRouteName: 'Home',
@@ -38,9 +36,6 @@ class NavigationDrawerStructure extends Component {
     //this.toggleDrawer=this.toggleDrawer.bind(this);
 
 
-    this.state = {
-      icon2:i2,
-    }
   }
   //Structure for the navigatin Drawer
   toggleDrawer = () => {
@@ -50,13 +45,9 @@ class NavigationDrawerStructure extends Component {
   };
   render() {
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row',paddingHorizontal:15}}>
         <TouchableOpacity onPress={()=>{this.props.navigation.toggleDrawer();console.log('1111111')}}>
-        <Image source={this.state.icon2}
-          style={{ width: 45,
-          height: 45,
-          resizeMode: 'contain'}}
-           />
+        <Icon name={'th-list'} size={25} color='#FBA403' />
         </TouchableOpacity>
       </View>
     );
@@ -76,9 +67,9 @@ const HomeStack = createStackNavigator(
     }),
   },
   },
-  // {
-  //   headerMode:'none'
-  // }
+   {
+     header:null
+   }
 )
 const AboutStack = createStackNavigator(
 
@@ -103,16 +94,11 @@ const CustomDrawer = props => {
     <SafeAreaView style={{flex: 1}}>
       <View
         style={{
-          backgroundColor: '#000',
           height: 180,
           marginBottom: 0,
         }}>
-        <ImageBackground
-          source={require('_assets/images/i2.jpg')}
-          style={{
-            width: '100%',
-            height: '50%',
-          }}></ImageBackground>
+       <ImageBackground source={i2} style={{width: '100%', height: '100%'}}/>
+  
       </View>
 
       <ScrollView>
@@ -134,6 +120,7 @@ const AppNavigator = createDrawerNavigator({
   Wallet : WalletScreen
 },{
   contentComponent: CustomDrawer,
+  
 },
 
 )

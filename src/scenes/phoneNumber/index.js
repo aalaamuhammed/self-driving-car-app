@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
+  Text,
   View,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {Button,Text,Block} from '_atoms'
-import {theme} from '../../constants'
-
 
 export default class PhoneNumber extends Component {
   constructor(props) {
@@ -32,13 +30,6 @@ export default class PhoneNumber extends Component {
   render() {
     return (
       <>
-         <Block padding={[20, theme.sizes.base * 2]}>
-          <Text h2 bold>
-          Phone Number
-          </Text>
-          <Block middle>
-
-     
         <View style={{marginBottom: 20}}>
           <Text
             style={{
@@ -49,36 +40,25 @@ export default class PhoneNumber extends Component {
               color: '#242a37',
               fontWeight: '600',
             }}>
+            Phone Number
           </Text>
         </View>
 
         <View style={{marginBottom: 30}}>
           <TextInput
             keyboardType="numeric"
-            underlineColorAndroid="#2BDA8E"
+            underlineColorAndroid="#ffd420"
             placeholder="Phone number"
             name="phone number"></TextInput>
         </View>
-        <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
 
-<Button gradient            onPress={() => this.props.navigation.navigate('VerificationCode')}>
-
-    <Text center semibold white>
-Verify
-    </Text>
-  </Button>
-
-  </Block>
-
-        {/* <TouchableOpacity
+        <TouchableOpacity
           style={styles.buttonContainer2}
           onPress={() => this.props.navigation.navigate('VerificationCode')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
             Verify
           </Text>
-        </TouchableOpacity> */}
-        </Block>
-        </Block>
+        </TouchableOpacity>
       </>
     );
   }

@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,  View,TextInput,TouchableOpacity,} from 'react-native';
-import {Button, Block,Text} from "_atoms";
-import {theme} from'../../constants';
+import {StyleSheet, Text, View,TextInput,TouchableOpacity,} from 'react-native';
 
 export default class WelcomeScreen extends Component {
     constructor(props) {
@@ -55,51 +53,20 @@ render()
 
 { return(
     
-  <Block>
-  <Block center bottom flex={0.4}>
-    <Text h1 center bold>
-      Your Taxi
-      </Text>
-
-      <Text h1 primary>
-        {" "}
-        Greener.
-    </Text>
-    <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
-      Enjoy the experience.
-    </Text>
-  </Block>
-
-  <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
-          <Button gradient onPress={() => this.props.navigation.navigate('Login')}>
-            <Text center semibold white>
-              Login
-            </Text>
-          </Button>
-          <Button shadow onPress={() => this.props.navigation.navigate('CreateAccount')}>
-            <Text center semibold>
-              Create Account
-            </Text>
-          </Button>
-          </Block>
-
-
-  </Block>
-  
-    //   <View style={{ alignItems: 'center',marginBottom:20}}>
-    //   <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('CreateAccount')}>
+      <View style={{ alignItems: 'center',marginBottom:20}}>
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('CreateAccount')}>
               
-    //   <Text style={styles.input2}> Create account</Text>
+      <Text style={styles.input2}> Create account</Text>
      
-    // </TouchableOpacity>
+    </TouchableOpacity>
 
-    // <TouchableOpacity style={styles.button2} onPress={() => this.props.navigation.navigate('Login')}>
+    <TouchableOpacity style={styles.button2} onPress={() => this.props.navigation.navigate('Login')}>
               
-    //           <Text style={styles.input}> Sign in</Text>
+              <Text style={styles.input}> Sign in</Text>
              
-    //         </TouchableOpacity>
+            </TouchableOpacity>
 
-    //         </View>
+            </View>
     
 
 )
