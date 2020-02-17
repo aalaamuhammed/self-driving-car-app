@@ -4,8 +4,16 @@ import {StyleSheet, View, Image, TextInput, Text} from 'react-native';
 import Block from './Block';
 import {theme} from '../../constants';
 import {favouritePlaces} from '../../constants/mocks';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default class Card_of_favourites extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      click: 2,
+    };
+  }
   render() {
     const {color, style, children, ...props} = this.props;
     const cardStyles = [styles.card, style];
@@ -16,15 +24,18 @@ export default class Card_of_favourites extends Component {
           {favouritePlaces.map(place => {
             return (
               <View style={{flexDirection: 'row'}}>
-                <Image
-                  source={place.image}
-                  style={{
-                    width: 35,
-                    height: 35,
-                    resizeMode: 'contain',
-                    margin: 5,
-                  }}
-                />
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('Address')}>
+                  <Image
+                    source={place.image}
+                    style={{
+                      width: 35,
+                      height: 35,
+                      resizeMode: 'contain',
+                      margin: 5,
+                    }}
+                  />
+                </TouchableOpacity>
 
                 <View
                   style={{
@@ -32,44 +43,41 @@ export default class Card_of_favourites extends Component {
                     borderLeftColor: 'black',
                     marginLeft: 10,
                     marginRight: 10,
-                    backgroundColor:'gray'
-
+                    backgroundColor: 'gray',
                   }}
                 />
               </View>
             );
           })}
-          <View style={{marginLeft:9,marginTop:6}}>
-
-
-          <Image
-            source={require('_assets/images/i30.png')}
-            style={{width: 20, height: 35, resizeMode: 'contain'}}></Image>
-        
+          <View style={{marginLeft: 9, marginTop: 6}}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Places')}>
+              <Image
+                source={require('_assets/images/i30.png')}
+                style={{width: 20, height: 35, resizeMode: 'contain'}}></Image>
+            </TouchableOpacity>
           </View>
-         </View>
+        </View>
 
         <View
           style={{
             borderTopWidth: 1,
             borderLeftColor: 'black',
             marginVertical: 10,
-            backgroundColor:'gray'
+            backgroundColor: 'gray',
           }}
         />
         <View style={{flexDirection: 'row'}}>
-        <View style={{width:187}}>
-        <TextInput
-            style={{paddingTop: 0, paddingRight: 10}}
-            keyboardType="default"
-            autoCorrect={false}
-            multiline={false}
-            placeholder="  Lets'Go"
-            placeholderTextColor="#909090"></TextInput>
+          <View style={{width: 187}}>
+            <TextInput
+              style={{paddingTop: 0, paddingRight: 10}}
+              keyboardType="default"
+              autoCorrect={false}
+              multiline={false}
+              placeholder="  Lets'Go"
+              placeholderTextColor="#909090"></TextInput>
+          </View>
 
-
-        </View>
-        
           <View
             style={{
               borderLeftWidth: 1,

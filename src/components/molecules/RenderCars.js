@@ -11,7 +11,6 @@ import {
 
 import {Block, Text, Button} from '_atoms';
 import {theme, mocks} from '../../constants';
-import StarRatingComponent from 'react-star-rating-component';
 
 import {parkingsSpots} from '../../constants/mocks';
 

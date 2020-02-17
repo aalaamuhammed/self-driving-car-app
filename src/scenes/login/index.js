@@ -12,10 +12,18 @@ import {theme} from '../../constants';
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props);
+    // this.hasError = this.hasError.bind(this);
+    this.checkAndDecide = this.checkAndDecide.bind(this);
 
     this.state = {
+      MobileNumber: '',
+      Password: '',
       click: 2,
     };
+  }
+
+  checkAndDecide() {
+    this.props.navigation.navigate('Home');
   }
 
   render() {
@@ -27,23 +35,39 @@ export default class LoginScreen extends Component {
         <Block middle>
           <View style={{marginBottom: 10, padding: 5}}>
             <TextInput
-              keyboardType="email-address"
-              autoCorrect={false}
-              maxLength={30}
-              multiline={false}
-              placeholder="Moblie Number"
-              underlineColorAndroid="#0094FC"></TextInput>
+              keyboardType="numeric"
+              name="Mobile"
+              placeholder="Mobile Number"
+              underlineColorAndroid={
+                this.state.MobileNumber.includes( 'A')
+                  ? 
+                  'red': '#0094FC'
+              }
+              value={this.state.MobileNumber}
+              onChangeText={text => {
+                this.setState({MobileNumber: text});
+              }}></TextInput>
+
+               {this.state.MobileNumber.includes( 'A') && <Text accent> mobile number doesn't contain characters</Text>}
           </View>
           <View style={{marginBottom: 10, padding: 5}}>
             <TextInput
-              underlineColorAndroid="#0094FC"
+              value={this.state.Password}
+              onChangeText={text => {
+                this.setState({Password: text});
+              }}
+              underlineColorAndroid={
+                this.state.Password.includes(' ') ? 'red':'#0094FC'
+              }
+              // secureTextEntry={true}
+
               placeholder="Password"
               name="Password"></TextInput>
+               {this.state.Password.includes( ' ') && <Text accent> Password doesn't contain  space </Text>}
+
           </View>
           <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-            <Button
-              gradient
-              onPress={() => this.props.navigation.navigate('Home')}>
+            <Button gradient onPress={this.checkAndDecide}>
               <Text center semibold white>
                 Login
               </Text>
@@ -62,7 +86,7 @@ export default class LoginScreen extends Component {
           onPress={() => this.props.navigation.navigate('Home')}>
           <Text style={{textAlign: 'center', paddingTop: 5,fontSize:17}}> Sign in</Text>
         </TouchableOpacity> */}
-          <Text style={{textAlign: 'center', color: '#242a37'}}>
+          <Text style={{textAlign: 'center', color: '#242a37'}} onPress={()=>{this.props.navigation.navigate('Address')}}>
             {' '}
             Need Support?
           </Text>
@@ -87,5 +111,8 @@ const styles = StyleSheet.create({
   login: {
     flex: 1,
     justifyContent: 'center',
+  },
+  hasError: {
+    backgroundColor:'red'
   },
 });

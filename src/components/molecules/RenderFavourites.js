@@ -49,7 +49,7 @@ class RenderFavourites extends Component {
           // width: 345 - 24 * 2,
           marginHorizontal: 7,
         }}>
-          <Card_of_favourites/>
+          <Card_of_favourites navigation={this.props.navigation}/>
         <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
           <Button
             gradient

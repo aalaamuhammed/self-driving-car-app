@@ -1,8 +1,8 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,17 +15,20 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import { createStackNavigator } from "react-navigation-stack";
-import {createDrawerNavigator,DrawerItems} from 'react-navigation-drawer';
-import { DrawerActions } from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
+import {DrawerActions} from 'react-navigation-drawer';
 
 import HomeScreen from '_scenes/home';
+import SetAddressScreen from '_scenes/setAddress';
+import AvailablePlacesScreen from '_scenes/AvailablePlaces';
+
 import AboutScreen from '_scenes/about';
 import Trips from '_scenes/trips';
 import WalletScreen from '_scenes/wallet';
 import OffersScreen from '_scenes/offers';
-import NotificationScreen from '_scenes/notifications'
-import HelpScreen from '_scenes/help'
+import NotificationScreen from '_scenes/notifications';
+import HelpScreen from '_scenes/help';
 
 const TabNavigatorConfig = {
   initialRouteName: 'Home',
@@ -44,42 +47,71 @@ export const NavigationDrawerStructure = ({onClick}) => (
 );
 
 const HomeStack = createStackNavigator(
-
   {
-    Home:{screen:HomeScreen,navigationOptions: ({ navigation }) => ({
-      title: '',
-      headerLeft: <NavigationDrawerStructure navigation={navigation} />,
-       headerStyle: {
-           backgroundColor: 'rgba(90,0, 52, 0.1)',
-       },
-       headerTintColor: '#0094FC',
-       header: null,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({navigation}) => ({
+        title: '',
+        headerLeft: <NavigationDrawerStructure navigation={navigation} />,
+        headerStyle: {
+          backgroundColor: 'rgba(90,0, 52, 0.1)',
+        },
+        headerTintColor: '#0094FC',
+        header: null,
+      }),
+    },
+    Address: {
+      screen: SetAddressScreen,
+      navigationOptions: ({navigation}) => ({
+        title: 'Set Address',
+        headerLeft: <NavigationDrawerStructure navigation={navigation} />,
+        headerStyle: {
+          backgroundColor: 'rgba(90,0, 52, 0.1)',
+        },
+        headerTintColor: '#0094FC',
+        
 
-    }),
-  },
+      }),
+    },
+    Places: {
+      screen: AvailablePlacesScreen,
+      navigationOptions: ({navigation}) => ({
+        title: 'Choose your Fav',
+        headerLeft: <NavigationDrawerStructure navigation={navigation} />,
+        headerStyle: {
+          backgroundColor: 'rgba(90,0, 52, 0.1)',
+        },
+        headerTintColor: '#0094FC',
+        
+
+      }),
+    },
+
+
   },
   {
-    headerMode:'none'
-  }
-)
+    headerMode: 'none',
+  },
+);
 const AboutStack = createStackNavigator(
-
   {
-    About:{screen:AboutScreen,navigationOptions: ({ navigation }) => ({
-      title: '',
-      headerLeft: <NavigationDrawerStructure navigation={navigation} />,
-       headerStyle: {
-           backgroundColor: 'rgba(90, 0, 52, 0.1)',
-       },
-       headerTintColor: '#000000',
-       header:null
-    }),
-  },
+    About: {
+      screen: AboutScreen,
+      navigationOptions: ({navigation}) => ({
+        title: '',
+        headerLeft: <NavigationDrawerStructure navigation={navigation} />,
+        headerStyle: {
+          backgroundColor: 'rgba(90, 0, 52, 0.1)',
+        },
+        headerTintColor: '#000000',
+        header: null,
+      }),
+    },
   },
   // {
   //   headerMode:'none'
   // }
-)
+);
 
 const CustomDrawer = props => {
   return (
@@ -88,20 +120,19 @@ const CustomDrawer = props => {
         style={{
           backgroundColor: '#0094FC',
           height: 180,
-          marginBottom: 0,flexDirection:'row-reverse'
+          marginBottom: 0,
+          flexDirection: 'row-reverse',
         }}>
-           <Image
+        <Image
           source={require('_assets/images/i2.jpg')}
           style={{
             width: '15%',
             height: '18%',
           }}></Image>
-          {/* <TouchableOpacity style={{width:40,height:40,backgroundColor:'white',borderRedius:26,          justifyContent:'center',alignItems:'center'
+        {/* <TouchableOpacity style={{width:40,height:40,backgroundColor:'white',borderRedius:26,          justifyContent:'center',alignItems:'center'
 }}>
 
           </TouchableOpacity> */}
-      
-         
       </View>
 
       <ScrollView>
@@ -114,19 +145,20 @@ const RouteConfigs = {
   HomeStack,
   AboutStack,
 };
-const AppNavigator = createDrawerNavigator({
-  Home:HomeStack,
-   About: AboutStack,
-   Help:HelpScreen,
-  Trips,
-  Notification:NotificationScreen,
-  Offers:OffersScreen,
-  Wallet : WalletScreen
-},{
-  contentComponent: CustomDrawer,
-},
-
-)
+const AppNavigator = createDrawerNavigator(
+  {
+    Home: HomeStack,
+    About: AboutStack,
+    Help: HelpScreen,
+    Trips,
+    Notification: NotificationScreen,
+    Offers: OffersScreen,
+    Wallet: WalletScreen,
+  },
+  {
+    contentComponent: CustomDrawer,
+  },
+);
 // const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);
 
 export default AppNavigator;

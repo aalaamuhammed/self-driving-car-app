@@ -4,8 +4,13 @@ import Text from './Text';
 import Block from './Block';
 import {theme} from '../../constants';
 import {favouritePlaces} from '../../constants/mocks';
+import {Rating, AirbnbRating} from 'react-native-ratings';
 
 export default class Card_of_favourites extends Component {
+  ratingCompleted(rating) {
+    console.log('Rating is: ' + rating);
+  }
+
   render() {
     const {color, style, children, ...props} = this.props;
     const cardStyles = [styles.card, style];
@@ -41,32 +46,20 @@ export default class Card_of_favourites extends Component {
         />
 
         <Text h3>Rate your trip </Text>
-        <View style={{flexDirection: 'row', margin: 22}}>
-          <Image
-            source={require('_assets/images/i12.png')}
-            style={{width: 40, height: 35, resizeMode: 'contain'}}></Image>
-          <Image
-            source={require('_assets/images/i12.png')}
-            style={{width: 40, height: 35, resizeMode: 'contain'}}></Image>
 
-          <Image
-            source={require('_assets/images/i12.png')}
-            style={{width: 40, height: 35, resizeMode: 'contain'}}></Image>
+    
+        <AirbnbRating
+          reviewColor="#0094FC"
+          reviews={['Terrible', 'Bad', 'Good', 'Very Good', 'Wow', 'Amazing']}
+          onFinishRating={this.ratingCompleted}
 
-          <Image
-            source={require('_assets/images/i12.png')}
-            style={{width: 40, height: 35, resizeMode: 'contain'}}></Image>
-
-          <Image
-            source={require('_assets/images/i12.png')}
-            style={{width: 40, height: 35, resizeMode: 'contain'}}></Image>
-        </View>
+        />
 
         <View
           style={{
             borderTopWidth: 1,
             borderLeftColor: 'black',
-            marginVertical: 10,
+            marginBottom: 10,
             backgroundColor: 'gray',
           }}
         />
