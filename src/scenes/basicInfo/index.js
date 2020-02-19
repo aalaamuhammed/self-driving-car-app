@@ -24,7 +24,8 @@ export default class BasicInfo extends Component {
       username: null,
       password: null,
       errors: [],
-      loading: false
+      loading: false,
+      disabled:false,
     };
   }
   handleSignUp() {
@@ -126,7 +127,9 @@ export default class BasicInfo extends Component {
           <TextInput
             underlineColorAndroid="#0094FC"
             placeholder="Address"
-            name="Address"></TextInput>
+            name="Address"
+            onBlur ={()=>this.setState({disabled:true})}>
+            </TextInput>
         </View> 
             {/* <Input
               email
@@ -164,9 +167,9 @@ export default class BasicInfo extends Component {
         <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
 
 
-        <Button disabled onPress={() => this.props.navigation.navigate('PhoneNumber')}>
+        <Button disabled={!this.state.disabled} gradient={this.state.disabled} onPress={() => this.props.navigation.navigate('PhoneNumber')}>
 
-<Text center semibold white>
+<Text center h3 semibold gray={!this.state.disabled} white={this.state.disabled}>
 Next
 </Text>
 </Button>

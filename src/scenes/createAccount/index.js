@@ -43,9 +43,11 @@ export default class CreateAccountScreen extends Component {
       number: false,
       confirmPassword: '',
       Confirmed: false,
+      disabled:false,
     };
   }
   validConfirmedPassword() {
+    this.setState({disabled:true}) 
     var Confirmed = false;
     if (
       this.state.Password === this.state.confirmPassword ||
@@ -141,12 +143,17 @@ export default class CreateAccountScreen extends Component {
     }
   }
   render() {
+    const{Email,Password,confirmPassword}=this.state;
     return (
       <>
+
         <Block padding={[20, theme.sizes.base * 2]}>
           <Text h2 bold>
             Create Account
           </Text>
+          {/* {(Email!==''&&Password!==''&& confirmPassword!=='') ? this.setState({disabled:true}):this.setState({disabled:false}) } */}
+        {/* this.setState({disabled:true})   */}
+
           <Block middle>
             <View style={{marginBottom: 20}}>
               <TextInput
@@ -160,7 +167,8 @@ export default class CreateAccountScreen extends Component {
                 multiline={false}
                 placeholder="Email"
                 underlineColorAndroid={
-                  this.state.correct_email ? 'red' : '#0094FC'
+                  this.state.correct_email ? 'red' :
+                   (this.state.Email === '' ? 'gray' : '#0094FC')
                 }
                 onBlur={this.validEmail}
                 value={this.state.Email}
@@ -188,7 +196,7 @@ export default class CreateAccountScreen extends Component {
                   this.state.Upper ||
                   this.state.specialCharacters
                     ? 'red'
-                    : '#0094FC'
+                    :  (this.state.Password === '' ? 'gray' : '#0094FC')
                 }
                 secureTextEntry={true}
                 placeholder="Password"
@@ -220,15 +228,16 @@ export default class CreateAccountScreen extends Component {
               }}
               onBlur={this.validConfirmedPassword}
               secureTextEntry={true}
-              underlineColorAndroid={this.state.Confirmed ? 'red' : '#0094FC'}
+              underlineColorAndroid={this.state.Confirmed ? 'red' :
+              (this.state.confirmPassword === '' ? 'gray' : '#0094FC')              }
               placeholder="Confirm Password"
               name="Confirm Password"></TextInput>
             {this.state.Confirmed && (
               <Text accent> ** They are not identical</Text>
             )}
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-              <Button gradient onPress={this.move}>
-                <Text center semibold white>
+              <Button gradient={this.state.disabled} disabled={!this.state.disabled} onPress={this.move}>
+                <Text center semibold  gray={!this.state.disabled} white={this.state.disabled}>
                   Create Account
                 </Text>
               </Button>
