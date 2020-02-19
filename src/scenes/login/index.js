@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   TouchableOpacity,
-<<<<<<< HEAD
-} from 'react-native';
-=======
   KeyboardAvoidingView,
 } from 'react-native';
 import {Button, Text, Block} from '_atoms';
 import {theme} from '../../constants';
->>>>>>> origin/master
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -33,36 +28,6 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <>
-        <View style={{marginBottom: 20,padding:15}}>
-          <TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            maxLength={30}
-            multiline={false}
-            placeholder="Moblie Number"
-            underlineColorAndroid="#ffd420"></TextInput>
-        </View>
-        <View style={{marginBottom: 30,padding:15}}>
-          <TextInput
-            underlineColorAndroid="#ffd420"
-            placeholder="Password"
-            name="Password"></TextInput>
-        </View>
-
-        {/* //this.props.navigation.navigate('Home') */}
-        <TouchableOpacity
-          style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Home')}>
-          <Text style={{textAlign: 'center', paddingTop: 5,fontSize:17}}> Sign in</Text>
-        </TouchableOpacity>
-        <Text style={{textAlign: 'center', color: '#242a37'}}>
-          {' '}
-          Need Support?
-        </Text>
-      </>
-=======
       <Block padding={[20, theme.sizes.base * 2]}>
         <Text h1 bold>
           Login
@@ -127,7 +92,6 @@ export default class LoginScreen extends Component {
           </Text>
         </Block>
       </Block>
->>>>>>> origin/master
     );
   }
 }
@@ -144,8 +108,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 60,
   },
-<<<<<<< HEAD
-=======
   login: {
     flex: 1,
     justifyContent: 'center',
@@ -153,5 +115,4 @@ const styles = StyleSheet.create({
   hasError: {
     backgroundColor:'red'
   },
->>>>>>> origin/master
 });

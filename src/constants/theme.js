@@ -1,12 +1,7 @@
 const colors = {
     accent: "#FF4957",
-<<<<<<< HEAD
-    primary: "#27A9FF",
-    secondary: "#4DA1FF",
-=======
     primary: "#0094FC",
     secondary: "#0046FC",
->>>>>>> origin/master
     tertiary: "#FFE358",
     black: "#2F2F2F",
     white: "#FFFFFF",
@@ -22,6 +17,8 @@ const colors = {
     font: 14,
     border: 15,
     padding: 25,
+    radius:20,
+    
   
     // font sizes
     h1: 39,

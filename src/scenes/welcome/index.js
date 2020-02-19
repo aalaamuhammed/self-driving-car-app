@@ -1,75 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {StyleSheet, Text, View,TextInput,TouchableOpacity,} from 'react-native';
-
-export default class WelcomeScreen extends Component {
-    constructor(props) {
-      super(props);
-      this._signInAsync=this._signInAsync.bind(this);
-      this._reg=this._reg.bind(this);
-  
-  
-      this.state = {
-        click: 0,
-        top:0
-      };
-    }
-
-_signInAsync=()=>{
-        //   this.setstate({ispressed1:true});
-       // this.setState({ispressed1:!this.state.ispressed1});
-      this.setState({click:2,top:200},()=>{
-          
-        console.log('SignInnnn')
-        console.log(this.state.top)
-
-        console.log(this.state.click)
-        this.props.changeState(this.state.click,this.state.top);
-        // this.props.swiperef.showFull();
-        // console.log(this.props.swiperef); swiperef={this.swipeUpDownRef}
-
-
-      });
-
-    
-         }
-         _reg(){
-            //   this.setstate({ispressed1:true});
-            this.setState({click:1,top:200},()=>{
-              console.log('register')
-              console.log(this.state.top)
-
-              console.log(this.state.click)
-            this.props.changeState(this.state.click,this.state.top);
-            // this.props.swiperef.showFull();
-
-            // console.log(this.props.swiperef);
-
-            });
-        
-        
-        
-             }
-render()
-
-{ return(
-    
-      <View style={{ alignItems: 'center',marginBottom:20}}>
-      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('CreateAccount')}>
-              
-      <Text style={styles.input2}> Create account</Text>
-     
-    </TouchableOpacity>
-
-    <TouchableOpacity style={styles.button2} onPress={() => this.props.navigation.navigate('Login')}>
-              
-              <Text style={styles.input}> Sign in</Text>
-             
-            </TouchableOpacity>
-
-            </View>
-    
-=======
 import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
 import {Button, Block, Text} from '_atoms';
 import {theme} from '../../constants';
@@ -177,7 +106,6 @@ export default class WelcomeScreen extends Component {
       //           <Text style={styles.input}> Sign in</Text>
 
       //         </TouchableOpacity>
->>>>>>> origin/master
 
       //         </View>
     );

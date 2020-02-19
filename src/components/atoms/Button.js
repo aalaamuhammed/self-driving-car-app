@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import React, {Component} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 // import { LinearGradient } from "expo-linear-gradient";
 import LinearGradient from 'react-native-linear-gradient';
 
-import { theme } from "../../constants";
+import {theme} from '../../constants';
 
 class Button extends Component {
   render() {
@@ -11,9 +11,12 @@ class Button extends Component {
       style,
       opacity,
       gradient,
+      disabled,
       color,
-      startColor,
-      endColor,
+      startColorGradient,
+      endColorGradient,
+      startColorDisabled,
+      endColorDisabled,
       end,
       start,
       locations,
@@ -26,8 +29,8 @@ class Button extends Component {
       styles.button,
       shadow && styles.shadow,
       color && styles[color], // predefined styles colors for backgroundColor
-      color && !styles[color] && { backgroundColor: color }, // custom backgroundColor
-      style
+      color && !styles[color] && {backgroundColor: color}, // custom backgroundColor
+      style,
     ];
 
     if (gradient) {
@@ -35,27 +38,40 @@ class Button extends Component {
         <TouchableOpacity
           style={buttonStyles}
           activeOpacity={opacity}
-          {...props}
-        >
+          {...props}>
           <LinearGradient
             start={start}
             end={end}
             locations={locations}
             style={buttonStyles}
-            colors={[startColor, endColor]}
-          >
+            colors={[startColorGradient, endColorGradient]}>
             {children}
           </LinearGradient>
         </TouchableOpacity>
       );
     }
-
+    if (disabled) {
+      return (
+        <TouchableOpacity
+          style={buttonStyles}
+          activeOpacity={opacity}
+          {...props}>
+          <LinearGradient
+            start={start}
+            end={end}
+            locations={locations}
+            style={buttonStyles}
+            colors={[startColorDisabled, endColorDisabled]}>
+            {children}
+          </LinearGradient>
+        </TouchableOpacity>
+      );
+    }
     return (
       <TouchableOpacity
         style={buttonStyles}
         activeOpacity={opacity || 0.8}
-        {...props}
-      >
+        {...props}>
         {children}
       </TouchableOpacity>
     );
@@ -63,13 +79,15 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  startColor: theme.colors.primary,
-  endColor: theme.colors.secondary,
-  start: { x: 0, y: 0 },
-  end: { x: 1, y: 1 },
+  startColorGradient: theme.colors.primary,
+  endColorGradient: theme.colors.secondary,
+  startColorDisabled: theme.colors.gray,
+  endColorDisabled: theme.colors.gray2,
+  start: {x: 0, y: 0},
+  end: {x: 1, y: 1},
   locations: [0.1, 0.9],
   opacity: 0.8,
-  color: theme.colors.white
+  color: theme.colors.white,
 };
 
 export default Button;
@@ -78,23 +96,23 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: theme.sizes.radius,
     height: theme.sizes.base * 3,
-    justifyContent: "center",
-    marginVertical: theme.sizes.padding / 3
+    justifyContent: 'center',
+    marginVertical: theme.sizes.padding / 3,
   },
   shadow: {
     shadowColor: theme.colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
-    shadowRadius: 10
+    shadowRadius: 10,
   },
-  accent: { backgroundColor: theme.colors.accent },
-  primary: { backgroundColor: theme.colors.primary },
-  secondary: { backgroundColor: theme.colors.secondary },
-  tertiary: { backgroundColor: theme.colors.tertiary },
-  black: { backgroundColor: theme.colors.black },
-  white: { backgroundColor: theme.colors.white },
-  gray: { backgroundColor: theme.colors.gray },
-  gray2: { backgroundColor: theme.colors.gray2 },
-  gray3: { backgroundColor: theme.colors.gray3 },
-  gray4: { backgroundColor: theme.colors.gray4 }
+  accent: {backgroundColor: theme.colors.accent},
+  primary: {backgroundColor: theme.colors.primary},
+  secondary: {backgroundColor: theme.colors.secondary},
+  tertiary: {backgroundColor: theme.colors.tertiary},
+  black: {backgroundColor: theme.colors.black},
+  white: {backgroundColor: theme.colors.white},
+  gray: {backgroundColor: theme.colors.gray},
+  gray2: {backgroundColor: theme.colors.gray2},
+  gray3: {backgroundColor: theme.colors.gray3},
+  gray4: {backgroundColor: theme.colors.gray4},
 });

@@ -12,7 +12,7 @@ import {theme, mocks} from '../../constants';
 
 const {width} = Dimensions.get('window');
 
-class renderStars extends Component {
+class RenderStars extends Component {
   constructor(props) {
     super(props);
     this.select=this.select.bind(this);
@@ -27,7 +27,7 @@ class renderStars extends Component {
 }
 
   select(){
-    this.setState({click:4},()=>{
+    this.setState({click:1},()=>{
 
       this.props.changeState(this.state.click);
 
@@ -52,7 +52,7 @@ class renderStars extends Component {
           <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
             <Button
               gradient
-              onPress={() => this.props.navigation.navigate('Login')}>
+              onPress={this.select}>
               <Text center semibold white>
                 Submit Feedback{' '}
               </Text>
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default renderStars;
+export default RenderStars;

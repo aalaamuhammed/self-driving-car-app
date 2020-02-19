@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TextInput, Alert,
   ActivityIndicator,
@@ -9,11 +8,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
-<<<<<<< HEAD
-=======
 import {Button,Text,Block,Input} from '_atoms'
 import {theme} from '../../constants'
->>>>>>> origin/master
 
 export default class BasicInfo extends Component {
   constructor(props) {
@@ -78,19 +74,6 @@ export default class BasicInfo extends Component {
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
     return (
       <>
-<<<<<<< HEAD
-        <View style={{marginBottom: 20}}>
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: 'center',
-              margin: 25,
-              marginBottom: 15,
-              color: '#242a37',
-              fontWeight: '600',
-            }}>
-            Create Account
-=======
 
         <Block padding={[20, theme.sizes.base ]}>
 
@@ -98,7 +81,6 @@ export default class BasicInfo extends Component {
           <Block padding={[0, theme.sizes.base ]}>
           <Text h1 bold >
             Sign Up
->>>>>>> origin/master
           </Text>
           <Block middle>
 <View style= {{marginBottom:15}}>
@@ -110,17 +92,13 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="Full Name"
-<<<<<<< HEAD
-            underlineColorAndroid="#ffd420"></TextInput>
-        </View>
-=======
+        
             underlineColorAndroid="#0094FC"
             ></TextInput>
 
 </View>
         
 
->>>>>>> origin/master
 
         <View style={{marginBottom: 15}}>
           <TextInput
@@ -129,12 +107,8 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="Country"
-<<<<<<< HEAD
-            underlineColorAndroid="#ffd420"></TextInput>
-=======
             underlineColorAndroid="#0094FC"
             ></TextInput>
->>>>>>> origin/master
         </View>
 
         <View style={{marginBottom: 15}}>
@@ -144,33 +118,12 @@ export default class BasicInfo extends Component {
             maxLength={30}
             multiline={false}
             placeholder="City"
-<<<<<<< HEAD
-            underlineColorAndroid="#ffd420"></TextInput>
-=======
             underlineColorAndroid="#0094FC"
             ></TextInput>
->>>>>>> origin/master
         </View>
 
         <View style={{marginBottom: 30}}>
           <TextInput
-<<<<<<< HEAD
-            underlineColorAndroid="#ffd420"
-            placeholder="Address"
-            name="Address"></TextInput>
-        </View>
-
-        <TouchableOpacity
-          style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('PhoneNumber')}>
-          <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Next
-          </Text>
-        </TouchableOpacity>
-        <Text style={{textAlign: 'center', color: '#242a37'}}>
-          Need Support?
-        </Text>
-=======
             underlineColorAndroid="#0094FC"
             placeholder="Address"
             name="Address"></TextInput>
@@ -211,7 +164,7 @@ export default class BasicInfo extends Component {
         <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
 
 
-        <Button gradient onPress={() => this.props.navigation.navigate('PhoneNumber')}>
+        <Button disabled onPress={() => this.props.navigation.navigate('PhoneNumber')}>
 
 <Text center semibold white>
 Next
@@ -227,7 +180,6 @@ Next
         </Block>
 </Block>
 
->>>>>>> origin/master
       </>
     );
   }

@@ -1,13 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-=======
 import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
 import {Button, Block, Text} from '_atoms';
 import {theme} from '../../constants';
@@ -33,7 +24,6 @@ const validatio = {
     },
   },
 };
->>>>>>> origin/master
 
 export default class CreateAccountScreen extends Component {
   constructor(props) {
@@ -153,23 +143,6 @@ export default class CreateAccountScreen extends Component {
   render() {
     return (
       <>
-<<<<<<< HEAD
-        <View style={{marginBottom: 20}}>
-          <TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            multiline={false}
-            placeholder="Email"
-            underlineColorAndroid="#ffd420"></TextInput>
-        </View>
-        <View style={{marginBottom: 30}}>
-          <TextInput
-            underlineColorAndroid="#ffd420"
-            placeholder="Password"
-            name="Password"></TextInput>
-        </View>
-
-=======
         <Block padding={[20, theme.sizes.base * 2]}>
           <Text h2 bold>
             Create Account
@@ -261,27 +234,20 @@ export default class CreateAccountScreen extends Component {
               </Button>
             </Block>
 
-            {/* 
->>>>>>> origin/master
-        <TouchableOpacity
+             
+        {/* <TouchableOpacity
           style={styles.buttonContainer2}
           onPress={() => this.props.navigation.navigate('Terms')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
             Create account
           </Text>
-        </TouchableOpacity>
+        // </TouchableOpacity> */}
 
-<<<<<<< HEAD
-        <Text style={{textAlign: 'center', color: '#242a37'}}>
-          Need Support?
-        </Text>
-=======
             <Text style={{textAlign: 'center', color: '#242a37'}}>
               Need Support?
             </Text>
           </Block>
         </Block>
->>>>>>> origin/master
       </>
     );
   }
