@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity,StyleSheet} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon1 from 'react-native-vector-icons/Entypo'
+
 
 export default class payment extends Component {
 
@@ -12,21 +14,30 @@ export default class payment extends Component {
     <View style={{flex:1}}>
      <View style={styles.firstblock}>
       <Text style={styles.urbalance}>Your balance</Text>
-      <Text style={{fontSize:70}}>{this.state.balance}  </Text>
-      <Text style={{fontSize:15}}>    EGP</Text>
+      <View style={{flexDirection:'row'}}>
+      <Text style={{fontSize:70,paddingLeft:5}}>{this.state.balance}</Text>
+      <Text style={{fontSize:15,alignSelf:'flex-end'}}>EGP</Text>
+      </View>
     </View>
   <View style={styles.secblock}>
         <TouchableOpacity
          style={styles.iconstyle}
+         onPress={()=>this.props.navigation.navigate('addMoney')}
        >
-            <Icon name='money' size={50} />
+            <Icon1 name='credit' size={50} />
+            <Text>Add Money</Text>
+
        </TouchableOpacity>
     
     
         <TouchableOpacity
         style={styles.iconstyle}
+        onPress={()=>{this.props.navigation.navigate('viewCard') 
+        console.log('viw cards') }}
        >
-            <Icon name='money' size={50} />
+            <Icon1 name='credit-card' size={50} />
+            <Text>View Cards</Text>
+
        </TouchableOpacity>
       
     </View>
@@ -54,7 +65,7 @@ const styles=StyleSheet.create({
       },
       iconstyle:{
         flex:.3,
-        padding:15,
+        padding:10,
          alignItems:'center',
          justifyContent:'center',
          alignContent:'flex-end',
@@ -66,7 +77,7 @@ const styles=StyleSheet.create({
          shadowOpacity: 0.13,
          shadowRadius: 5.6,
          
-         elevation:1,
+         elevation:2,
          borderRadius:5
       }
 
