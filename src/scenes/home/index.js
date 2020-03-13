@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {RenderCars, RenderStars, RenderFavourites} from '_molecules';
+import {View, StyleSheet,ActivityIndicator} from 'react-native';
+import {RenderCars, RenderStars, RenderFavourites,CarOrders} from '_molecules';
 import Geolocation from '@react-native-community/geolocation';
 import MapView, {
   Animated,
@@ -24,10 +24,12 @@ export default class HomeScreen extends React.Component {
       selectCar: false,
       rateTrip: false,
       isloading: true,
+      latitude: 33.5,
+      longitude: 33.5,
 
       location: new AnimatedRegion({
-        latitude: 33.0,
-        longitude: 33.0,
+        latitude: 33,
+        longitude: 33,
       }),
     };
   }
@@ -95,8 +97,12 @@ export default class HomeScreen extends React.Component {
   };
   render() {
     const {currentPosition, parkings} = this.props;
+    console.log(this.state.location);
 
     return (
+      (this.state.isloading)? 
+     <ActivityIndicator size="small" color="#90ff10" />
+     :
       <View style={{flex: 1}}>
         <NavigationDrawerStructure
           onClick={() => {
@@ -106,14 +112,15 @@ export default class HomeScreen extends React.Component {
         <Animated
           style={{flex: 1}}
           region={{
-            latitude: this.state.location.latitude,
-            longitude: this.state.location.longitude,
+            latitude:this.state.location.latitude,
+            longitude:this.state.location.longitude,
             latitudeDelta: 0.00922,
             longitudeDelta: 0.00421,
           }}
         />
+        
 
-        {this.state.clicked === 1 ? (
+       { this.state.clicked === 1 ? (
           <RenderFavourites
             navigation={this.props.navigation}
             changeState={this.changeState}
@@ -122,9 +129,10 @@ export default class HomeScreen extends React.Component {
           <RenderStars changeState={this.changeState} />
         ) : this.state.clicked === 5 ? (
           <RenderCars changeState={this.changeState} />
-        ) : (
-          <RenderCars changeState={this.changeState} />
-        )}
+        ) :  this.state.clicked === 7 ? (
+          <CarOrders changeState={this.changeState} />
+        ):<RenderCars changeState={this.changeState} />}
+
       </View>
     );
   }

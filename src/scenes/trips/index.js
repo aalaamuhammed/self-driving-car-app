@@ -2,30 +2,24 @@ import React, { Component } from 'react'
 import 'react-native-gesture-handler'
 import { Text, TouchableOpacity,View, FlatList,TextInput,StyleSheet,SectionList,Image } from 'react-native'
 import AppContainer from './tabnavigator'
+import {OrangeHeader} from '_molecules';
+
 import i20 from '_assets/images/i20.png'
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class App extends Component {
-  
+  move=()=>{
+    this.props.navigation.openDrawer()
+  }
   render() {
  
     return (
       <View style={{flex:1}}>
-       <View style={styles.header}>
-         <View style={styles.thickheader}>
-         <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
-            <Icon name={'arrow-left'} size={25} color='#F6F7F8' />
-         </TouchableOpacity>
-         <Image source={i20} style={{width: 40, height: 40, borderRadius:15 }}/>
-         </View>
-         <View style={{flex:4}}> 
-          <Text style={styles.Textstyle} >Your Trips</Text>
-  
-          </View>
-        </View>
+       <OrangeHeader title="Trips" navigation={this.props.navigation} move={this.move}/>
       <View style={{flex:3}}>
         <AppContainer/>
       </View>
-     </View>
+      </View>
+    
  
     )
   }

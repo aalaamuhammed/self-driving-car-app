@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View ,TouchableOpacity,ImageBackground,StyleSheet,FlatList,Image} from 'react-native'
 import noti3 from'_assets/images/didi1.webp'
 import didi1 from '_assets/images/DIDI2.png'
+import {OrangeHeader} from '_molecules';
 import i20 from '_assets/images/i20.png'
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class App extends Component {
@@ -22,21 +23,13 @@ export default class App extends Component {
          }
       ]};
     }
+    move=()=>{
+      this.props.navigation.openDrawer()
+    }
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.header}>
-       <View style={styles.thinheader}> 
-       <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
-            <Icon name={'arrow-left'} size={25} color='#F6F7F8'/>
-        </TouchableOpacity>
-       <Image source={i20} style={{width: 40, height: 40, borderRadius:15 }}/>
-       </View>
-       <View style={{flex:3}}> 
-        <Text style={styles.title} >Offers</Text>
-
-        </View>
-      </View>
+      <OrangeHeader title="Offers" navigation={this.props.navigation} move={this.move}/>
         <View style={styles.FlatListcontainer}>
           <FlatList 
           data={this.state.DATA} 
@@ -60,6 +53,7 @@ export default class App extends Component {
      />  
          </View>
       </View>
+
     )
   }
 }

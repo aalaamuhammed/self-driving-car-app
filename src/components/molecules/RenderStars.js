@@ -27,7 +27,7 @@ class RenderStars extends Component {
 }
 
   select(){
-    this.setState({click:1},()=>{
+    this.setState({click:7},()=>{
 
       this.props.changeState(this.state.click);
 

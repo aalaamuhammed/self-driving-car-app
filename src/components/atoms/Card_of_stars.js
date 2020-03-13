@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
-import Text from './Text';
+import Text from './text';
 import Block from './Block';
 import {theme} from '../../constants';
 import {favouritePlaces} from '../../constants/mocks';
