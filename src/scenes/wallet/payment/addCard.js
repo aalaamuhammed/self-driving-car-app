@@ -74,25 +74,26 @@ export default class AddCardModal extends Component {
   }
 
   render() { 
+    const a = <View >         
+    <CardDataFlatList DATA={this.state.DATA} saveDate={this.saveDate}/>
+    <TouchableOpacity
+     activeOpacity={.5} 
+     style={{
+      backgroundColor:'#FF8900',
+      alignItems:'center',
+      borderRadius:8,
+      margin:30}}
+     onPress={this.addUserData}>
+      <Text style={{padding:10,color:'#F6F7F8',fontSize:15}}>SAVE</Text>  
+    </TouchableOpacity>
+    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+     <VerifyModal visibility={this.state.finishingModal}/>  
+       </View>
+   </View>
    return (
     <View style={{flex:1}}>
-     <OrangeHeader title="Wallet" navigation={this.props.navigation} move={this.move}/>
-     <View style={{flex:3}}>         
-      <CardDataFlatList DATA={this.state.DATA} saveDate={this.saveDate}/>
-      <TouchableOpacity
-       activeOpacity={.5} 
-       style={{
-        backgroundColor:'#FF8900',
-        alignItems:'center',
-        borderRadius:8,
-        margin:30}}
-       onPress={this.addUserData}>
-        <Text style={{padding:10,color:'#F6F7F8',fontSize:15}}>SAVE</Text>  
-      </TouchableOpacity>
-      <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-       <VerifyModal visibility={this.state.finishingModal}/>  
-         </View>
-     </View>
+     <OrangeHeader title="Wallet" navigation={this.props.navigation} move={this.move} com={a}/>
+    
    </View>
      
     )

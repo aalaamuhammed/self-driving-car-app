@@ -5,21 +5,11 @@ import Scheduled from './scheduled'
 import { createBottomTabNavigator,createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import React, { Component } from 'react'
 import { Text, View , TouchableOpacity } from 'react-native'
-import icons from 'react-native-vector-icons';
 
-
-
-
-
-const AppNavigator = createStackNavigator({
-    history: {
-      screen: History,
-    },
-  })
 
 
   
-  const topTab=createMaterialTopTabNavigator(
+  const TopTab=createMaterialTopTabNavigator(
    { history : {
         screen: History
     
@@ -42,4 +32,4 @@ const AppNavigator = createStackNavigator({
         },
 
     });
-export default AppContainer = createAppContainer(topTab);
+export default AppContainer = createAppContainer(TopTab);

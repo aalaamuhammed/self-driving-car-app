@@ -7,17 +7,15 @@ import {OrangeHeader} from '_molecules';
 import i20 from '_assets/images/i20.png'
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class App extends Component {
+  static router =AppContainer.router;
   move=()=>{
     this.props.navigation.openDrawer()
   }
   render() {
  
     return (
-      <View style={{flex:1}}>
-       <OrangeHeader title="Trips" navigation={this.props.navigation} move={this.move}/>
-      <View style={{flex:3}}>
-        <AppContainer/>
-      </View>
+      <View style={{flex:1,backgroundColor:'#FF8900'}}>
+       <OrangeHeader com={ <AppContainer/>} title={'Trips'} move={this.move}/>
       </View>
     
  
@@ -25,29 +23,6 @@ export default class App extends Component {
   }
 }
 
-
-const styles =StyleSheet.create({
-  header:{
-      flex:1,
-      justifyContent:'center',
-      backgroundColor:'#FF8900'
-  },
-  thickheader:{
-      flex:2,
-      flexDirection:'row',
-      justifyContent:'space-between',
-      alignItems:'flex-end',
-      paddingEnd:15,
-      paddingStart:15},
-  Textstyle:{
-      fontSize:45,
-      fontStyle:'normal',
-      textAlign:'center',
-      textDecorationStyle:'double',
-      fontWeight:'bold',
-      textAlignVertical:'center',
-      color:'#F6F7F8'}
-})
 
 
 

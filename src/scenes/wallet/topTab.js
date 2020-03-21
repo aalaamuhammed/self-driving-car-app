@@ -14,8 +14,8 @@ export default class TopTabScreen  extends Component {
  
     return (
         <View style={{flex:1}}>
-        <OrangeHeader title="Wallet" navigation={this.props.navigation} move={this.move}/>
-        <View style={{flex:3}}>
+        <OrangeHeader title="Wallet" navigation={this.props.navigation} move={this.move} />
+        <View style={{flex:2.5}}>
         <TopTabNav navigation={this.props.navigation}/>
         </View>
       </View>

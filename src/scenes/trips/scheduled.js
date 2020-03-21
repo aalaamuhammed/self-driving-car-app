@@ -7,7 +7,7 @@ import {
   StyleSheet,
   SectionList,
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Scheduled extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +41,7 @@ export default class Scheduled extends Component {
   Item({title}) {
     return (
       <View style={styles.item}>
+        <Icon name="taxi" size={15} style={{ color: '#FF8900', paddingRight:5 }}/>
         <Text style={styles.dist}> {title.dist} </Text>
         <Text style={styles.region}> {title.region} </Text>
       </View>
@@ -49,7 +50,7 @@ export default class Scheduled extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1,backgroundColor:'#F6F7F8'}}>
         <SectionList
           sections={this.state.DATA}
           keyExtractor={(item, index) => item + index}
@@ -80,22 +81,22 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 25,
-    color: '#0094FC',
-    fontWeight: 'bold',
+    color:'gray',
+    fontWeight: 'normal',
   },
   dist: {
     fontSize: 20,
     color: '#000000',
     fontFamily: 'normal',
     textDecorationStyle: 'solid',
-    fontWeight: 'bold',
+    fontWeight: 'normal',
   },
   region: {
     fontSize: 18,
     color: '#d6d7da',
     fontFamily: 'normal',
     textDecorationStyle: 'solid',
-    fontWeight: 'bold',
+    fontWeight: 'normal',
   },
   headerStyle: {
     marginVertical: 5,

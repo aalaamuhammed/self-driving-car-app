@@ -121,10 +121,10 @@ const CustomDrawer = props => {
       <View
         style={{
           backgroundColor: 'rgba(255, 137, 0 ,.3)',
-          height: 180,
+          height: 150,
           marginBottom: 0,
           alignItems:'flex-start',
-          padding:15,
+          padding:0,
           flexDirection:'row',
           alignItems:'center'
         }}> 
@@ -138,10 +138,16 @@ const CustomDrawer = props => {
         
           </TouchableOpacity> */}
       </View>
-
-      <ScrollView>
+      <ScrollView style={{flex:1}}>
         <DrawerItems {...props} />
       </ScrollView>
+      <View style={{flex:.4,backgroundColor:'white'}}>
+          <TouchableOpacity style={{flexDirection:'column',flex:1}}>
+            <Text>Setting</Text>
+            <Icon name="home" size={30} style={{ color: 'orange' }}/>
+          </TouchableOpacity>
+      </View>
+  
     </SafeAreaView>
   );
 };
@@ -156,6 +162,7 @@ const AppNavigator = createDrawerNavigator(
       drawerIcon: ({ tintColor }) => (
         <Icon name="home" size={30} style={{ color: tintColor }}/>)
     }},
+    
     About:{screen: AboutStack,
       navigationOptions:{
         drawerIcon: ({ tintColor }) => (
@@ -189,6 +196,9 @@ const AppNavigator = createDrawerNavigator(
   },
   {
     contentComponent: CustomDrawer,
+    contentOptions:{
+      labelStyle:{ fontWeight: 'normal' }
+    }
   },
 );
 // const AppNavigator = createBottomTabNavigator(RouteConfigs, TabNavigatorConfig);

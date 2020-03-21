@@ -24,16 +24,12 @@ export default class ViewCard extends Component {
   this.props.navigation.navigate('topTab')
 }  
     render(){
+      const a = <CardsFlatList addCard={()=>this.props.navigation.navigate('addCard')} DATA={this.state.DATA}/>
+
        return (
           
                <View style={{flex:1}}>
-                   <OrangeHeader title="Wallet" move={this.move}/>
-                <View style={{flex:3}}>
-
-              
-               <CardsFlatList addCard={()=>this.props.navigation.navigate('addCard')} DATA={this.state.DATA}/>
-
-                </View> 
+                   <OrangeHeader title="Wallet" move={this.move} com={a} />
                           
           </View>
 

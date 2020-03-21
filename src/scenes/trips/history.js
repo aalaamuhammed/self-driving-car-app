@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList,TextInput,StyleSheet,SectionList } from 'react-native'
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class History extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +22,22 @@ export default class History extends Component {
           data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
           , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
         },
+        {
+          title: '13/10/2019',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+        {
+          title: '13/10/2019',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
       ]};
   }
   Item({ title }) {
     return (
       <View style={styles.item}>
+        <Icon name="taxi" size={15} style={{ color: '#FF8900', paddingRight:5 }}/>
         <Text style={styles.dist}> {title.dist} </Text>
         <Text style={styles.region}> {title.region} </Text>
       </View>
@@ -35,7 +46,7 @@ export default class History extends Component {
 
   render() {
     return (
-      <View style={{flex:1}}>
+      <View style={{flex:1,backgroundColor:'#F6F7F8'}}>
       <SectionList
         sections={this.state.DATA}
         keyExtractor={(item, index) => item + index}
@@ -65,29 +76,29 @@ const styles = StyleSheet.create({
     paddingVertical:5,
     position: "relative",
     alignItems:'center',
-    paddingHorizontal:25,
+    paddingHorizontal:15,
 
     
   },
   header: {
     fontSize: 25,
-    color:'#0094FC',
-    fontWeight:'bold'
+    color:'gray',
+    fontWeight:'normal'
   },
   dist: {
-    fontSize: 20,
+    fontSize: 19,
     color:'#000000',
     fontFamily:'normal',
     textDecorationStyle:'solid',
-    fontWeight:'bold'
+    fontWeight:'normal'
 
   },
   region: {
-    fontSize: 18,
+    fontSize: 16,
     color:'#d6d7da',
     fontFamily:'normal',
     textDecorationStyle:'solid',
-    fontWeight:'bold'
+    fontWeight:'normal'
 
   },
   headerStyle:{
