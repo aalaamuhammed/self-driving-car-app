@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, StyleSheet, Platform, Animated,Image,ScrollView } from 'react-native';
+import { AppRegistry, Text, View, StyleSheet, Platform, Animated,Image,ScrollView ,Dimensions} from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,6 +7,7 @@ import i20 from '_assets/images/i20.png'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const HEADER_MIN_HEIGHT = 140;
 const HEADER_MAX_HEIGHT = 200;
+const {width,height} = Dimensions.get('window').width;
 
 export default class OrangeHeader extends Component {
   constructor(props) {
@@ -39,7 +40,12 @@ export default class OrangeHeader extends Component {
             <TouchableOpacity activeOpacity={0.5} onPress={()=>this.props.move()}>
               <Icon name='arrow-left' size={25} color='#F6F7F8' />
            </TouchableOpacity>
-            <Image source={i20} style={{width: 40, height: 40, borderRadius:15,paddingVertical:7}}/>
+           <TouchableOpacity activeOpacity={0.5}
+           onPress={()=>{this.navigation.navigate('Profile');console.log('profile')}}>
+            <Image
+            source={i20} 
+            style={{width: 40, height: 40, borderRadius:15,paddingVertical:7}}/>
+            </TouchableOpacity>
             </View>
             <View style={{flex:4}}> 
           <Text style={styles.textStyle} >{this.props.title}</Text>

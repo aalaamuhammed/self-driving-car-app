@@ -1,40 +1,29 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import  ScreenContent from './ScreenContent'
-import {OrangeHeader} from '_molecules';
+import React, {Component} from 'react';
+import {View, StyleSheet, Platform} from 'react-native';
 
+import Stack from './navigation/stacknavigator';
 export default class App extends Component {
-
+  static router = Stack.router;
   constructor(props) {
     super(props);
-    this.state = {
-   
-
+    this.state = {};
   }
-  }
-  move=()=>{
-    this.props.navigation.openDrawer()
-  }
+  move = () => {
+    this.props.navigation.openDrawer();
+  };
 
   render() {
-
     return (
-      <View style={styles.container} >
-       
-        <OrangeHeader com={<ScreenContent/>} title={'Offers'} move={this.move}/>
+      <View style={styles.container}>
+        <Stack navigation={this.props.navigation} />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create(
-  {
-    container: {
-      flex: 1,
-      justifyContent: "center",
-
-    },
-
-
-
-})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+});

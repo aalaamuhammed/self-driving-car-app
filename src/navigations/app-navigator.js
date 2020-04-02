@@ -1,7 +1,6 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-
 import React, {Component} from 'react';
 import {
   StyleSheet,
@@ -14,7 +13,7 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon2 from'react-native-vector-icons/SimpleLineIcons'
 import i20 from '_assets/images/i20.png'
 
@@ -25,6 +24,7 @@ import {DrawerActions} from 'react-navigation-drawer';
 import HomeScreen from '_scenes/home';
 import SetAddressScreen from '_scenes/setAddress';
 import AvailablePlacesScreen from '_scenes/AvailablePlaces';
+import Profile from '_scenes/profile'
 
 import AboutScreen from '_scenes/about';
 import Trips from '_scenes/trips';
@@ -75,6 +75,7 @@ const HomeStack = createStackNavigator(
 
       }),
     },
+    
     Places: {
       screen: AvailablePlacesScreen,
       navigationOptions: ({navigation}) => ({
@@ -87,6 +88,10 @@ const HomeStack = createStackNavigator(
         
 
       }),
+    
+
+
+
     },
 
 
