@@ -1,21 +1,24 @@
 import React from 'react';
-import {View, StyleSheet,ActivityIndicator} from 'react-native';
+import {View, StyleSheet,ActivityIndicator, Dimensions,Text,Image,PixelRatio,Animated} from 'react-native';
 import {RenderCars, RenderStars, RenderFavourites,CarOrders} from '_molecules';
-import Geolocation from '@react-native-community/geolocation';
-import MapView, {
-  Animated,
-  AnimatedRegion,
-  ProviderPropType,
-} from 'react-native-maps';
+import ImageZoom from 'react-native-image-pan-zoom';
+//import Geolocation from '@react-native-community/geolocation';
+// import MapView, {
+//   Animated,
+//   AnimatedRegion,
+//   ProviderPropType,
+// } from 'react-native-maps';
 import {PermissionsAndroid} from 'react-native';
 import {theme} from '../../constants';
+import axios from 'axios'
 import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
+import { transform } from '@babel/core';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.changeState = this.changeState.bind(this);
-
+    this.markerPosition= new Animated.ValueXY(0,0);
     this.state = {
       // currentLongitude: 30.98825, //Initial Longitude
       // currentLatitude: 30.7324, //Initial Latitude
@@ -26,99 +29,111 @@ export default class HomeScreen extends React.Component {
       isloading: true,
       latitude: 33.5,
       longitude: 33.5,
+      move:true,
 
-      location: new AnimatedRegion({
-        latitude: 33,
-        longitude: 33,
-      }),
-    };
+    //   location: new AnimatedRegion({
+    //     latitude: 33,
+    //     longitude: 33,
+    //   }),
+     };
   }
   changeState = clicked => {
     this.setState({clicked: clicked});
   };
-  async componentDidMount() {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Location Access Required',
-          message: 'This App needs to Access your location',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        //To Check, If Permission is granted
-        this.callLocation();
-      } else {
-        alert('Permission Denied');
-      }
-    } catch (err) {
-      alert('err', err);
-      console.warn(err);
-    }
-  }
+ 
+  // pan = new Animated.ValueXY();
+  // panResponder = PanResponder.create({
+  // ove: Animated.event([
+  //     null,
+  //     { dx: this.pan.x, dy: this.pan.y }
+  //   ]),
+  //   onPanResponderRelease: () => {
+  //     this.pan.flattenOffset();
+  //   }
+  // });
 
-  callLocation() {
-    Geolocation.getCurrentPosition(
-      //Will give you the current location
-      position => {
-        //getting the Longitude from the location json
-        //getting ssthe Latitude from the location json
-        this.setState({
-          location: {
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-          },
-          isloading: false,
-        });
-        console.log(this.state.location);
-      },
-      error => alert(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
-    );
-    this.watchID = Geolocation.watchPosition(position => {
-      //Will give you the location on location change
-      //getting the Longitude from the location json
-      //getting the Latitude from the location json
-      this.setState({
-        location: {
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude,
+
+  sendLocation = async (evt) => {
+    axios
+      .post('barq-api.herokuapp.com/api/makeRides', 
+      {
+        userId: "5ebfd70e02641d53ec21d1e8",
+        userLocation: {
+            xCord: evt.locationX,
+            yCord: evt.locationY
         },
+        targetLocation: {
+            xCord:  794,
+            yCord: 618
+        }
+    })
+      .then(response => {
+        console.log('response', response.data);
+      })
+      .catch(err => {
+        console.error('Error', err);
+        this.setState({email_existence: true});
       });
-    });
-  }
-
-  onRegionChange(region) {
-    this.state.region.setValue(region);
-  }
-
-  componentWillUnmount = () => {
-    Geolocation.clearWatch(this.watchID);
   };
   render() {
+ 
     const {currentPosition, parkings} = this.props;
     console.log(this.state.location);
 
     return (
-      (this.state.isloading)? 
-     <ActivityIndicator size="small" color="#90ff10" />
-     :
-      <View style={{flex: 1}}>
+    //   (this.state.isloading)? 
+    //  <ActivityIndicator size="small" color="#90ff10" />
+    //  :
+      <View style={{flex: 1}} >
         <NavigationDrawerStructure
           onClick={() => {
             this.props.navigation.toggleDrawer();
           }}
         />
-        <Animated
-          style={{flex: 1}}
-          region={{
-            latitude:this.state.location.latitude,
-            longitude:this.state.location.longitude,
-            latitudeDelta: 0.00922,
-            longitudeDelta: 0.00421,
-          }}
-        />
-        
+        <ImageZoom
+            cropWidth={Dimensions.get('window').width}
+            cropHeight={Dimensions.get('window').height}
+            imageWidth={500}
+            imageHeight={450}
+            style={{flex:1}}
+            useNativeDriver={true}
+            enableCenterFocus={true}
+            minScale={2}
+            maxScale={2}
+            useNativeDriver={true}
+            onMove={(p) =>{
+              this.markerPosition.setValue({x:p.positionX,y:p.positionY})
+             //console.log(p)
+             console.log(this.markerPosition,'makerPosition')
+              }}
+            doubleClickInterval={0}
+            centerOn={{x: 0, y:0, scale: 2}}
+            onClick={(evt) =>
+             { console.log('Long Pressssssssssssssssssssssssss')
+              console.log(evt)
+              console.log('AB3AAD', PixelRatio.getPixelSizeForLayoutSize(494),PixelRatio.getPixelSizeForLayoutSize(420))
+              console.log('X',PixelRatio.getPixelSizeForLayoutSize(evt.locationX),'Y',PixelRatio.getPixelSizeForLayoutSize(evt.locationY))
+            }
+            }
+           >
+            <Image
+              style={{width:494, height: 420, alignSelf:'center'}}
+              source={require('_assets/images/realMap.png')}
+            />
+          </ImageZoom>
+        {/*      <Animated.View 
+              style={{
+                position:'absolute', 
+                width:80,
+                height:90,
+                top:80,
+                right:60,
+                backgroundColor:'blue',
+                transform:[{translateX:this.markerPosition.x,
+                translateY:this.markerPosition.y}]}} >
+              <Text>hhhhhhhhhhh</Text>
+              </Animated.View>
+                */}
 
        { this.state.clicked === 1 ? (
           <RenderFavourites

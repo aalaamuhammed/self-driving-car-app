@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Button,Text,Block} from '_atoms'
-import {theme} from '../../constants'
+import {theme,apis} from '../../constants'
+import axios from 'axios'
 export default class PhoneNumber extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +25,20 @@ export default class PhoneNumber extends Component {
       this.props.changeState(this.state.click, this.state.top);
     });
   }
+  getCode=async()=>{
+    try {
+     
+      const response = await axios.get(
+        apis.cars_api,
+      );
+    //  this.setState({DATA: response.data});
+    console.log(response.data);
+     
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   render() {
     return (
       <>
@@ -53,7 +68,11 @@ export default class PhoneNumber extends Component {
             name="phone number"></TextInput>
         </View>
         <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
-<Button gradient            onPress={() => this.props.navigation.navigate('VerificationCode')}>
+<Button 
+gradient 
+onPress={() => {
+  this.props.navigation.navigate('VerificationCode')
+  this.getCode()}}>
     <Text center semibold white>
 Verify
     </Text>

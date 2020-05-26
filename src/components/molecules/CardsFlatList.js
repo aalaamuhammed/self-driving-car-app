@@ -37,9 +37,12 @@ export default class CardsFlatList extends Component {
          margin:25,
          alignItems:'center',
          justifyContent:'center'}}>
-         <ImageBackground 
+           <TouchableOpacity  onPress={this.props.cardDetails}>
+                      <ImageBackground 
             style={{width:350,height:200}}
             source={item.image} />
+           </TouchableOpacity>
+
         </View>}       
        </View>]}/>
 

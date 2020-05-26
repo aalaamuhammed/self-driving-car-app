@@ -20,7 +20,8 @@ import DatePicker from 'react-native-date-picker';
 import CheckBox from 'react-native-check-box'
 import i20 from '_assets/images/i20.png';
 import Icon from 'react-native-vector-icons/Feather';
-
+import {apis} from '../../constants'
+import axios from 'axios'
 
 //import {  } from 'react-native-gesture-handler';
 const HEADER_MIN_HEIGHT = 100;
@@ -35,6 +36,7 @@ export default class App extends Component {
     this.windowWidth = Dimensions.get('window').width / 3.3;
     this.windowHeight = Dimensions.get('window').height / 12;
     this.state = {
+      id:0,
       user: {
         name: null,
         mail: null,
@@ -141,17 +143,18 @@ export default class App extends Component {
         style={{
           flex: 1,
           flexDirection:'row',
-       
-          borderRadius: 5,
+         
+          borderRadius: .5,
           margin: 5,
-          shadowColor: '#000',
+          shadowColor: "#000",
           shadowOffset: {
             width: 0,
             height: 1,
           },
-          shadowOpacity: 0.22,
-          shadowRadius: 5.22,
-          elevation: 2,
+          shadowOpacity: 0.18,
+          shadowRadius: 5,
+          
+          elevation: .5,
           padding: 5,
           paddingHorizontal: 10,
         }}>
@@ -303,6 +306,26 @@ onPress={()=>this.pickerModal(false)}>
   </TouchableOpacity>
 </View>
     )};
+  
+    getUserData=async()=>{
+      const url=apis.users_api+`/{${this.state.id}}`
+      console.log(url)
+       try {
+     
+         const response = await axios.get(
+           apis.users_api,
+         );
+     
+       console.log(response.data);
+       
+       } catch (error) {
+         console.error(error);
+       }
+    }
+  
+  // componentDidMount(){
+  //   this.getUserData()
+  // }    
 
   render() {
 

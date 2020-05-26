@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import {Button, Text, Block} from '_atoms';
-import {theme} from '../../constants';
+import {theme, apis} from '../../constants';
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -19,13 +19,25 @@ export default class LoginScreen extends Component {
       MobileNumber: '',
       Password: '',
       click: 2,
+      user: null,
     };
   }
 
   checkAndDecide() {
     this.props.navigation.navigate('Home');
   }
-
+  signInUser = async () => {
+    axios
+      .post(apis.users_api, {user: this.state.user})
+      // shape of the schema
+      //{email, password}
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.error('Error', err);
+      });
+  };
   render() {
     return (
       <Block padding={[20, theme.sizes.base * 2]}>
@@ -39,16 +51,17 @@ export default class LoginScreen extends Component {
               name="Mobile"
               placeholder="Mobile Number"
               underlineColorAndroid={
-                this.state.MobileNumber.includes( 'A')
-                  ? 
-                  'red': '#0094FC'
+                this.state.MobileNumber.includes('A') ? 'red' : '#0094FC'
               }
               value={this.state.MobileNumber}
               onChangeText={text => {
                 this.setState({MobileNumber: text});
-              }}></TextInput>
+              }}
+            />
 
-               {this.state.MobileNumber.includes( 'A') && <Text accent> mobile number doesn't contain characters</Text>}
+            {this.state.MobileNumber.includes('A') && (
+              <Text accent> mobile number doesn't contain characters</Text>
+            )}
           </View>
           <View style={{marginBottom: 10, padding: 5}}>
             <TextInput
@@ -57,17 +70,24 @@ export default class LoginScreen extends Component {
                 this.setState({Password: text});
               }}
               underlineColorAndroid={
-                this.state.Password.includes(' ') ? 'red':'#0094FC'
+                this.state.Password.includes(' ') ? 'red' : '#0094FC'
               }
               // secureTextEntry={true}
 
               placeholder="Password"
-              name="Password"></TextInput>
-               {this.state.Password.includes( ' ') && <Text accent> Password doesn't contain  space </Text>}
-
+              name="Password"
+            />
+            {this.state.Password.includes(' ') && (
+              <Text accent> Password doesn't contain space </Text>
+            )}
           </View>
           <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-            <Button gradient onPress={this.checkAndDecide}>
+            <Button
+              gradient
+              onPress={() => {
+                this.checkAndDecide();
+                // this.signInUser();
+              }}>
               <Text center semibold white>
                 Login
               </Text>
@@ -86,7 +106,11 @@ export default class LoginScreen extends Component {
           onPress={() => this.props.navigation.navigate('Home')}>
           <Text style={{textAlign: 'center', paddingTop: 5,fontSize:17}}> Sign in</Text>
         </TouchableOpacity> */}
-          <Text style={{textAlign: 'center', color: '#242a37'}} onPress={()=>{this.props.navigation.navigate('Address')}}>
+          <Text
+            style={{textAlign: 'center', color: '#242a37'}}
+            onPress={() => {
+              this.props.navigation.navigate('Address');
+            }}>
             {' '}
             Need Support?
           </Text>
@@ -113,6 +137,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   hasError: {
-    backgroundColor:'red'
+    backgroundColor: 'red',
   },
 });

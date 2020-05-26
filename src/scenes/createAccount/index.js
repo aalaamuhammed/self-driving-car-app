@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
 import {Button, Block, Text} from '_atoms';
-import {theme} from '../../constants';
+import axios from 'axios';
+import {theme, apis} from '../../constants';
+
 // import validation from 'validation.js'
 
 const validatio = {
@@ -24,7 +26,7 @@ const validatio = {
     },
   },
 };
-
+const email_validation_url = 'http://192.168.1.3:3000/api/validateEmail';
 export default class CreateAccountScreen extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +45,12 @@ export default class CreateAccountScreen extends Component {
       number: false,
       confirmPassword: '',
       Confirmed: false,
-      disabled:false,
+      disabled: false,
+      email_existence: false,
     };
   }
   validConfirmedPassword() {
-    this.setState({disabled:true}) 
+    this.setState({disabled: true});
     var Confirmed = false;
     if (
       this.state.Password === this.state.confirmPassword ||
@@ -111,7 +114,19 @@ export default class CreateAccountScreen extends Component {
       return true;
     }
   }
-  validEmail() {
+  checkEmailExistence = async () => {
+    axios
+      .post(apis.email_validation_api, {email: this.state.Email})
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.error('Error', err);
+        this.setState({email_existence: true});
+      });
+  };
+
+  validEmail = async () => {
     var correct_email = false;
 
     if (this.state.Email.includes('@')) {
@@ -124,16 +139,18 @@ export default class CreateAccountScreen extends Component {
     if (correct_email) {
       console.log('there is a mistake he should not navigate');
       this.setState({correct_email: correct_email});
+
       return false;
     } else {
       console.log('there is a No mistake he should navigate');
       this.setState({correct_email: correct_email});
 
+      console.log('after cheeeeck');
       return true;
     }
-  }
+  };
 
-  move() {
+  move = () => {
     const x =
       this.validPassword() &&
       this.validEmail() &&
@@ -141,18 +158,17 @@ export default class CreateAccountScreen extends Component {
     if (x) {
       this.props.navigation.navigate('BasicInfo');
     }
-  }
-  render() {
-    const{Email,Password,confirmPassword}=this.state;
+  };
+  render = () => {
+    const {Email, Password, confirmPassword} = this.state;
     return (
       <>
-
         <Block padding={[20, theme.sizes.base * 2]}>
           <Text h2 bold>
             Create Account
           </Text>
           {/* {(Email!==''&&Password!==''&& confirmPassword!=='') ? this.setState({disabled:true}):this.setState({disabled:false}) } */}
-        {/* this.setState({disabled:true})   */}
+          {/* this.setState({disabled:true})   */}
 
           <Block middle>
             <View style={{marginBottom: 20}}>
@@ -167,20 +183,27 @@ export default class CreateAccountScreen extends Component {
                 multiline={false}
                 placeholder="Email"
                 underlineColorAndroid={
-                  this.state.correct_email ? 'red' :
-                   (this.state.Email === '' ? 'gray' : '#0094FC')
+                  this.state.correct_email
+                    ? 'red'
+                    : this.state.Email === ''
+                    ? 'gray'
+                    : '#0094FC'
                 }
                 onBlur={this.validEmail}
                 value={this.state.Email}
                 onChangeText={text => {
                   this.setState({Email: text});
-                }}></TextInput>
+                }}
+              />
 
               {this.state.alphabet && (
                 <Text accent>please check your mail</Text>
               )}
               {this.state.correct_email && (
                 <Text accent> ** Please check your mail</Text>
+              )}
+              {this.state.email_existence && (
+                <Text accent> ** Your E-mail already exist</Text>
               )}
             </View>
             <View style={{marginBottom: 20}}>
@@ -196,11 +219,14 @@ export default class CreateAccountScreen extends Component {
                   this.state.Upper ||
                   this.state.specialCharacters
                     ? 'red'
-                    :  (this.state.Password === '' ? 'gray' : '#0094FC')
+                    : this.state.Password === ''
+                    ? 'gray'
+                    : '#0094FC'
                 }
                 secureTextEntry={true}
                 placeholder="Password"
-                name="Password"></TextInput>
+                name="Password"
+              />
               {this.state.specialCharacters && (
                 <Text accent>
                   {' '}
@@ -228,23 +254,38 @@ export default class CreateAccountScreen extends Component {
               }}
               onBlur={this.validConfirmedPassword}
               secureTextEntry={true}
-              underlineColorAndroid={this.state.Confirmed ? 'red' :
-              (this.state.confirmPassword === '' ? 'gray' : '#0094FC')              }
+              underlineColorAndroid={
+                this.state.Confirmed
+                  ? 'red'
+                  : this.state.confirmPassword === ''
+                  ? 'gray'
+                  : '#0094FC'
+              }
               placeholder="Confirm Password"
-              name="Confirm Password"></TextInput>
+              name="Confirm Password"
+            />
             {this.state.Confirmed && (
               <Text accent> ** They are not identical</Text>
             )}
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-              <Button gradient={this.state.disabled} disabled={!this.state.disabled} onPress={this.move}>
-                <Text center semibold  gray={!this.state.disabled} white={this.state.disabled}>
+              <Button
+                gradient={this.state.disabled}
+                disabled={!this.state.disabled}
+                onPress={() => {
+                  this.move();
+                  this.checkEmailExistence();
+                }}>
+                <Text
+                  center
+                  semibold
+                  gray={!this.state.disabled}
+                  white={this.state.disabled}>
                   Create Account
                 </Text>
               </Button>
             </Block>
 
-             
-        {/* <TouchableOpacity
+            {/* <TouchableOpacity
           style={styles.buttonContainer2}
           onPress={() => this.props.navigation.navigate('Terms')}>
           <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
@@ -259,7 +300,7 @@ export default class CreateAccountScreen extends Component {
         </Block>
       </>
     );
-  }
+  };
 }
 const styles = StyleSheet.create({
   buttonContainer2: {

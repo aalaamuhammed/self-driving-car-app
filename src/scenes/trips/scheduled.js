@@ -7,37 +7,34 @@ import {
   StyleSheet,
   SectionList,
 } from 'react-native';
+import * as axios from 'axios';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 export default class Scheduled extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      DATA: [
-        {
-          title: 'Today',
-          data: [
-            {dist: 'El-Galaa St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-            {dist: 'El-bagr St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-          ],
-        },
-        {
-          title: 'Tomorrow',
-          data: [
-            {dist: 'El-Galaa St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-            {dist: 'El-bagr St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-          ],
-        },
-
-        {
-          title: '13/10/2019',
-          data: [
-            {dist: 'El-Galaa St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-            {dist: 'El-bagr St.', region: 'Tanta,Qism 1,El-Bahr St.'},
-          ],
-        },
-      ],
+      DATA: [],
     };
   }
+
+  get = async () => {
+    try {
+     
+      const response = await axios.get(
+        'http://192.168.1.4:3000/taxiApp/trips/scheduled',
+      );
+      this.setState({DATA: response.data});
+     
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  componentDidMount = () => {
+    {
+      this.get();
+    }
+  };
   Item({title}) {
     return (
       <View style={styles.item}>

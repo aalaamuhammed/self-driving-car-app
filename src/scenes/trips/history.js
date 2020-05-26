@@ -1,39 +1,33 @@
 import React, { Component } from 'react'
 import { Text, View, FlatList,TextInput,StyleSheet,SectionList } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import * as axios from 'axios';
+
 export default class History extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      DATA:[
-        {
-          title: 'Today',
-          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
-          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
-        },
-        {
-          title: 'Yesterday',
-          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
-          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
-        },
-       
-        {
-          title: '13/10/2019',
-          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
-          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
-        },
-        {
-          title: '13/10/2019',
-          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
-          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
-        },
-        {
-          title: '13/10/2019',
-          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
-          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
-        },
-      ]};
+      DATA:[]};
   }
+
+  get = async () => {
+    try {
+     
+      const response = await axios.get(
+        'http://192.168.1.4:3000/taxiApp/trips/history',
+      );
+     
+      this.setState({DATA: response.data});
+     
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  componentDidMount = () => {
+    {
+      this.get();
+    }
+  };
   Item({ title }) {
     return (
       <View style={styles.item}>

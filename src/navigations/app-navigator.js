@@ -32,7 +32,7 @@ import WalletScreen from '_scenes/wallet';
 import OffersScreen from '_scenes/offers';
 import NotificationScreen from '_scenes/notifications';
 import HelpScreen from '_scenes/help';
-
+import ProfileScreen from '_scenes/profile';
 
 const TabNavigatorConfig = {
   initialRouteName: 'Home',
@@ -198,6 +198,11 @@ const AppNavigator = createDrawerNavigator(
         drawerIcon: ({ tintColor }) => (
           <Icon2 name="wallet" size={30} style={{ color: tintColor }}/>)
       }},
+      Profile:{screen: ProfileScreen,
+        navigationOptions:{
+          drawerIcon: ({ tintColor }) => (
+            <Icon2 name="profile" size={30} style={{ color: tintColor }}/>)
+        }},
   },
   {
     contentComponent: CustomDrawer,

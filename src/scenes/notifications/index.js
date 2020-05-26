@@ -8,65 +8,12 @@ import {
 import {OrangeHeader} from '_molecules';
 import * as Animatable from 'react-native-animatable';
 import Accordion from 'react-native-collapsible/Accordion';
-
-
-
-const CONTENT = [
-  {
-    title: {
-      packageName: 'The Avenger - 20EGP',
-      key: 1,
-      percent: '30%',
-      packageContent: [
-        '- get 3 trips with 30%',
-        '- get codes for you and your family',
-        '- benefit 3',
-      ],
-    },
-  },
-
-  {
-    title: {
-      packageName: 'The Avenger - 20EGP',
-      key: 1,
-      percent: '15%',
-      packageContent: [
-        '- get 3 trips with 30%',
-        '- get codes for you and your family',
-        '- benefit 3',
-      ],
-    },
-  },
-  {
-    title: {
-      packageName: 'The Avenger - 20EGP',
-      key: 1,
-      percent: '20%',
-      packageContent: [
-        '- get 3 trips with 30%',
-        '- get codes for you and your family',
-        '- benefit 3',
-      ],
-    },
-  },
-  {
-    title: {
-      packageName: 'The Avenger - 20EGP',
-      key: 1,
-      percent: '15%',
-      packageContent: [
-        '- get 3 trips with 30%',
-        '- get codes for you and your family',
-        '- benefit 3',
-      ],
-    },
-  },
-];
-
-
+import * as axios from 'axios';
+import {apis} from '../../constants'
 export default class App extends Component {
   state = {
     activeSections: [],
+    CONTENT :[]
   };
 
   setSections = sections => {
@@ -75,29 +22,48 @@ export default class App extends Component {
     });
   };
 
+  get = async () => {
+    try {
+     
+      const response = await axios.get(
+        apis.packages_api,
+      );
+   //   this.setState({CONTENT: response.data});
+   console.log(response.data)
+     
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  // componentDidMount = () => {
+  //   {
+  //     this.get();
+  //   }
+  // };
+
   renderHeader = (section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
         style={[styles.header, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
-        
-        <View style={{margin:10}}>
+        <View style={{flexDirection:'column'}}>
+        <View style={{marginStart:8,margin:3}}>
           <Text 
           style={{
-            textAlign: 'center', 
+             
             fontSize: 20, 
             fontWeight: 'bold',
           
             }}>
             {section.title.packageName}
           </Text>
-
-
-
-          {section.title.packageContent.map(element=><Text>{element}</Text>)}
         </View>
-        <View style={{flex:.5,justifyContent:'center',backgroundColor:'#FF8900'}}> 
+        <View style={{marginStart:15,margin:3}}>
+            {section.title.packageContent.map(element=><Text>{element}</Text>)}
+          </View>
+          </View>
+        <View style={[styles.percentView, isActive ? styles.ActivePercentRadius:styles.notActivePercentRadius]}> 
           <Text style={[styles.headerText,{color:'#fff',transform:[{rotateZ:'90deg'}]}]}>{section.title.percent}</Text>
         </View>
       </Animatable.View>
@@ -151,15 +117,15 @@ export default class App extends Component {
     <View style={{flex:1}}>
     <Accordion
     activeSections={activeSections}
-    sections={CONTENT}
+    sections={this.state.CONTENT}
     touchableComponent={TouchableOpacity}
-    touchableProps={{marginBottom: 5,activeOpacity:.8}}
+    touchableProps={{activeOpacity:.8}}
     renderHeader={this.renderHeader}
     renderContent={this.renderContent}
     duration={400}
     onChange={this.setSections}
     sectionContainerStyle={{
-      margin: 20,
+      margin: 10,
       shadowColor: '#000',
       borderWidth: 1,
       borderColor: '#FF8900',
@@ -220,5 +186,17 @@ const styles = StyleSheet.create({
     borderRadius:10,
     backgroundColor: 'rgba(255,255,255,1)',
     // borderWidth:.5,
+  },
+  percentView:{
+    
+    flex:.5,justifyContent:'center',backgroundColor:'#FF8900'
+  },
+  notActivePercentRadius:{
+    borderTopRightRadius:8,
+    borderBottomRightRadius:8,
+  },
+  ActivePercentRadius:{
+    borderTopRightRadius:8,
+    borderBottomRightRadius:0,
   },
 });

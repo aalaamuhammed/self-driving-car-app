@@ -24,7 +24,7 @@ export default class ViewCard extends Component {
   this.props.navigation.navigate('topTab')
 }  
     render(){
-      const a = <CardsFlatList addCard={()=>this.props.navigation.navigate('addCard')} DATA={this.state.DATA}/>
+      const a = <CardsFlatList addCard={()=>this.props.navigation.navigate('addCard')} DATA={this.state.DATA}  cardDetails={()=>this.props.navigation.navigate('cardDetails')}/>
 
        return (
           
