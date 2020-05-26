@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* newjavaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* newjavaTests.m */; };
+		00E356F31AD99517003FC87E /* BarqTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BarqTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -18,20 +18,20 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* newjavaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* newjavaTests.m */; };
-		31C85019944230F882B64BBD /* libPods-newjava.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40701C31653128107F061B17 /* libPods-newjava.a */; };
-		3FE257CA559EBD926A7DDEE6 /* libPods-newjava-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DA54F68C3BEA9A80E35DBA /* libPods-newjava-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* BarqTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BarqTests.m */; };
+		31C85019944230F882B64BBD /* libPods-Barq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40701C31653128107F061B17 /* libPods-Barq.a */; };
+		3FE257CA559EBD926A7DDEE6 /* libPods-Barq-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DA54F68C3BEA9A80E35DBA /* libPods-Barq-tvOS.a */; };
 		4D21845859F34B99840286C3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 674AC594D89A4588B1C8DAE4 /* Zocial.ttf */; };
 		64E64847EDB2477EA268E176 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2165F059D69E4CCAAEDA6D99 /* Feather.ttf */; };
 		6F3C0175C22A4BFF9D193A4F /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28ABE100153B40288739D395 /* FontAwesome5_Brands.ttf */; };
 		7984B577AC344577897E157E /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4023647B8E44C2590BE77F0 /* AntDesign.ttf */; };
 		8C1410A761534323926C8876 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40E77FF088DD435CB1CDB04A /* Octicons.ttf */; };
 		9B33B4BACF1448EBA749C546 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34B6E5FDAAB64BE7AD5716EF /* MaterialIcons.ttf */; };
-		A3EEA8E7B04D6FD4FC226D12 /* libPods-newjavaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FF514344DD8B2570D76A4B /* libPods-newjavaTests.a */; };
+		A3EEA8E7B04D6FD4FC226D12 /* libPods-BarqTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FF514344DD8B2570D76A4B /* libPods-BarqTests.a */; };
 		B14EF90525BC420B9741A54C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01A06637EF4F43A6A97804D8 /* EvilIcons.ttf */; };
 		CE785565AFCE43D29B71FFCB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 328915E3E7394C11BF2DB898 /* SimpleLineIcons.ttf */; };
 		D16A2927DE24417782E185B1 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C7FD36F88754A6B969B103F /* Fontisto.ttf */; };
-		D2259204FE73CC0584C0B236 /* libPods-newjava-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E9F65FAE5CD35E6AF4A8A /* libPods-newjava-tvOSTests.a */; };
+		D2259204FE73CC0584C0B236 /* libPods-Barq-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E9F65FAE5CD35E6AF4A8A /* libPods-Barq-tvOSTests.a */; };
 		D3D683ED9F1B41C186F8D915 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 896AFBD922654C3D87A7E574 /* Foundation.ttf */; };
 		E4F1E4E9E014476086830947 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BA2C896279B485BBA19F7D1 /* MaterialCommunityIcons.ttf */; };
 		E53F52C4C43B437F8750D84C /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96280C266CA047E0AE797949 /* FontAwesome5_Solid.ttf */; };
@@ -55,61 +55,61 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = newjava;
+			remoteInfo = Barq;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "newjava-tvOS";
+			remoteInfo = "Barq-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* newjavaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = newjavaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* BarqTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarqTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* newjavaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newjavaTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* BarqTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarqTests.m; sourceTree = "<group>"; };
 		01A06637EF4F43A6A97804D8 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		0B93287CBEC144E38C620F52 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* newjava.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newjava.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = newjava/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = newjava/AppDelegate.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Barq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barq.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Barq/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Barq/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = newjava/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = newjava/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = newjava/main.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Barq/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Barq/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Barq/main.m; sourceTree = "<group>"; };
 		2165F059D69E4CCAAEDA6D99 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		28ABE100153B40288739D395 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* newjava-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "newjava-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* newjava-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "newjava-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* Barq-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Barq-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* Barq-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Barq-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		328915E3E7394C11BF2DB898 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		34B6E5FDAAB64BE7AD5716EF /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		40701C31653128107F061B17 /* libPods-newjava.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newjava.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40701C31653128107F061B17 /* libPods-Barq.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Barq.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E77FF088DD435CB1CDB04A /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		411E9F65FAE5CD35E6AF4A8A /* libPods-newjava-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newjava-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		46FF514344DD8B2570D76A4B /* libPods-newjavaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newjavaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		411E9F65FAE5CD35E6AF4A8A /* libPods-Barq-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Barq-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		46FF514344DD8B2570D76A4B /* libPods-BarqTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BarqTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4759AB28C2C44127A6F361EC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		4D24A39F31D545AD16DC2383 /* Pods-newjava.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava.debug.xcconfig"; path = "Target Support Files/Pods-newjava/Pods-newjava.debug.xcconfig"; sourceTree = "<group>"; };
+		4D24A39F31D545AD16DC2383 /* Pods-Barq.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq.debug.xcconfig"; path = "Target Support Files/Pods-Barq/Pods-Barq.debug.xcconfig"; sourceTree = "<group>"; };
 		674AC594D89A4588B1C8DAE4 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		6DA2335B17F532ED9A962576 /* Pods-newjava-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava-tvOS.release.xcconfig"; path = "Target Support Files/Pods-newjava-tvOS/Pods-newjava-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		7069614B9E28315A2FFEF1B2 /* Pods-newjavaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjavaTests.debug.xcconfig"; path = "Target Support Files/Pods-newjavaTests/Pods-newjavaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DA2335B17F532ED9A962576 /* Pods-Barq-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Barq-tvOS/Pods-Barq-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		7069614B9E28315A2FFEF1B2 /* Pods-BarqTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarqTests.debug.xcconfig"; path = "Target Support Files/Pods-BarqTests/Pods-BarqTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BA2C896279B485BBA19F7D1 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		896AFBD922654C3D87A7E574 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		8B773B7FE8914650B23D0F49 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		8C7FD36F88754A6B969B103F /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		930B7DB006E74F68902A40B8 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		96280C266CA047E0AE797949 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		9EDE8D2430925C943DA57210 /* Pods-newjava-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-newjava-tvOSTests/Pods-newjava-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		B296BC27E4B506A040E20190 /* Pods-newjava-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-newjava-tvOSTests/Pods-newjava-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9EDE8D2430925C943DA57210 /* Pods-Barq-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Barq-tvOSTests/Pods-Barq-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B296BC27E4B506A040E20190 /* Pods-Barq-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Barq-tvOSTests/Pods-Barq-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4023647B8E44C2590BE77F0 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		CFEFD7A82D6555B2E1658C24 /* Pods-newjava-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-newjava-tvOS/Pods-newjava-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		D1CA99A76D160412F1549EC1 /* Pods-newjava.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjava.release.xcconfig"; path = "Target Support Files/Pods-newjava/Pods-newjava.release.xcconfig"; sourceTree = "<group>"; };
+		CFEFD7A82D6555B2E1658C24 /* Pods-Barq-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Barq-tvOS/Pods-Barq-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D1CA99A76D160412F1549EC1 /* Pods-Barq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Barq.release.xcconfig"; path = "Target Support Files/Pods-Barq/Pods-Barq.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EE326185C007FAE944ADA12F /* Pods-newjavaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newjavaTests.release.xcconfig"; path = "Target Support Files/Pods-newjavaTests/Pods-newjavaTests.release.xcconfig"; sourceTree = "<group>"; };
-		F1DA54F68C3BEA9A80E35DBA /* libPods-newjava-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-newjava-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE326185C007FAE944ADA12F /* Pods-BarqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarqTests.release.xcconfig"; path = "Target Support Files/Pods-BarqTests/Pods-BarqTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1DA54F68C3BEA9A80E35DBA /* libPods-Barq-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Barq-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F1FB2819CF4D72AE100DFF /* Rubik-Black.ttf */ = {isa = PBXFileReference; name = "Rubik-Black.ttf"; path = "../src/assets/fonts/Rubik-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4146947D9741457BA00F132C /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Rubik-BlackItalic.ttf"; path = "../src/assets/fonts/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5DB1C70D64CF49D9ABFA94AA /* Rubik-Bold.ttf */ = {isa = PBXFileReference; name = "Rubik-Bold.ttf"; path = "../src/assets/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3EEA8E7B04D6FD4FC226D12 /* libPods-newjavaTests.a in Frameworks */,
+				A3EEA8E7B04D6FD4FC226D12 /* libPods-BarqTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31C85019944230F882B64BBD /* libPods-newjava.a in Frameworks */,
+				31C85019944230F882B64BBD /* libPods-Barq.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FE257CA559EBD926A7DDEE6 /* libPods-newjava-tvOS.a in Frameworks */,
+				3FE257CA559EBD926A7DDEE6 /* libPods-Barq-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,20 +152,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2259204FE73CC0584C0B236 /* libPods-newjava-tvOSTests.a in Frameworks */,
+				D2259204FE73CC0584C0B236 /* libPods-Barq-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* newjavaTests */ = {
+		00E356EF1AD99517003FC87E /* BarqTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* newjavaTests.m */,
+				00E356F21AD99517003FC87E /* BarqTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = newjavaTests;
+			path = BarqTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -176,7 +176,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* newjava */ = {
+		13B07FAE1A68108700A75B9A /* Barq */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -187,7 +187,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = newjava;
+			name = Barq;
 			sourceTree = "<group>";
 		};
 		19D3965C6EFD4400AAD10411 /* Resources */ = {
@@ -228,14 +228,14 @@
 		29E9CD349C9FBE2DC48EF124 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4D24A39F31D545AD16DC2383 /* Pods-newjava.debug.xcconfig */,
-				D1CA99A76D160412F1549EC1 /* Pods-newjava.release.xcconfig */,
-				CFEFD7A82D6555B2E1658C24 /* Pods-newjava-tvOS.debug.xcconfig */,
-				6DA2335B17F532ED9A962576 /* Pods-newjava-tvOS.release.xcconfig */,
-				B296BC27E4B506A040E20190 /* Pods-newjava-tvOSTests.debug.xcconfig */,
-				9EDE8D2430925C943DA57210 /* Pods-newjava-tvOSTests.release.xcconfig */,
-				7069614B9E28315A2FFEF1B2 /* Pods-newjavaTests.debug.xcconfig */,
-				EE326185C007FAE944ADA12F /* Pods-newjavaTests.release.xcconfig */,
+				4D24A39F31D545AD16DC2383 /* Pods-Barq.debug.xcconfig */,
+				D1CA99A76D160412F1549EC1 /* Pods-Barq.release.xcconfig */,
+				CFEFD7A82D6555B2E1658C24 /* Pods-Barq-tvOS.debug.xcconfig */,
+				6DA2335B17F532ED9A962576 /* Pods-Barq-tvOS.release.xcconfig */,
+				B296BC27E4B506A040E20190 /* Pods-Barq-tvOSTests.debug.xcconfig */,
+				9EDE8D2430925C943DA57210 /* Pods-Barq-tvOSTests.release.xcconfig */,
+				7069614B9E28315A2FFEF1B2 /* Pods-BarqTests.debug.xcconfig */,
+				EE326185C007FAE944ADA12F /* Pods-BarqTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -246,10 +246,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				40701C31653128107F061B17 /* libPods-newjava.a */,
-				F1DA54F68C3BEA9A80E35DBA /* libPods-newjava-tvOS.a */,
-				411E9F65FAE5CD35E6AF4A8A /* libPods-newjava-tvOSTests.a */,
-				46FF514344DD8B2570D76A4B /* libPods-newjavaTests.a */,
+				40701C31653128107F061B17 /* libPods-Barq.a */,
+				F1DA54F68C3BEA9A80E35DBA /* libPods-Barq-tvOS.a */,
+				411E9F65FAE5CD35E6AF4A8A /* libPods-Barq-tvOSTests.a */,
+				46FF514344DD8B2570D76A4B /* libPods-BarqTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,9 +264,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* newjava */,
+				13B07FAE1A68108700A75B9A /* Barq */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* newjavaTests */,
+				00E356EF1AD99517003FC87E /* BarqTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				19D3965C6EFD4400AAD10411 /* Resources */,
@@ -280,10 +280,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* newjava.app */,
-				00E356EE1AD99517003FC87E /* newjavaTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* newjava-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* newjava-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* Barq.app */,
+				00E356EE1AD99517003FC87E /* BarqTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* Barq-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* Barq-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,9 +291,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* newjavaTests */ = {
+		00E356ED1AD99517003FC87E /* BarqTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "newjavaTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BarqTests" */;
 			buildPhases = (
 				9E4D77F9252E09D0DCE417C7 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -305,14 +305,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = newjavaTests;
-			productName = newjavaTests;
-			productReference = 00E356EE1AD99517003FC87E /* newjavaTests.xctest */;
+			name = BarqTests;
+			productName = BarqTests;
+			productReference = 00E356EE1AD99517003FC87E /* BarqTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* newjava */ = {
+		13B07F861A680F5B00A75B9A /* Barq */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "newjava" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Barq" */;
 			buildPhases = (
 				9671CC76500A2D5ADF165697 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -326,14 +326,14 @@
 			);
 			dependencies = (
 			);
-			name = newjava;
-			productName = newjava;
-			productReference = 13B07F961A680F5B00A75B9A /* newjava.app */;
+			name = Barq;
+			productName = Barq;
+			productReference = 13B07F961A680F5B00A75B9A /* Barq.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* newjava-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* Barq-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newjava-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Barq-tvOS" */;
 			buildPhases = (
 				490ECA2F80977CEDA1B075E8 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -346,14 +346,14 @@
 			);
 			dependencies = (
 			);
-			name = "newjava-tvOS";
-			productName = "newjava-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* newjava-tvOS.app */;
+			name = "Barq-tvOS";
+			productName = "Barq-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* Barq-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* newjava-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* Barq-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newjava-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Barq-tvOSTests" */;
 			buildPhases = (
 				5BD5120BB1F10A85EADDF608 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -365,9 +365,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "newjava-tvOSTests";
-			productName = "newjava-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* newjava-tvOSTests.xctest */;
+			name = "Barq-tvOSTests";
+			productName = "Barq-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* Barq-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +394,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "newjava" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Barq" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -407,10 +407,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* newjava */,
-				00E356ED1AD99517003FC87E /* newjavaTests */,
-				2D02E47A1E0B4A5D006451C7 /* newjava-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* newjava-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* Barq */,
+				00E356ED1AD99517003FC87E /* BarqTests */,
+				2D02E47A1E0B4A5D006451C7 /* Barq-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* Barq-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -520,7 +520,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newjava-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Barq-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -542,7 +542,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newjava-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Barq-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -555,7 +555,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-newjava/Pods-newjava-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Barq/Pods-Barq-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -594,7 +594,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-newjava/Pods-newjava-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Barq/Pods-Barq-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9671CC76500A2D5ADF165697 /* [CP] Check Pods Manifest.lock */ = {
@@ -612,7 +612,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newjava-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Barq-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -634,7 +634,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-newjavaTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BarqTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -686,7 +686,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* newjavaTests.m in Sources */,
+				00E356F31AD99517003FC87E /* BarqTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* newjavaTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* BarqTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,12 +721,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* newjava */;
+			target = 13B07F861A680F5B00A75B9A /* Barq */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* newjava-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* Barq-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -738,7 +738,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = newjava;
+			path = Barq;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -746,14 +746,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7069614B9E28315A2FFEF1B2 /* Pods-newjavaTests.debug.xcconfig */;
+			baseConfigurationReference = 7069614B9E28315A2FFEF1B2 /* Pods-BarqTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = newjavaTests/Info.plist;
+				INFOPLIST_FILE = BarqTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -763,17 +763,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newjava.app/newjava";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Barq.app/Barq";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE326185C007FAE944ADA12F /* Pods-newjavaTests.release.xcconfig */;
+			baseConfigurationReference = EE326185C007FAE944ADA12F /* Pods-BarqTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = newjavaTests/Info.plist;
+				INFOPLIST_FILE = BarqTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -783,18 +783,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newjava.app/newjava";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Barq.app/Barq";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D24A39F31D545AD16DC2383 /* Pods-newjava.debug.xcconfig */;
+			baseConfigurationReference = 4D24A39F31D545AD16DC2383 /* Pods-Barq.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				INFOPLIST_FILE = newjava/Info.plist;
+				INFOPLIST_FILE = Barq/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -802,18 +802,18 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = newjava;
+				PRODUCT_NAME = Barq;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1CA99A76D160412F1549EC1 /* Pods-newjava.release.xcconfig */;
+			baseConfigurationReference = D1CA99A76D160412F1549EC1 /* Pods-Barq.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = newjava/Info.plist;
+				INFOPLIST_FILE = Barq/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -821,14 +821,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = newjava;
+				PRODUCT_NAME = Barq;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CFEFD7A82D6555B2E1658C24 /* Pods-newjava-tvOS.debug.xcconfig */;
+			baseConfigurationReference = CFEFD7A82D6555B2E1658C24 /* Pods-Barq-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -839,14 +839,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newjava-tvOS/Info.plist";
+				INFOPLIST_FILE = "Barq-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newjava-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Barq-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -856,7 +856,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DA2335B17F532ED9A962576 /* Pods-newjava-tvOS.release.xcconfig */;
+			baseConfigurationReference = 6DA2335B17F532ED9A962576 /* Pods-Barq-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -867,14 +867,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newjava-tvOS/Info.plist";
+				INFOPLIST_FILE = "Barq-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newjava-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Barq-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -884,7 +884,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B296BC27E4B506A040E20190 /* Pods-newjava-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = B296BC27E4B506A040E20190 /* Pods-Barq-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -894,24 +894,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newjava-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Barq-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newjava-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Barq-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newjava-tvOS.app/newjava-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Barq-tvOS.app/Barq-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9EDE8D2430925C943DA57210 /* Pods-newjava-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 9EDE8D2430925C943DA57210 /* Pods-Barq-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -921,17 +921,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "newjava-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "Barq-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.newjava-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Barq-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/newjava-tvOS.app/newjava-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Barq-tvOS.app/Barq-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1038,7 +1038,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "newjavaTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BarqTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1047,7 +1047,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "newjava" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Barq" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1056,7 +1056,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newjava-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Barq-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1065,7 +1065,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "newjava-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Barq-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1074,7 +1074,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "newjava" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Barq" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

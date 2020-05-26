@@ -1,4 +1,4 @@
-package com.newjava;
+package com.barq;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "newjava";
+    return "Barq";
   }
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {

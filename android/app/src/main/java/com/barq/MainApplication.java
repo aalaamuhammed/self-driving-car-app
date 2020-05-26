@@ -1,4 +1,4 @@
-package com.newjava;
+package com.barq;
 
 import android.app.Application;
 import android.content.Context;
