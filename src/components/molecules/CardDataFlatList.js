@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View,FlatList,TouchableOpacity,Modal } from 'react-native'
 import { TextInput} from 'react-native-gesture-handler';
-import DatePicker from 'react-native-date-picker'
+// import DatePicker from 'react-native-date-picker'
 
 export default class CardDataFlatList extends Component {
   constructor(props) {
@@ -94,7 +94,7 @@ export default class CardDataFlatList extends Component {
                 borderWidth:5,
                 borderRadius:20}}>
          
-            <DatePicker
+            {/* <DatePicker
               fadeToColor='none'
               style={
                 {
@@ -111,7 +111,7 @@ export default class CardDataFlatList extends Component {
                  this.state.color='black'
                   this.props.saveDate(item,text)
                }}
-              />
+              /> */}
               </View>
               
               

@@ -12,7 +12,6 @@ import {PermissionsAndroid} from 'react-native';
 import {theme} from '../../constants';
 import axios from 'axios'
 import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
-import { transform } from '@babel/core';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {

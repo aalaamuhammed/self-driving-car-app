@@ -104,7 +104,7 @@ export default class Typography extends Component {
     },
     semibold: {
       fontWeight: "500",
-      fontFamily: "Rubik-SemiBold"
+      fontFamily: "Rubik-Bold"
     },
     medium: {
       fontWeight: "500",

@@ -16,7 +16,7 @@ import {
   ImageBackground,
   Picker,
 } from 'react-native';
-import DatePicker from 'react-native-date-picker';
+// import DatePicker from 'react-native-date-picker';
 import CheckBox from 'react-native-check-box'
 import i20 from '_assets/images/i20.png';
 import Icon from 'react-native-vector-icons/Feather';
@@ -206,7 +206,7 @@ onPress={()=>this.pickerModal(false)}>
      borderWidth:5,
      borderRadius:20}}>
 
- <DatePicker
+ {/* <DatePicker
    fadeToColor='none'
    style={
      {
@@ -224,7 +224,7 @@ onPress={()=>this.pickerModal(false)}>
        this.saveDate(item,text)
        console.log(item.key, text)
     }}
-   />
+   /> */}
    </View>
    
    
