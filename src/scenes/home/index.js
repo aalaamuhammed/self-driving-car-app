@@ -9,6 +9,7 @@ import {
   PixelRatio,
   Animated,
 } from 'react-native';
+import useGlobalState from '../../utils/globalState'
 import {RenderCars, RenderStars, RenderFavourites, CarOrders} from '_molecules';
 import ImageZoom from 'react-native-image-pan-zoom';
 //import Geolocation from '@react-native-community/geolocation';
@@ -28,7 +29,7 @@ const Home = ({currentPosition, parkings, navigation}) => {
   const [selectCar, setSelectCar] = useState(false);
   const [rateTrip, setRateTrip] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [count, setCount] = useGlobalState("count")
   const [move, setMove] = useState(true);
 
   const markerPosition = new Animated.ValueXY(0, 0);
