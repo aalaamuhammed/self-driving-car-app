@@ -1,31 +1,28 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, TextInput, TouchableOpacity, Image, ImageBackground,FlatList,Alert} from 'react-native';
 import {Button, Block, Text} from '_atoms';
 import {theme} from '../../constants';
 
 
 
-export default class AvailablePlacesScreen extends Component {
-    constructor() {
-        super();
-        this.state = {
-          FlatListItems: [
-            {key: 'Home ', category: ''},
-            {key: 'Gym', category: ''},
-            {key: 'Cafe', category: ''},
-            {key: 'Restaurant', category: ''},
-            {key: 'WorK', category: ''},
-            {key:"Friend's Home ", category: ''},
-            {key: 'School', category: ''},
-            {key: 'College', category: ' '},
-            {key: "Family's House" , category: ' '},
-          ],
-        };
-      }
-      GetItem(item) {
+export default  AvailablePlacesScreen=()=> {
+    const [FlatListItems, setFlatListItems] = useState([
+      {key: 'Home ', category: ''},
+      {key: 'Gym', category: ''},
+      {key: 'Cafe', category: ''},
+      {key: 'Restaurant', category: ''},
+      {key: 'WorK', category: ''},
+      {key:"Friend's Home ", category: ''},
+      {key: 'School', category: ''},
+      {key: 'College', category: ' '},
+      {key: "Family's House" , category: ' '},
+    ])
+        
+      
+     const GetItem=(item)=> {
         Alert.alert(item);
       }
-      FlatListItemSeparator = () => {
+      const FlatListItemSeparator = () => {
         return (
           <View
             style={{
@@ -43,7 +40,7 @@ export default class AvailablePlacesScreen extends Component {
         );
       };
     
-    render() {
+  
         return (
 <View
         style={{
@@ -62,8 +59,8 @@ export default class AvailablePlacesScreen extends Component {
           }}>
                 
                  <FlatList
-              data={this.state.FlatListItems}
-              ItemSeparatorComponent={this.FlatListItemSeparator}
+              data={FlatListItems}
+              ItemSeparatorComponent={FlatListItemSeparator}
               renderItem={({item}) => (
                
             //       <View
@@ -76,7 +73,7 @@ export default class AvailablePlacesScreen extends Component {
             //           ,marginLeft:20,marginTop:20
             //         }}>
                     <Text
-                      onPress={this.GetItem.bind(this, item.key)}
+                      onPress={()=>GetItem(item.key)}
                       style={{marginTop: 20, fontSize: 16,justifyContent:'flex-end',marginBottom:10,marginLeft:20}}>
                       {' '}
                       {item.key}{' '}
@@ -89,5 +86,5 @@ export default class AvailablePlacesScreen extends Component {
           </ImageBackground>
             </View>
         )
-    }
+    
 }

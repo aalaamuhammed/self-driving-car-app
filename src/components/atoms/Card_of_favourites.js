@@ -5,7 +5,7 @@ import Block from './Block';
 import {theme} from '../../constants';
 import {favouritePlaces} from '../../constants/mocks';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 export default class Card_of_favourites extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +26,7 @@ export default class Card_of_favourites extends Component {
               <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.navigate('Address')}>
-                  <Image
-                    source={place.image}
-                    style={{
-                      width: 35,
-                      height: 35,
-                      resizeMode: 'contain',
-                      margin: 5,
-                    }}
-                  />
+                  <Icon name='place.image' size={40}/>
                 </TouchableOpacity>
 
                 <View

@@ -27,7 +27,7 @@ const MyTransition = {
 }
 
 
-const AppNavigator = createStackNavigator({
+export default AppNavigator = createStackNavigator({
     ListOfOffers: {
     screen: ListOfOffers,    
 
@@ -47,4 +47,4 @@ OfferDetails:{
     },
   });
   
-export default AppContainer =createAppContainer(AppNavigator);
+ AppContainer =createAppContainer(AppNavigator);

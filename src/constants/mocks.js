@@ -38,9 +38,9 @@ const drivingData = [
   },
 ];
 const favouritePlaces = [
-  {id: 1, image: require('_assets/images/i6.jpg')},
-  {id: 2, image: require('_assets/images/i7.png')},
-  {id: 3, image: require('_assets/images/i8.png')},
+  {id: 1, image: 'home-circle'},
+  {id: 2, image: 'cart-outline'},
+  {id: 3, image: 'briefcase'},
 
 ];
 const parkingsSpots = [

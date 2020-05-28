@@ -1,25 +1,24 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 
 import Stack from './navigation/stacknavigator';
-export default class App extends Component {
-  static router = Stack.router;
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  move = () => {
-    this.props.navigation.openDrawer();
-  };
 
-  render() {
+
+export default  offers=({navigation,route})=>{
+//  const router = Stack.router;
+ // const router=useRoute()
+  // const move = () => {
+  //  navigation.openDrawer();
+  // };
+
+   
     return (
       <View style={styles.container}>
-        <Stack navigation={this.props.navigation} />
+        <Stack navigation={navigation} />
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {

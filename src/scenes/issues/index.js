@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,120 +18,110 @@ import axios from 'axios'
 import {apis} from '../../constants'
 import {OrangeHeader} from '_molecules';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    (this.Height = Dimensions.get('window').height),
-      (this.state = {
-        activeSections: [],
-        CONTENT: [
-          {
-            title: 'Issue in the app',
-            content: [
-              'Issue in the app',
-              'Issue in the cars',
-              'Issue in the service',
-            ],
-          },
-        ],
-        name: 'Issue in the app',
-      });
-  }
-
-  setSections = sections => {
-    this.setState({
-      activeSections: sections.includes(undefined) ? [] : sections,
-    });
-  };
-
-  renderHeader = (section, _, isActive) => {
-    return (
-      <Animatable.View
-        duration={400}
-        style={[styles.header, isActive ? styles.active : styles.inactive]}
-        transition="backgroundColor">
-        <View style={{margin: 10}}>
-          <Animatable.Text
-            style={{
-              textAlign: 'center',
-              fontSize: 20,
-              fontWeight: 'bold',
-            }}
-            animation={'bounceIn'}>
-            {section.title}
-          </Animatable.Text>
-        </View>
-        {!isActive ? (
-          <Icon
-            name="right"
-            style={{alignSelf: 'center'}}
-            size={25}
-            color="#FF8900"
-          />
-        ) : (
-          <Icon
-            name="minus"
-            style={{alignSelf: 'center'}}
-            size={25}
-            color="#FF8900"
-          />
-        )}
-      </Animatable.View>
-    );
-  };
-
-  updateItem = (index, itemAttributes) => {
-    this.setState({
-      CONTENT: [
-        ...this.state.CONTENT.slice(0, index),
-        Object.assign({}, this.state.CONTENT[index], itemAttributes),
-        ...this.state.CONTENT.slice(index + 1),
+export default  App=({navigation})=>  {
+  
+    const Height = Dimensions.get('window').height
+    const [activeSections, setActiveSections] = useState([])
+    const [name, setName] = useState('Issue in the app')
+    const [CONTENT, setCONTENT] = useState([ {
+      title: 'Issue in the app',
+      content: [
+        'Issue in the app',
+        'Issue in the cars',
+        'Issue in the service',
       ],
-    });
-  };
+    }])
+   
 
-  renderContent = (section, _, isActive) => {
-    return (
-      <Animatable.View
-        duration={400}
-        style={[styles.content]}
-        containerStyle={{flex: 1, borderWidth: 5}}>
-        {section.content.map(element => (
-          <TouchableOpacity
-            onPress={() => this.updateItem(0, {title: element})}>
-            <Text>{element}</Text>
-          </TouchableOpacity>
-        ))}
-      </Animatable.View>
-    );
-  };
-  postIssue=async()=>{
-    axios
-    .post(apis.issues_api, {email: this.state.Email})
-    //schema form {"userId", "label", "body"}
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(err => {
-      console.error('Error', err);
-      this.setState({email_existence: true});
-    });
-  }
-  render() {
-    const {multipleSelect, activeSections} = this.state;
+    const setSections = sections => {
+      setActiveSections(sections.includes(undefined) ? [] : sections);
+    };
+
+    const renderHeader = (section, _, isActive) => {
+      return (
+        <Animatable.View
+          duration={400}
+          style={[styles.header, isActive ? styles.active : styles.inactive]}
+          transition="backgroundColor">
+          <View style={{margin: 10}}>
+            <Animatable.Text
+              style={{
+                textAlign: 'center',
+                fontSize: 20,
+                fontWeight: 'bold',
+              }}
+              animation={'bounceIn'}>
+              {section.title}
+            </Animatable.Text>
+          </View>
+          {!isActive ? (
+            <Icon
+              name="right"
+              style={{alignSelf: 'center'}}
+              size={25}
+              color="#FF8900"
+            />
+          ) : (
+            <Icon
+              name="minus"
+              style={{alignSelf: 'center'}}
+              size={25}
+              color="#FF8900"
+            />
+          )}
+        </Animatable.View>
+      );
+    };
+  
+    const updateItem = (index, itemAttributes) => {
+      const arrayCopy = [...CONTENT];
+      console.log(arrayCopy, 'before');
+      arrayCopy[index].title = itemAttributes.title;
+      console.log(arrayCopy, 'after');
+      setCONTENT(arrayCopy);
+    };
+  
+    const renderContent = (section, _, isActive) => {
+      return (
+        <Animatable.View
+          duration={400}
+          style={[styles.content]}
+          containerStyle={{flex: 1, borderWidth: 5}}>
+          {section.content.map(element => (
+            <TouchableOpacity onPress={() => updateItem(0, {title: element})}>
+              <Text>{element}</Text>
+            </TouchableOpacity>
+          ))}
+        </Animatable.View>
+      );
+    };
+  // const postIssue=async()=>{
+  //   axios
+  //   .post(apis.issues_api, {email: this.state.Email})
+  //   //schema form {"userId", "label", "body"}
+  //   .then(response => {
+  //     console.log(response.data);
+  //   })
+  //   .catch(err => {
+  //     console.error('Error', err);
+  //     this.setState({email_existence: true});
+  //   });
+  // }
+  
+   
     const a = (
       <View style={styles.container}>
         <View style={{flex: 1}}>
           <Accordion
             activeSections={activeSections}
-            sections={this.state.CONTENT}
+            sections={CONTENT}
             touchableComponent={TouchableOpacity}
             touchableProps={{marginBottom: 5, activeOpacity: 0.8}}
-            renderHeader={this.renderHeader}
-            renderContent={this.renderContent}
+            renderHeader={renderHeader}
+            renderContent={renderContent}
             duration={400}
             underlayColor={'#ffff'}
-            onChange={this.setSections}
+            onChange={setSections}
             sectionContainerStyle={{
               margin: 20,
               shadowColor: '#000',
@@ -151,7 +141,7 @@ export default class App extends Component {
         </View>
         <View
           style={{
-            height: this.Height / 4.5,
+            height: Height / 4.5,
             margin: 20,
             marginVertical: 5,
             borderRadius: 2,
@@ -194,7 +184,7 @@ export default class App extends Component {
               margin: 10,
             }}
             onPress={() => {
-              this.postIssue()
+              //postIssue()
             }}>
             <Text
               style={{
@@ -214,12 +204,12 @@ export default class App extends Component {
         <OrangeHeader
           com={a}
           title={'Issues'}
-          move={() => this.props.navigation.toggleDrawer()}
+          move={() => navigation.toggleDrawer()}
         />
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {

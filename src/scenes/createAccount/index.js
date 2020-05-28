@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
 import {Button, Block, Text} from '_atoms';
 import axios from 'axios';
@@ -26,141 +26,132 @@ const validatio = {
     },
   },
 };
-const email_validation_url = 'http://192.168.1.3:3000/api/validateEmail';
-export default class CreateAccountScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.move = this.move.bind(this);
-    this.validPassword = this.validPassword.bind(this);
-    this.validEmail = this.validEmail.bind(this);
-    this.validConfirmedPassword = this.validConfirmedPassword.bind(this);
-    this.state = {
-      click: 0,
-      Email: '',
-      Password: '',
-      alphabet: false,
-      correct_email: false,
-      specialCharacters: false,
-      Upper: false,
-      number: false,
-      confirmPassword: '',
-      Confirmed: false,
-      disabled: false,
-      email_existence: false,
-    };
-  }
-  validConfirmedPassword() {
-    this.setState({disabled: true});
-    var Confirmed = false;
+export default  CreateAccountScreen =({navigation})=>{
+ 
+   
+  const [click, setClick] = useState(0);
+  const [Upper, setUpper] = useState(false);
+  const [Email, setEmail] = useState(null);
+  const [number, setNumber] = useState(false);
+  const [Password, setPassword] = useState(null);
+   const [confirmPassword, setConfirmPassword] = useState('');
+   const [Confirmed, setConfirmed] = useState(false);
+   const [disabled, setDisabled] = useState(false);
+   const [alphabet, setAlphabet] = useState(false)
+  const [ correct_email, setCorrect_email] = useState(false)
+  const [email_existence, setEmail_existence] = useState(false)
+  const [specialCharacters, setSpecialCharacters] = useState(false)
+
+  
+  const validConfirmedPassword=()=> {
+    setDisabled(true)
+    var Confirmed_ = false;
     if (
-      this.state.Password === this.state.confirmPassword ||
-      this.state.confirmPassword === ''
+      Password ===confirmPassword ||
+      confirmPassword === ''
     ) {
-      Confirmed = false;
+      Confirmed_ = false;
     } else {
-      Confirmed = true;
+      Confirmed_ = true;
     }
-    if (Confirmed) {
-      this.setState({Confirmed});
+    if (Confirmed_) {
+     
+      setConfirmed(Confirmed_)
       return false;
     } else {
-      this.setState({Confirmed});
+      setConfirmed(Confirmed_)
       return true;
     }
   }
 
-  validPassword() {
-    var specialCharacters = false,
-      Upper = false,
-      number = false;
+  const validPassword=()=> {
+    var specialCharacters_ = false,
+      Upper_ = false,
+      number_ = false;
 
-    if (this.state.Password.includes('!') || this.state.Password === '') {
+    if (Password.includes('!') || Password === '') {
       console.log('ok');
-      specialCharacters = false;
+      specialCharacters_ = false;
     } else {
-      specialCharacters = true;
+      specialCharacters_ = true;
     }
 
-    if (this.state.Password.includes('A') || this.state.Password === '') {
+    if (Password.includes('A') || Password === '') {
       console.log('ok');
-      Upper = false;
+      Upper_ = false;
     } else {
-      Upper = true;
+      Upper_ = true;
     }
 
-    if (this.state.Password.includes('3') || this.state.Password === '') {
+    if (Password.includes('3') || Password === '') {
       console.log('ok');
-      number = false;
+      number_ = false;
     } else {
-      number = true;
+      number_ = true;
     }
 
-    if (number || Upper || specialCharacters) {
+    if (number_ || Upper_ || specialCharacters_) {
       console.log('there is a mistake he should not navigate');
-      this.setState({
-        Upper: Upper,
-        specialCharacters: specialCharacters,
-        number: number,
-      });
+     
+      setUpper(Upper_)
+      setSpecialCharacters(specialCharacters_)
+      setNumber(number_)
       return false;
     } else {
       console.log('there is a No mistake he should navigate');
-      this.setState({
-        Upper: Upper,
-        specialCharacters: specialCharacters,
-        number: number,
-      });
+      setUpper(Upper_)
+      setSpecialCharacters(specialCharacters_)
+      setNumber(number_)
 
       return true;
     }
   }
-  checkEmailExistence = async () => {
+  const checkEmailExistence = async () => {
     axios
-      .post(apis.email_validation_api, {email: this.state.Email})
+      .post(apis.email_validation_api, {email: Email})
       .then(response => {
         console.log(response.data);
       })
       .catch(err => {
         console.error('Error', err);
-        this.setState({email_existence: true});
+        setEmail_existence(true);
       });
   };
 
-  validEmail = async () => {
-    var correct_email = false;
+  const validEmail = async () => {
+    var correct_email_ = false;
 
-    if (this.state.Email.includes('@')) {
+    if (Email.includes('@')) {
       console.log('ok');
-      correct_email = false;
+      correct_email_ = false;
     } else {
-      correct_email = true;
+      correct_email_ = true;
     }
 
-    if (correct_email) {
+    if (correct_email_) {
       console.log('there is a mistake he should not navigate');
-      this.setState({correct_email: correct_email});
+      setCorrect_email(correct_email_)
 
       return false;
     } else {
       console.log('there is a No mistake he should navigate');
-      this.setState({correct_email: correct_email});
+      setCorrect_email(correct_email_)
 
       console.log('after cheeeeck');
       return true;
     }
   };
 
-  move = () => {
+  const move = () => {
     const x =
-      this.validPassword() &&
-      this.validEmail() &&
-      this.validConfirmedPassword();
-    if (x) {
-      this.props.navigation.navigate('BasicInfo');
-    }
+     validPassword() &&
+     validEmail() &&
+      validConfirmedPassword();
+    // if (x) {
+     navigation.navigate('BasicInfo');
+    // }
   };
-  render = () => {
-    const {Email, Password, confirmPassword} = this.state;
+  
     return (
       <>
         <Block padding={[20, theme.sizes.base * 2]}>
@@ -183,43 +174,43 @@ export default class CreateAccountScreen extends Component {
                 multiline={false}
                 placeholder="Email"
                 underlineColorAndroid={
-                  this.state.correct_email
+                correct_email
                     ? 'red'
-                    : this.state.Email === ''
+                    : Email === ''
                     ? 'gray'
                     : '#0094FC'
                 }
-                onBlur={this.validEmail}
-                value={this.state.Email}
+                onBlur={validEmail}
+                value={Email}
                 onChangeText={text => {
-                  this.setState({Email: text});
+                  setEmail(text)
                 }}
               />
 
-              {this.state.alphabet && (
+              {alphabet && (
                 <Text accent>please check your mail</Text>
               )}
-              {this.state.correct_email && (
+              {correct_email && (
                 <Text accent> ** Please check your mail</Text>
               )}
-              {this.state.email_existence && (
+              {email_existence && (
                 <Text accent> ** Your E-mail already exist</Text>
               )}
             </View>
             <View style={{marginBottom: 20}}>
               <TextInput
                 // secureTextEntry={true}
-                value={this.state.Password}
+                value={Password}
                 onChangeText={text => {
-                  this.setState({Password: text});
+                  setPassword(text)
                 }}
-                onBlur={this.validPassword}
+                onBlur={validPassword}
                 underlineColorAndroid={
-                  this.state.number ||
-                  this.state.Upper ||
-                  this.state.specialCharacters
+                  number ||
+                  Upper ||
+                  specialCharacters
                     ? 'red'
-                    : this.state.Password === ''
+                    : Password === ''
                     ? 'gray'
                     : '#0094FC'
                 }
@@ -227,19 +218,19 @@ export default class CreateAccountScreen extends Component {
                 placeholder="Password"
                 name="Password"
               />
-              {this.state.specialCharacters && (
+              {specialCharacters && (
                 <Text accent>
                   {' '}
                   ** Password should contain at least one special Character{' '}
                 </Text>
               )}
-              {this.state.Upper && (
+              {Upper && (
                 <Text accent>
                   {' '}
                   ** Password should contain at least one Upper case Character{' '}
                 </Text>
               )}
-              {this.state.number && (
+              {number && (
                 <Text accent>
                   {' '}
                   ** Password should contain at least one number
@@ -248,38 +239,38 @@ export default class CreateAccountScreen extends Component {
             </View>
             <TextInput
               // secureTextEntry={true}
-              value={this.state.confirmPassword}
+              value={confirmPassword}
               onChangeText={text => {
-                this.setState({confirmPassword: text});
+                setConfirmPassword(text);
               }}
-              onBlur={this.validConfirmedPassword}
+              onBlur={validConfirmedPassword}
               secureTextEntry={true}
               underlineColorAndroid={
-                this.state.Confirmed
+                Confirmed
                   ? 'red'
-                  : this.state.confirmPassword === ''
+                  : confirmPassword === ''
                   ? 'gray'
                   : '#0094FC'
               }
               placeholder="Confirm Password"
               name="Confirm Password"
             />
-            {this.state.Confirmed && (
+            {Confirmed && (
               <Text accent> ** They are not identical</Text>
             )}
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
               <Button
-                gradient={this.state.disabled}
-                disabled={!this.state.disabled}
+                gradient={disabled}
+                disabled={!disabled}
                 onPress={() => {
-                  this.move();
-                  this.checkEmailExistence();
+                  move();
+                //  checkEmailExistence();
                 }}>
                 <Text
                   center
                   semibold
-                  gray={!this.state.disabled}
-                  white={this.state.disabled}>
+                  gray={!disabled}
+                  white={disabled}>
                   Create Account
                 </Text>
               </Button>
@@ -301,7 +292,7 @@ export default class CreateAccountScreen extends Component {
       </>
     );
   };
-}
+
 const styles = StyleSheet.create({
   buttonContainer2: {
     backgroundColor: '#242a37',

@@ -1,136 +1,113 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
-  TextInput, Alert,
+  TextInput,
+  Alert,
   ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
-import {Button,Text,Block,Input} from '_atoms'
-import {theme} from '../../constants'
+import {Button, Text, Block, Input} from '_atoms';
+import {theme} from '../../constants';
 
-export default class BasicInfo extends Component {
-  constructor(props) {
-    super(props);
+export default (BasicInfo = ({navigation, changeState}) => {
+  const [click, setClick] = useState(0);
+  const [top, setTop] = useState(0);
+  const [email, setEmail] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
-    this._Next = this._Next.bind(this);
-
-    this.state = {
-      click: 0,
-      top: 0,
-      email: null,
-      username: null,
-      password: null,
-      errors: [],
-      loading: false,
-      disabled:false,
-    };
-  }
-  handleSignUp() {
-    const { navigation } = this.props;
-    const { email, username, password } = this.state;
-    const errors = [];
+  const handleSignUp = () => {
+    const errors_ = [];
 
     Keyboard.dismiss();
-    this.setState({ loading: true });
 
+    setLoading(true);
     // check with backend API or with some static data
-    if (!email) errors.push("email");
-    if (!username) errors.push("username");
-    if (!password) errors.push("password");
-
-    this.setState({ errors, loading: false });
-
-    if (!errors.length) {
+    if (!email) errors.push('email');
+    if (!username) errors.push('username');
+    if (!password) errors.push('password');
+    setErrors(errors_);
+    setLoading(true);
+    if (!errors_.length) {
       Alert.alert(
-        "Success!",
-        "Your account has been created",
+        'Success!',
+        'Your account has been created',
         [
           {
-            text: "Continue",
+            text: 'Continue',
             onPress: () => {
-              navigation.navigate("Browse");
-            }
-          }
+              navigation.navigate('Browse');
+            },
+          },
         ],
-        { cancelable: false }
+        {cancelable: false},
       );
     }
-  }
-  _Next() {
-    this.setState({click: 5, top: 200}, () => {
-      console.log('BasicInfo');
-      console.log(this.state.top);
-
-      console.log(this.state.click);
-      this.props.changeState(this.state.click, this.state.top);
-    });
-  }
-
-  render() {
-    const { navigation } = this.props;
-    const { loading, errors } = this.state;
-    const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
-    return (
-      <>
-
-        <Block padding={[20, theme.sizes.base ]}>
-
-         
-          <Block padding={[0, theme.sizes.base ]}>
-          <Text h1 bold >
+  };
+  const_Next = () => {
+    setClick(5);
+    setTop(200);
+    console.log('BasicInfo');
+    console.log(top);
+    console.log(click);
+    changeState(click, top);
+  };
+  const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
+  return (
+    <>
+      <Block padding={[20, theme.sizes.base]}>
+        <Block padding={[0, theme.sizes.base]}>
+          <Text h1 bold>
             Sign Up
           </Text>
           <Block middle>
-<View style= {{marginBottom:15}}>
+            <View style={{marginBottom: 15}}>
+              <TextInput
+                keyboardType="email-address"
+                autoCorrect={false}
+                maxLength={30}
+                multiline={false}
+                placeholder="Full Name"
+                underlineColorAndroid="#0094FC"
+              />
+            </View>
 
+            <View style={{marginBottom: 15}}>
+              <TextInput
+                keyboardType="email-address"
+                autoCorrect={false}
+                maxLength={30}
+                multiline={false}
+                placeholder="Country"
+                underlineColorAndroid="#0094FC"
+              />
+            </View>
 
-<TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            maxLength={30}
-            multiline={false}
-            placeholder="Full Name"
-        
-            underlineColorAndroid="#0094FC"
-            ></TextInput>
+            <View style={{marginBottom: 15}}>
+              <TextInput
+                keyboardType="email-address"
+                autoCorrect={false}
+                maxLength={30}
+                multiline={false}
+                placeholder="City"
+                underlineColorAndroid="#0094FC"
+              />
+            </View>
 
-</View>
-        
-
-
-        <View style={{marginBottom: 15}}>
-          <TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            maxLength={30}
-            multiline={false}
-            placeholder="Country"
-            underlineColorAndroid="#0094FC"
-            ></TextInput>
-        </View>
-
-        <View style={{marginBottom: 15}}>
-          <TextInput
-            keyboardType="email-address"
-            autoCorrect={false}
-            maxLength={30}
-            multiline={false}
-            placeholder="City"
-            underlineColorAndroid="#0094FC"
-            ></TextInput>
-        </View>
-
-        <View style={{marginBottom: 30}}>
-          <TextInput
-            underlineColorAndroid="#0094FC"
-            placeholder="Address"
-            name="Address"
-            onBlur ={()=>this.setState({disabled:true})}>
-            </TextInput>
-        </View> 
+            <View style={{marginBottom: 30}}>
+              <TextInput
+                underlineColorAndroid="#0094FC"
+                placeholder="Address"
+                name="Address"
+                onBlur={() => setDisabled(true)}
+              />
+            </View>
             {/* <Input
               email
               label="Email"
@@ -163,30 +140,33 @@ export default class BasicInfo extends Component {
             Next
           </Text>
         </TouchableOpacity> */}
-        
-        <Block middle flex={0.5} margin={[0, theme.sizes.padding ]}>
 
+            <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
+              <Button
+                disabled={!disabled}
+                gradient={disabled}
+                onPress={() => navigation.navigate('PhoneNumber')}>
+                <Text
+                  center
+                  h3
+                  semibold
+                  gray={!disabled}
+                  white={disabled}>
+                  Next
+                </Text>
+              </Button>
+            </Block>
 
-        <Button disabled={!this.state.disabled} gradient={this.state.disabled} onPress={() => this.props.navigation.navigate('PhoneNumber')}>
-
-<Text center h3 semibold gray={!this.state.disabled} white={this.state.disabled}>
-Next
-</Text>
-</Button>
-</Block>
-
-        <Text style={{textAlign: 'center', color: '#242a37'}}>
-          Need Support?
-        </Text>
-      
+            <Text style={{textAlign: 'center', color: '#242a37'}}>
+              Need Support?
+            </Text>
+          </Block>
         </Block>
-        </Block>
-</Block>
+      </Block>
+    </>
+  );
+});
 
-      </>
-    );
-  }
-}
 const styles = StyleSheet.create({
   buttonContainer2: {
     backgroundColor: '#242a37',
@@ -202,15 +182,15 @@ const styles = StyleSheet.create({
   },
   signup: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   input: {
     borderRadius: 0,
     borderWidth: 0,
     borderBottomColor: theme.colors.gray2,
-    borderBottomWidth: StyleSheet.hairlineWidth
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   hasErrors: {
-    borderBottomColor: theme.colors.accent
-  }
+    borderBottomColor: theme.colors.accent,
+  },
 });

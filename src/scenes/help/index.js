@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   Switch,
   ScrollView,
@@ -41,18 +41,15 @@ const CONTENT = [
   },
 ];
 
-export default class App extends Component {
-  state = {
-    activeSections: [],
+export default  help =({navigation}) => {
+  const [activeSections, setActiveSections] = useState([])
+  
+
+  const setSections = sections => {
+    setActiveSections(sections.includes(undefined) ? [] : sections)
   };
 
-  setSections = sections => {
-    this.setState({
-      activeSections: sections.includes(undefined) ? [] : sections,
-    });
-  };
-
-  renderHeader = (section, _, isActive) => {
+  const renderHeader = (section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
@@ -67,7 +64,7 @@ export default class App extends Component {
     );
   };
 
-  renderContent(section, _, isActive) {
+  const renderContent=(section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
@@ -81,8 +78,8 @@ export default class App extends Component {
     );
   }
 
-  render() {
-    const {multipleSelect, activeSections} = this.state;
+ 
+  
     const a = 
     <View style={{flex:1}}>
     <Accordion
@@ -90,10 +87,10 @@ export default class App extends Component {
     sections={CONTENT}
     touchableComponent={TouchableOpacity}
     touchableProps={{marginBottom: 5,activeOpacity:.8}}
-    renderHeader={this.renderHeader}
-    renderContent={this.renderContent}
+    renderHeader={renderHeader}
+    renderContent={renderContent}
     duration={400}
-    onChange={this.setSections}
+    onChange={setSections}
     sectionContainerStyle={{
       margin: 20,
       shadowColor: '#000',
@@ -119,7 +116,7 @@ export default class App extends Component {
       activeOpacity={.7}
       style={{backgroundColor: '#FF8900', borderRadius: 10,flex:1,margin:10}}          
       onPress={() =>
-        this.props.navigation.navigate('ListOfOffers')
+        navigation.navigate('ListOfOffers')
       }>
       <Text
         style={{
@@ -145,14 +142,14 @@ export default class App extends Component {
             borderWidth: 2,
           }}
             com={a}
-            title={'Help'} move={ ()=>this.props.navigation.toggleDrawer()}/>
+            title={'Help'} move={ ()=>navigation.toggleDrawer()}/>
        
          
        
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {

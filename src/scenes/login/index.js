@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -9,36 +9,32 @@ import {
 import {Button, Text, Block} from '_atoms';
 import {theme, apis} from '../../constants';
 
-export default class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
+export default  LoginScreen=({navigation})=> {
+  
     // this.hasError = this.hasError.bind(this);
-    this.checkAndDecide = this.checkAndDecide.bind(this);
+   
+  const [MobileNumber, setMobileNumber] = useState('')
+  const [Password, setPassword] = useState('')
+  const [click, setClick] = useState(2)
+  const [user, setUser] = useState(null)
+ 
 
-    this.state = {
-      MobileNumber: '',
-      Password: '',
-      click: 2,
-      user: null,
-    };
+  const checkAndDecide=()=> {
+    navigation.navigate('Home');
   }
-
-  checkAndDecide() {
-    this.props.navigation.navigate('Home');
-  }
-  signInUser = async () => {
-    axios
-      .post(apis.users_api, {user: this.state.user})
-      // shape of the schema
-      //{email, password}
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(err => {
-        console.error('Error', err);
-      });
-  };
-  render() {
+  // const signInUser = async () => {
+  //   axios
+  //     .post(apis.users_api, {user: this.state.user})
+  //     // shape of the schema
+  //     //{email, password}
+  //     .then(response => {
+  //       console.log(response.data);
+  //     })
+  //     .catch(err => {
+  //       console.error('Error', err);
+  //     });
+  // };
+ 
     return (
       <Block padding={[20, theme.sizes.base * 2]}>
         <Text h1 bold>
@@ -51,33 +47,35 @@ export default class LoginScreen extends Component {
               name="Mobile"
               placeholder="Mobile Number"
               underlineColorAndroid={
-                this.state.MobileNumber.includes('A') ? 'red' : '#0094FC'
+                MobileNumber.includes('A') ? 'red' : '#0094FC'
               }
-              value={this.state.MobileNumber}
+              value={MobileNumber}
               onChangeText={text => {
-                this.setState({MobileNumber: text});
+               
+                  setMobileNumber(text);
               }}
             />
 
-            {this.state.MobileNumber.includes('A') && (
+            {MobileNumber.includes('A') && (
               <Text accent> mobile number doesn't contain characters</Text>
             )}
           </View>
           <View style={{marginBottom: 10, padding: 5}}>
             <TextInput
-              value={this.state.Password}
+              value={Password}
               onChangeText={text => {
-                this.setState({Password: text});
+               
+                setPassword(text)
               }}
               underlineColorAndroid={
-                this.state.Password.includes(' ') ? 'red' : '#0094FC'
+                Password.includes(' ') ? 'red' : '#0094FC'
               }
               // secureTextEntry={true}
 
               placeholder="Password"
               name="Password"
             />
-            {this.state.Password.includes(' ') && (
+            {Password.includes(' ') && (
               <Text accent> Password doesn't contain space </Text>
             )}
           </View>
@@ -85,7 +83,7 @@ export default class LoginScreen extends Component {
             <Button
               gradient
               onPress={() => {
-                this.checkAndDecide();
+                checkAndDecide();
                 // this.signInUser();
               }}>
               <Text center semibold white>
@@ -94,7 +92,7 @@ export default class LoginScreen extends Component {
             </Button>
           </Block>
           <Button
-            onPress={() => this.props.navigation.navigate('ForgotPassword')}>
+            onPress={() => navigation.navigate('ForgotPassword')}>
             <Text gray caption center style={{textDecorationLine: 'underline'}}>
               Forgot your password?
             </Text>
@@ -109,7 +107,7 @@ export default class LoginScreen extends Component {
           <Text
             style={{textAlign: 'center', color: '#242a37'}}
             onPress={() => {
-              this.props.navigation.navigate('Address');
+              navigation.navigate('Address');
             }}>
             {' '}
             Need Support?
@@ -118,7 +116,7 @@ export default class LoginScreen extends Component {
       </Block>
     );
   }
-}
+
 const styles = StyleSheet.create({
   buttonContainer2: {
     backgroundColor: '#f1f2f6',
