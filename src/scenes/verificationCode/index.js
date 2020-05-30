@@ -63,35 +63,35 @@ export default class VerifyCode extends Component {
               }}>
               <TextInput
                 keyboardType="numeric"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid="#ba55d3"
                 placeholder=" 0"
                 name="1"
                 maxLength={1}
               />
               <TextInput
                 keyboardType="numeric"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid="#ba55d3"
                 placeholder=" 0"
                 name="2"
                 maxLength={1}
               />
               <TextInput
                 keyboardType="numeric"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid="#ba55d3"
                 placeholder=" 0"
                 name="3"
                 maxLength={1}
               />
               <TextInput
                 keyboardType="numeric"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid="#ba55d3"
                 placeholder=" 0"
                 name="4"
                 maxLength={1}
               />
             </View>
 
-            <Text style={{color: '#0094FC', textAlign: 'center'}}>
+            <Text style={{color: '#ba55d3', textAlign: 'center'}}>
               Resend code
             </Text>
 

@@ -11,13 +11,18 @@ import {
 } from 'react-native';
 import {Button, Text, Block, Input} from '_atoms';
 import {theme} from '../../constants';
+import * as Animatable from 'react-native-animatable';
 
 export default (BasicInfo = ({navigation, changeState}) => {
-  const [click, setClick] = useState(0);
-  const [top, setTop] = useState(0);
-  const [email, setEmail] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [city, setCity] = useState('');
+  const [username, setUsername] = useState('');
+  const [country, setCountry] = useState('');
+  const [address, setAddress] = useState('');
+  const [empty1, setempty1] = useState(false);
+  const [empty2, setempty2] = useState(false);
+  const [empty3, setempty3] = useState(false);
+  const [empty4, setempty4] = useState(false);
+
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -29,9 +34,9 @@ export default (BasicInfo = ({navigation, changeState}) => {
 
     setLoading(true);
     // check with backend API or with some static data
-    if (!email) errors.push('email');
+    if (!city) errors.push('city');
     if (!username) errors.push('username');
-    if (!password) errors.push('password');
+    if (!country) errors.push('country');
     setErrors(errors_);
     setLoading(true);
     if (!errors_.length) {
@@ -50,14 +55,7 @@ export default (BasicInfo = ({navigation, changeState}) => {
       );
     }
   };
-  const_Next = () => {
-    setClick(5);
-    setTop(200);
-    console.log('BasicInfo');
-    console.log(top);
-    console.log(click);
-    changeState(click, top);
-  };
+
   const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
   return (
     <>
@@ -69,89 +67,121 @@ export default (BasicInfo = ({navigation, changeState}) => {
           <Block middle>
             <View style={{marginBottom: 15}}>
               <TextInput
-                keyboardType="email-address"
+                keyboardType="default"
                 autoCorrect={false}
                 maxLength={30}
                 multiline={false}
+                onChangeText={text => {
+                  setUsername(text);
+                  setempty1(false);
+                }}
                 placeholder="Full Name"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid={
+                  empty1 ? 'red' : username === '' ? 'gray' : '#ba55d3'
+                }
               />
+              {empty1 && (
+                <Animatable.View animation="bounceIn">
+                  <Text accent> ** Required</Text>
+                </Animatable.View>
+              )}
             </View>
 
             <View style={{marginBottom: 15}}>
               <TextInput
-                keyboardType="email-address"
+                keyboardType="default"
                 autoCorrect={false}
                 maxLength={30}
                 multiline={false}
+                value={country}
+                onChangeText={text => {
+                  setCountry(text);
+                  setempty2(false);
+                }}
                 placeholder="Country"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid={
+                  empty2 ? 'red' : country === '' ? 'gray' : '#ba55d3'
+                }
               />
+              {empty2 && (
+                <Animatable.View animation="bounceIn">
+                  <Text accent> ** Required</Text>
+                </Animatable.View>
+              )}
             </View>
 
             <View style={{marginBottom: 15}}>
               <TextInput
-                keyboardType="email-address"
-                autoCorrect={false}
+                keyboardType="default"
+                value={city}
+                onChangeText={text => {
+                  setCity(text);
+                  setempty3(false);
+                }}
                 maxLength={30}
                 multiline={false}
                 placeholder="City"
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid={
+                  empty3 ? 'red' : city === '' ? 'gray' : '#ba55d3'
+                }
               />
+              {empty3 && (
+                <Animatable.View animation="bounceIn">
+                  <Text accent> ** Required</Text>
+                </Animatable.View>
+              )}
             </View>
 
             <View style={{marginBottom: 30}}>
               <TextInput
-                underlineColorAndroid="#0094FC"
+                underlineColorAndroid={
+                  empty4 ? 'red' : address === '' ? 'gray' : '#ba55d3'
+                }
+                value={address}
+                onChangeText={text => {
+                  setAddress(text);
+                  setempty4(false);
+                }}
                 placeholder="Address"
                 name="Address"
                 onBlur={() => setDisabled(true)}
               />
+              {empty4 && (
+                <Animatable.View animation="bounceIn">
+                  <Text accent> ** Required</Text>
+                </Animatable.View>
+              )}
             </View>
-            {/* <Input
-              email
-              label="Email"
-              error={hasErrors("email")}
-              style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
-            />
-            <Input
-              label="Username"
-              error={hasErrors("username")}
-              style={[styles.input, hasErrors("username")]}
-              defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
-            />
-             <Input
-              secure
-              label="Password"
-              error={hasErrors("password")}
-              style={[styles.input, hasErrors("password")]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
-            />
-
-
-        {/* <TouchableOpacity
-          style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('PhoneNumber')}>
-          <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Next
-          </Text>
-        </TouchableOpacity> */}
 
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
               <Button
                 disabled={!disabled}
                 gradient={disabled}
-                onPress={() => navigation.navigate('PhoneNumber')}>
-                <Text
-                  center
-                  h3
-                  semibold
-                  gray={!disabled}
-                  white={disabled}>
+                onPress={() => {
+                  if (
+                    username === '' ||
+                    city === '' ||
+                    country === '' ||
+                    address === ''
+                  ) {
+                    if (username === '') {
+                      setempty1(true);
+                    }
+
+                    if (country === '') {
+                      setempty2(true);
+                    }
+                    if (city === '') {
+                      setempty3(true);
+                    }
+                    if (address === '') {
+                      setempty4(true);
+                    }
+                  } else {
+                    navigation.navigate('PhoneNumber');
+                  }
+                }}>
+                <Text center h3 semibold gray={!disabled} white={disabled}>
                   Next
                 </Text>
               </Button>
