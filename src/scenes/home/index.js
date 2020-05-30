@@ -65,26 +65,26 @@ const Home = ({currentPosition, parkings, navigation}) => {
       });
   };
   const markerPosition = new Animated.ValueXY({x:0,y:150})
-  // const panResponder = 
-  //   PanResponder.create({
-  //     onMoveShouldSetPanResponder: () => markerMovementEnable,
-  //     onPanResponderGrant: () => {
-  //       markerPosition.setOffset({
-  //         x: markerPosition.x._value,
-  //         y: markerPosition.y._value,
-  //       });
-  //     },
-  //     onPanResponderMove: Animated.event([
-  //       null,
-  //       {dx: markerPosition.x, dy: markerPosition.y},
-  //     ]),
+  const panResponder = 
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => markerMovementEnable,
+      onPanResponderGrant: () => {
+        markerPosition.setOffset({
+          x: markerPosition.x._value,
+          y: markerPosition.y._value,
+        });
+      },
+      onPanResponderMove: Animated.event([
+        null,
+        {dx: markerPosition.x, dy: markerPosition.y},
+      ]),
 
-  //     onPanResponderRelease: (e, gesture) => {
-  //       markerPosition.flattenOffset();
-  //       console.log('onPanResponderRelease',e.nativeEvent,'  "" event" ::', gesture,' """ gesture""::');
-  //     },
+      onPanResponderRelease: (e, gesture) => {
+        markerPosition.flattenOffset();
+        console.log('onPanResponderRelease',e.nativeEvent,'  "" event" ::', gesture,' """ gesture""::');
+      },
     
-  //   })
+    })
   
 
   const fadeAnim = new Animated.Value(1)
