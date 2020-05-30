@@ -1,28 +1,49 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import ListOfOffers from './listOfOffers'
+import OfferDetails from './offerDetails'
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 
-import Stack from './navigation/stacknavigator';
+import { TransitionSpecs,HeaderStyleInterpolators } from 'react-navigation-stack';
 
-
-export default  offers=({navigation,route})=>{
-//  const router = Stack.router;
- // const router=useRoute()
-  // const move = () => {
-  //  navigation.openDrawer();
-  // };
-
-   
-    return (
-      <View style={styles.container}>
-        <Stack navigation={navigation} />
-      </View>
-    );
-  }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+const MyTransition = {
+  
+  transitionSpec: {
+    open: TransitionSpecs.TransitionIOSSpec,
+    close: TransitionSpecs.TransitionIOSSpec,
   },
-});
+  cardStyleInterpolator: ({ current, next, layouts }) => {
+    return {
+      cardStyle: {
+    
+        opacity:current
+        ?current.progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0.00000001,1],
+        }):1,
+      },
+     
+    };
+  },
+}
+
+
+export default AppNavigator = createStackNavigator({
+    ListOfOffers: {
+    screen: ListOfOffers,    
+
+},
+OfferDetails:{
+      screen: OfferDetails,
+     }
+  }
+  ,{
+    headerMode:null,
+
+    defaultNavigationOptions: {
+     ...MyTransition
+     
+     
+      
+    },
+  });
+  

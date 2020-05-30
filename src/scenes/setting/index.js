@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, FlatList,TextInput,StyleSheet,SectionList,Switch } from 'react-native'
 import {OrangeHeader} from '_molecules';
 
-export default class ScreenContent extends Component {
+export default class Setting extends Component {
     constructor(props) {
         super(props);
         this.state = {

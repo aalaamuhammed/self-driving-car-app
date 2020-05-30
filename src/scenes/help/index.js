@@ -1,19 +1,11 @@
 import React, {useState} from 'react';
-import {
-  Switch,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
-import {OrangeHeader} from '_molecules';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import Icon from 'react-native-vector-icons/AntDesign';
-
-
+import {Button, Block, Text} from '_atoms';
+import {theme} from '../../constants';
 
 const BACON_IPSUM =
   'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
@@ -41,30 +33,35 @@ const CONTENT = [
   },
 ];
 
-export default  help =({navigation}) => {
-  const [activeSections, setActiveSections] = useState([])
-  
+export default (help = ({navigation}) => {
+  const [activeSections, setActiveSections] = useState([]);
 
   const setSections = sections => {
-    setActiveSections(sections.includes(undefined) ? [] : sections)
+    setActiveSections(sections.includes(undefined) ? [] : sections);
   };
 
   const renderHeader = (section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
-        style={[styles.header, isActive ? styles.active : styles.inactive]}
+        style={[
+          styles.header,
+          isActive
+            ? {borderBottomLeftRadius: 0, borderBottomRightRadius: 0}
+            : null,
+        ]}
         transition="backgroundColor">
         <Text style={styles.headerText}>{section.title}</Text>
-        {(!isActive)?
-        <Icon name='right' size={25} color='#FF8900' />
-        :
-        <Icon name='minus' size={25} color='#FF8900' />}
+        {!isActive ? (
+          <Icon name="right" size={25} color={theme.colors.primary} />
+        ) : (
+          <Icon name="minus" size={25} color={theme.colors.primary} />
+        )}
       </Animatable.View>
     );
   };
 
-  const renderContent=(section, _, isActive) => {
+  const renderContent = (section, _, isActive) => {
     return (
       <Animatable.View
         duration={400}
@@ -76,80 +73,72 @@ export default  help =({navigation}) => {
         </Animatable.Text>
       </Animatable.View>
     );
-  }
+  };
 
- 
-  
-    const a = 
-    <View style={{flex:1}}>
-    <Accordion
-    activeSections={activeSections}
-    sections={CONTENT}
-    touchableComponent={TouchableOpacity}
-    touchableProps={{marginBottom: 5,activeOpacity:.8}}
-    renderHeader={renderHeader}
-    renderContent={renderContent}
-    duration={400}
-    onChange={setSections}
-    sectionContainerStyle={{
-      margin: 20,
-      shadowColor: '#000',
-      borderWidth: 0.1,
-      borderRadius: 10,
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2,
-      elevation: 1.5,
-    }}
-  />
-  <View
-    style={{
-      flex: 1,
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-    }}>
-    <TouchableOpacity
-      activeOpacity={.7}
-      style={{backgroundColor: '#FF8900', borderRadius: 10,flex:1,margin:10}}          
-      onPress={() =>
-        navigation.navigate('ListOfOffers')
-      }>
-      <Text
-        style={{
-          paddingHorizontal: 12,
-          paddingVertical: 10,
-          fontSize: 20,
-          color: 'white',
-        }}>
-        Get in touch and ask question
-      </Text>
-    </TouchableOpacity>
-    </View>
-    </View>
-    return (
-      <View style={styles.container}>
-
-        <OrangeHeader 
-        style={{
-            flex: 1,
-            paddingTop: 30,
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
-            borderWidth: 2,
+  return (
+    <Block bottom middle color={'primary'}>
+      <Block flex={0.2} row right>
+        <Block
+          middle
+          card
+          flex={0.5}
+          color={'rgba(255,255,255,.6)'}
+          style={{
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            marginVertical: 30,
+          }}>
+          <Text h1 center regular>
+            Help
+          </Text>
+        </Block>
+      </Block>
+      <Block
+        flex={0.8}
+        card
+        middle
+        color="white"
+        style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
+        <Accordion
+          activeSections={activeSections}
+          sections={CONTENT}
+          touchableComponent={TouchableOpacity}
+          touchableProps={{marginBottom: 5, activeOpacity: 0.8}}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          duration={400}
+          onChange={setSections}
+          sectionContainerStyle={{
+            margin: 20,
           }}
-            com={a}
-            title={'Help'} move={ ()=>navigation.toggleDrawer()}/>
-       
-         
-       
-      </View>
-    );
-  }
-
+        />
+        <Block middle style={{alignItems: 'flex-start'}}>
+          <Button
+            center
+            shadow
+            style={{
+              padding: 10,
+              paddingVertical: 30,
+              borderBottomLeftRadius: 0,
+              borderTopLeftRadius: 0,
+            }}
+            color="primary"
+            onPress={() => navigation.navigate('ListOfOffers')}>
+            <Text
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 10,
+                fontSize: 20,
+                color: 'white',
+              }}>
+              Get in touch and ask question
+            </Text>
+          </Button>
+        </Block>
+      </Block>
+    </Block>
+  );
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -157,46 +146,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F8F8',
     alignItems: 'center',
     justifyContent: 'center',
-    //  borderWidth:5
   },
   title: {
     textAlign: 'center',
     fontSize: 22,
     fontWeight: '300',
     marginBottom: 20,
-    
   },
   header: {
-    flexDirection:'row',
-    justifyContent:'space-between',
-    backgroundColor: '#fff',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 10,
     alignItems: 'flex-start',
-    // borderWidth:.5,
-    borderRadius:10
+    borderRadius: 10,
   },
   headerText: {
     textAlign: 'center',
     fontSize: 16,
     fontWeight: '500',
-
   },
   content: {
-    padding: 20,
-    backgroundColor: 'rgba(255,255,255,1)',
-   
-    // borderWidth:.5,
+    padding: 10,
   },
 });
-
-/*<View style={{flex: 1,backgroundColor:'#F0F0F0'}}>
-<NavigationDrawerStructure
-  onClick={() => {
-    this.props.navigation.toggleDrawer();
-  }}
-/>
-
-
-<RenderCars/> 
-</View>
-*/
