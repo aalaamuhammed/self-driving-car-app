@@ -10,7 +10,7 @@ import deviceStorage from '../../services/deviceStorage';
 
 // import validation from 'validation.js'
 
-const validatio = {
+const validation = {
   email: {
     presence: {
       message: '^Please enter an email address',
@@ -32,6 +32,9 @@ const validatio = {
 };
 const characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '{', '}'];
 const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+const complexPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
 export default (CreateAccountScreen = ({navigation}) => {
   const firstRender = useRef(true);
@@ -140,20 +143,26 @@ export default (CreateAccountScreen = ({navigation}) => {
       number_ = true;
     }
 
-    if (number_ || specialCharacters_) {
-      console.log('there is a mistake he should not navigate');
+    // if (number_ || specialCharacters_) {
+    //   console.log('there is a mistake he should not navigate');
 
-      // setUpper(Upper_);
-      setSpecialCharacters(specialCharacters_);
-      setNumber(number_);
-      return false;
-    } else {
-      console.log('there is a No mistake he should navigate');
-      // setUpper(Upper_);
-      setSpecialCharacters(specialCharacters_);
-      setNumber(number_);
+    //   // setUpper(Upper_);
+    //   setSpecialCharacters(specialCharacters_);
+    //   setNumber(number_);
+    //   return false;
+    // } else {
+    //   console.log('there is a No mistake he should navigate');
+    //   // setUpper(Upper_);
+    //   setSpecialCharacters(specialCharacters_);
+    //   setNumber(number_);
 
-      return true;
+    //   return true;
+    // }
+
+    if(complexPasswordRegex.test(Password)){
+      // it's a valid password
+          setSpecialCharacters(false);
+            setNumber(false);
     }
   };
   const updateSecureTextEntry = () => {
@@ -164,7 +173,7 @@ export default (CreateAccountScreen = ({navigation}) => {
   };
   const checkEmailExistence = async () => {
     axios
-      .post(apis.email_validation_api, {email: Email})
+      .post(apis.email_validationn_api, {email: Email})
       .then(response => {
         console.log(response.data);
       })
@@ -177,7 +186,7 @@ export default (CreateAccountScreen = ({navigation}) => {
   const validEmail = async () => {
     var correct_email_ = false;
 
-    if (Email.includes('@') && Email.includes('.com')) {
+    if (emailRegex.test(Email)) {
       console.log('ok');
       setCheck_textInputChange(true);
 
