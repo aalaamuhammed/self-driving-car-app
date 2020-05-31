@@ -213,7 +213,7 @@ const data2=[
           </View> 
           <View style={{flex:.6 }}>
             <View style={{borderWidth:.5,borderColor:theme.colors.gray2}}></View>
-            <View style={{margin:5}}>
+            <View style={{marginTop:10}}>
         <FlatList
           data={data2}
           renderItem={({item}) => renderItem2({item})}
