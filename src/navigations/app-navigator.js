@@ -39,11 +39,11 @@ import NotificationScreen from '_scenes/notifications';
 import HelpScreen from '_scenes/help';
 import ProfileScreen from '_scenes/profile';
 
-const TabNavigatorConfig = {
-  initialRouteName: 'Home',
-  header: null,
-  headerMode: 'none',
-};
+// const TabNavigatorConfig = {
+//   initialRouteName: 'Home',
+//   header: null,
+//   headerMode: 'none',
+// };
 export const NavigationDrawerStructure = ({onClick}) => (
   <View style={{flexDirection: 'row'}}>
     <TouchableOpacity onPress={onClick} style={{padding: 10}}>
