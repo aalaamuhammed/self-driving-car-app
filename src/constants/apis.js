@@ -1,12 +1,12 @@
-const email_validation_api='http://192.168.1.3:3000/api/validateEmail'
-const users_api='http://192.168.1.3:3000/api/users'
-const cars_api='http://192.168.1.3:3000/api/cars'
-const issues_api='http://192.168.1.3:3000/api/issues'
-const packages_api='http://192.168.1.3:3000/api/packages'
-const sign_in_api='http://192.168.1.3:3000/api/signInUser'
-const code_api='http://192.168.1.3:3000/api/sendCode'
-const notifications_api='http://192.168.1.3:3000/api/notifications'
-const offers_api='http://192.168.1.3:3000/api/offers'
+const email_validation_api='http://barq-api.herokuapp.com/api/validateEmail'
+const users_api='http://barq-api.herokuapp.com/api/users'
+const cars_api='http://barq-api.herokuapp.com/api/cars'
+const issues_api='http://barq-api.herokuapp.com/api/issues'
+const packages_api='http://barq-api.herokuapp.com/api/packages'
+const sign_in_api='http://barq-api.herokuapp.com/api/signInUser'
+const code_api='http://barq-api.herokuapp.com/api/sendCode'
+const notifications_api='http://barq-api.herokuapp.com/api/notifications'
+const offers_api='http://barq-api.herokuapp.com/api/offers'
 export{
     email_validation_api,
     users_api,
