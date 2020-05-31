@@ -6,7 +6,7 @@ import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {theme, apis} from '../../constants';
-import deviceStorage from '../../services/deviceStorage'; 
+//import deviceStorage from '../../services/deviceStorage'; 
 
 // import validation from 'validation.js'
 
