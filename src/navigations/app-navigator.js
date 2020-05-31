@@ -45,7 +45,7 @@ import ProfileScreen from '_scenes/profile';
 //   headerMode: 'none',
 // };
 export const NavigationDrawerStructure = ({onClick}) => (
-  <View style={{flexDirection: 'row'}}>
+  <View style={{flexDirection: 'row', backgroundColor:'rgba(0,0,0,.1)'}}>
     <TouchableOpacity onPress={onClick} style={{padding: 10}}>
       <Iconn name="menuunfold" size={30} color={theme.colors.primary} />
     </TouchableOpacity>
@@ -141,7 +141,7 @@ const data2=[
   }
   const renderItem=({item})=>{
     return(
-      <TouchableOpacity style={{flex:1,flexDirection:'row',padding:10,marginBottom:5}} onPress={navigateToScreen(item.route)}>
+      <TouchableOpacity style={{flex:1,flexDirection:'row',padding:8,marginBottom:5}} onPress={navigateToScreen(item.route)}>
       <View style={{flex:.25,alignContent:'flex-start'}}>
       <Iconn name={item.icon} size={27} style={{color:item.color}}/>
       </View>
@@ -182,7 +182,7 @@ const data2=[
         }}>
         <Image
           source={i20}
-          style={{width: '40%', height: '80%', borderRadius: 100,}}
+          style={{width: '35%', height: '70%', borderRadius: 100,marginLeft:10}}
         />
         <View style={{flexDirection: 'column', justifyContent: 'center', marginHorizontal:5}}>
           <Text
@@ -197,13 +197,13 @@ const data2=[
             Mahmoud Samy
           </Text>
           <Text style={{fontWeight: 'normal', fontSize: 15, color: theme.colors.gray3}}>
-            {' '}
+            {'  '}
             @Ibn_Samy
           </Text>
         </View>
         </View>
       </View>
-      <View style={{flex:1,marginHorizontal:20,marginVertical:20,justifyContent:'space-between'}}>
+      <View style={{flex:1,marginHorizontal:20,justifyContent:'space-between'}}>
         <View style={{flex:1}}>
         <FlatList
           data={data1}
@@ -211,13 +211,16 @@ const data2=[
           keyExtractor={item => item.id}
         />
           </View> 
-          <View style={{flex:.4 }}>
+          <View style={{flex:.6 }}>
             <View style={{borderWidth:.5,borderColor:theme.colors.gray2}}></View>
+            <View style={{margin:5}}>
         <FlatList
           data={data2}
           renderItem={({item}) => renderItem2({item})}
           keyExtractor={item => item.id}
-        />
+        />              
+            </View>
+
           </View> 
 
       </View>

@@ -128,7 +128,7 @@ export default class ViewCard extends Component {
               borderBottomLeftRadius: 0,
               marginVertical: 30,
             }}>
-            <Button color="primary" onPress={()=>this.props.navigation.navigate('addMoney')}>
+            <Button color="primary"  onPress={()=>this.props.navigation.navigate('addMoney')}>
               <Text center gray4 h3>
                 {' '}
                 Manage Your Wallet{' '}
