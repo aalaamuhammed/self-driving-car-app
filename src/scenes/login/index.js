@@ -6,34 +6,51 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import {Button, Text, Block} from '_atoms';
+import {Button, Text, Block,Loading} from '_atoms';
 import {theme, apis} from '../../constants';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import deviceStorage from '../../services/deviceStorage';
+import axios from 'axios';
 
 export default (LoginScreen = ({navigation}) => {
-  // this.hasError = this.hasError.bind(this);
-
   const [MobileNumber, setMobileNumber] = useState('');
   const [Password, setPassword] = useState('');
-  const [click, setClick] = useState(2);
-  const [user, setUser] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+  const [errors, setErrors] = useState('');
+  const [Email, setEmail] = useState('');
 
   const checkAndDecide = () => {
     navigation.navigate('Home');
+    signInUser();
   };
-  // const signInUser = async () => {
-  //   axios
-  //     .post(apis.users_api, {user: this.state.user})
-  //     // shape of the schema
-  //     //{email, password}
-  //     .then(response => {
-  //       console.log(response.data);
-  //     })
-  //     .catch(err => {
-  //       console.error('Error', err);
-  //     });
-  // };
+  const signInUser = () => {
+
+    setLoading(true);
+    setErrors('');
+    axios
+      .post('https://reqres.in/api/login', {
+        email: MobileNumber,
+        password: Password,
+      })
+      .then(response => {
+        console.log(response.data.token);
+        deviceStorage.saveKey('id_token', response.data.token);
+        setUserToken(response.data.token);
+        navigation.navigate('Home');
+
+      })
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
+        setErrors('Registration Failed');
+        // Handle returned errors here
+      });
+   
+     
+  };
 
   return (
     <Block padding={[20, theme.sizes.base * 2]}>
@@ -45,9 +62,8 @@ export default (LoginScreen = ({navigation}) => {
           <FontAwesome name="user-o" color="#ba55d3" size={20} />
 
           <TextInput
-                        style={styles.textInput1}
-
-            keyboardType="numeric"
+            style={styles.textInput1}
+            keyboardType="email-address"
             name="Mobile"
             placeholder="Mobile Number"
             underlineColorAndroid={
@@ -67,8 +83,7 @@ export default (LoginScreen = ({navigation}) => {
           <Feather name="lock" color="#ba55d3" size={20} />
 
           <TextInput
-                        style={styles.textInput}
-
+            style={styles.textInput}
             value={Password}
             onChangeText={text => {
               setPassword(text);
@@ -85,18 +100,22 @@ export default (LoginScreen = ({navigation}) => {
             <Text accent> Password doesn't contain space </Text>
           )}
         </View>
+        {!loading ? (
         <Block middle flex={0.3} margin={[0, theme.sizes.padding]}>
           <Button
             gradient
             onPress={() => {
-              checkAndDecide();
-              // this.signInUser();
+              // checkAndDecide();
+           signInUser();
             }}>
             <Text center semibold white>
               Login
             </Text>
           </Button>
         </Block>
+         ) : (
+          <Loading />
+        )}
         <TouchableOpacity
           style={{marginBottom: 30}}
           onPress={() => navigation.navigate('ForgotPassword')}>
@@ -110,12 +129,6 @@ export default (LoginScreen = ({navigation}) => {
           </Text>
         </TouchableOpacity>
 
-        {/* //this.props.navigation.navigate('Home') */}
-        {/* <TouchableOpacity
-          style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Home')}>
-          <Text style={{textAlign: 'center', paddingTop: 5,fontSize:17}}> Sign in</Text>
-        </TouchableOpacity> */}
         <Text
           style={{textAlign: 'center', color: '#242a37'}}
           onPress={() => {
@@ -153,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: Platform.OS === 'ios' ? 0 : -12,
     paddingLeft: 10,
-    marginRight:20,
+    marginRight: 20,
     color: '#05375a',
   },
   textInput: {

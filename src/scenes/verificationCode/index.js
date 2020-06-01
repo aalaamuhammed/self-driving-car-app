@@ -10,16 +10,9 @@ import {setState} from 'expect/build/jestMatchersObject';
 import {Button, Text, Block} from '_atoms';
 import {theme, apis} from '../../constants';
 import axios from 'axios';
-export default class VerifyCode extends Component {
-  constructor(props) {
-    super(props);
-    this._home = this._home.bind(this);
-    this.state = {
-      click: 1,
-      top: 0,
-      user: null, // user we used to post new user it must be array of [
-    };
-  }
+export default (VerifyCode = ({navigation}) => {
+  
+
   _home = () => {
     // this.props.navigation.navigate('Home');
     console.log('finished');
@@ -44,7 +37,6 @@ export default class VerifyCode extends Component {
       });
   };
 
-  render() {
     return (
       <Block padding={[20, theme.sizes.base * 2]}>
         <Text h2 bold>
@@ -99,7 +91,7 @@ export default class VerifyCode extends Component {
               <Button
                 gradient
                 onPress={() => {
-                  this.props.navigation.navigate('Home');
+                  navigation.navigate('Home');
                   //this.postUser()
                 }}>
                 <Text center semibold white>
@@ -108,15 +100,12 @@ export default class VerifyCode extends Component {
               </Button>
             </Block>
 
-            {/* <TouchableOpacity style={styles.buttonContainer2} onPress={()=>this.props.navigation.navigate('Home')}>
-   <Text style={{textAlign:'center',  paddingTop:5,color:'white'}}>Next</Text>
-  </TouchableOpacity>   */}
           </KeyboardAvoidingView>
         </Block>
       </Block>
-    );
-  }
-}
+    
+  )
+})
 const styles = StyleSheet.create({
   buttonContainer2: {
     backgroundColor: '#242a37',

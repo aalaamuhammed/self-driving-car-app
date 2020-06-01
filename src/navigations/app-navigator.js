@@ -152,8 +152,13 @@ const CustomDrawer = props => {
       </ScrollView>
       <View style={{flex: 0.4, backgroundColor: 'white'}}>
         <TouchableOpacity style={{flexDirection: 'column', flex: 1}}>
-          <Text>Setting</Text>
-          <Icon name="home" size={30} style={{color: 'orange'}} />
+          <Text>Log out</Text>
+          <Icon
+            name="sign-out"
+            size={30}
+            style={{color: 'purple'}}
+            
+          />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -200,11 +205,11 @@ const AppNavigator = createDrawerNavigator(
     },
     Notification: {
       screen: NotificationScreen,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         drawerIcon: ({tintColor}) => (
           <Icon name="bell-o" size={30} style={{color: tintColor}} />
         ),
-      },
+      }),
     },
     Offers: {
       screen: OffersScreen,

@@ -22,7 +22,7 @@ import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon_ from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Home = ({currentPosition, parkings, navigation}) => {
+const HomeScreen = ({currentPosition, parkings, navigation}) => {
   const [clicked, setClicked] = useState(1);
   const [startRide, setStartRide] = useState(false);
   const [selectCar, setSelectCar] = useState(false);
@@ -243,7 +243,7 @@ const Home = ({currentPosition, parkings, navigation}) => {
   );
 };
 
-export default Home;
+export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

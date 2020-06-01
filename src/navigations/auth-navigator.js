@@ -9,16 +9,17 @@ import TermsScreen from '_scenes/terms';
 import BasicInfoScreen from '_scenes/basicInfo';
 import PhoneNumberScreen from '_scenes/phoneNumber';
 import VerificationCodeScreen from '_scenes/verificationCode';
-
+import SplashScreen from '_scenes/splash';
 
 
 const AuthNavigatorConfig = {
-  initialRouteName: 'Welcome',
+  initialRouteName: 'Splash',
   header: null,
   headerMode: 'none',
 };
 
 const RouteConfigs = {
+  Splash:SplashScreen,
   Welcome:WelcomeScreen,
   Login:LoginScreen,
   ForgotPassword:ForgotScreen,
