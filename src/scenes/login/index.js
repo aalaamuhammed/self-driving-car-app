@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import deviceStorage from '../../services/deviceStorage';
 import axios from 'axios';
+import * as Animatable from 'react-native-animatable';
 
 export default (LoginScreen = ({navigation}) => {
   const [MobileNumber, setMobileNumber] = useState('');
@@ -21,6 +22,13 @@ export default (LoginScreen = ({navigation}) => {
   const [userToken, setUserToken] = useState(null);
   const [errors, setErrors] = useState('');
   const [Email, setEmail] = useState('');
+  const [secureTextEntry, setSecureText] = useState(true);
+  const [empty1, setempty1] = useState(false);
+  const [empty2, setempty2] = useState(false);
+
+  const updateSecureTextEntry = () => {
+    setSecureText(!secureTextEntry);
+  };
 
   const checkAndDecide = () => {
     navigation.navigate('Home');
@@ -28,6 +36,13 @@ export default (LoginScreen = ({navigation}) => {
   };
   const signInUser = () => {
 
+    if (MobileNumber === '') {
+      setempty1(true);
+    }
+
+    if (Password === '') {
+      setempty2(true);
+    }
     setLoading(true);
     setErrors('');
     axios
@@ -74,11 +89,21 @@ export default (LoginScreen = ({navigation}) => {
               setMobileNumber(text);
             }}
           />
+                  </View>
+
+          {empty1 && (
+            <Animatable.View animation="bounceIn">
+              <Text accent> ** Required</Text>
+            </Animatable.View>
+          )}
 
           {MobileNumber.includes('A') && (
+                          <Animatable.View animation="bounceIn">
+
             <Text accent> mobile number doesn't contain characters</Text>
+            </Animatable.View>
+
           )}
-        </View>
         <View style={{marginBottom: 10, padding: 5, flexDirection: 'row'}}>
           <Feather name="lock" color="#ba55d3" size={20} />
 
@@ -90,16 +115,31 @@ export default (LoginScreen = ({navigation}) => {
             }}
             underlineColorAndroid={Password.includes(' ') ? 'red' : '#ba55d3'}
             // secureTextEntry={true}
+            secureTextEntry={secureTextEntry ? true : false}
 
             placeholder="Password"
             name="Password"
           />
-          <Feather name="eye-off" color="#ba55d3" size={20} />
+          <TouchableOpacity onPress={updateSecureTextEntry}>
+              {secureTextEntry ? (
+                <Feather name="eye-off" color="#ba55d3" size={20} />
+              ) : (
+                <Feather name="eye" color="#ba55d3" size={20} />
+              )}
+            </TouchableOpacity>
+            </View>
+            {empty2 && (
+            <Animatable.View animation="bounceIn">
+              <Text accent> ** Required</Text>
+            </Animatable.View>
+          )}
 
           {Password.includes(' ') && (
+              <Animatable.View animation="bounceIn">
             <Text accent> Password doesn't contain space </Text>
+
+              </Animatable.View>
           )}
-        </View>
         {!loading ? (
         <Block middle flex={0.3} margin={[0, theme.sizes.padding]}>
           <Button
