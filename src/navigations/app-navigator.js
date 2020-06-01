@@ -31,6 +31,7 @@ import AvailablePlacesScreen from '_scenes/AvailablePlaces';
 import SettingScreen from '_scenes/setting'
 import AboutScreen from '_scenes/about';
 import LogoutScreen from '_scenes/logout';
+import IssueScreen from '_scenes/issues'
 
 import Trips from '_scenes/trips';
 import WalletScreen from '_scenes/wallet';
@@ -121,12 +122,15 @@ const AboutStack = createStackNavigator(
 const CustomDrawer = props => {
   const data1=[
     {route:'Home',icon:'home',id:0,color:theme.colors.primary},
+    {route:'About',icon:'infocirlceo',id:1,color:theme.colors.primary},
     {route:'Offers',icon:'gift',id:3,color:theme.colors.primary},
     {route:'Trips',icon:'car',id:4,color:theme.colors.primary},
     {route:'Packages',icon:'tagso',id:5,color:theme.colors.primary},
     {route:'Wallet',icon:'creditcard',id:6,color:theme.colors.primary},
-    {route:'Help',icon:'question',id:2,color:theme.colors.primary},
-    {route:'About',icon:'infocirlceo',id:1,color:theme.colors.primary},
+    
+    {route:'Help',icon:'bulb1',id:2,color:theme.colors.primary},
+    {route:'Issue',icon:'meh',id:1,color:theme.colors.primary},
+    
   ]
 const data2=[
   {route:'Setting',icon:'setting',id:7,color:theme.colors.gray},
@@ -204,14 +208,14 @@ const data2=[
         </View>
       </View>
       <View style={{flex:1,marginHorizontal:20,justifyContent:'space-between'}}>
-        <View style={{flex:1}}>
+        <View style={{flex:1,marginTop:10}}>
         <FlatList
           data={data1}
           renderItem={({item}) => renderItem({item})}
           keyExtractor={item => item.id}
         />
           </View> 
-          <View style={{flex:.6 }}>
+          <View style={{flex:.5 }}>
             <View style={{borderWidth:.5,borderColor:theme.colors.gray2}}></View>
             <View style={{marginTop:10}}>
         <FlatList
@@ -248,6 +252,10 @@ const AppNavigator = createDrawerNavigator(
 
     About: {
       screen: AboutStack,
+     
+    },
+    Issue: {
+      screen: IssueScreen,
      
     },
     Help: {

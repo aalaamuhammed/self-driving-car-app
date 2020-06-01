@@ -20,35 +20,27 @@ import axios from 'axios';
 import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import Icon_ from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon2 from 'react-native-vector-icons/Octicons'
+import Icon2 from 'react-native-vector-icons/Octicons';
 
 import * as Animatable from 'react-native-animatable';
 
 const Home = ({currentPosition, parkings, navigation}) => {
-  const [clicked, setClicked] = useState(1);
+  const [clicked, setClicked] = useState(0);
   const [startRide, setStartRide] = useState(false);
   const [selectCar, setSelectCar] = useState(false);
   const [rateTrip, setRateTrip] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useGlobalState('count');
   const [move, setMove] = useState(true);
-  const [modalVisibility, setModalVisibility] = useState(true)
+  const [modalVisibility, setModalVisibility] = useState(false);
   const [enableInstruction, setEnableInstruction] = useState(true);
-  const [userLocation, setUserLocation] = useState({
-    xCord: null,
-    yCord: null,
-  });
-  const [targetLocation, setTargetLocation] = useState({
-    xCord: null,
-    yCord: null,
-  });
-  const [markerClicks, setMarkerClicks] = useState(0);
+  const [currentLocation, setCurrentLocation] = useState({xCord: null,yCord: null,});
+  const [targetLocation, setTargetLocation] = useState({xCord: null,yCord: null});
   const [markerMovementEnable, setMarkerMovementEnable] = useState(true);
-  const [targetOrCurrent, setTargetOrCurrent] = useState('U');
-  const [tripResponse, setTripResponse] = useState({
-    currentResponse:'',
-    targetResponse:''
-  })
+  const [tripResponse, setTripResponse] = useState({currentResponse: '',targetResponse: ''});
+  const [name, setName] = useState('') 
+ 
+ 
   const changeState = clicked => {
     setClicked(clicked);
   };
@@ -168,15 +160,16 @@ const Home = ({currentPosition, parkings, navigation}) => {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
             padding: 10,
-            justifyContent:'center',
-            alignItems:'center'
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
           activeOpacity={1}
           onPress={fadeOut}>
           <View style={{flexDirection: 'row'}}>
             <Animatable.Text
               animation="pulse"
-              style={{alignSelf: 'center', fontSize: 15}}>Have a nice time{' '}
+              style={{alignSelf: 'center', fontSize: 15}}>
+              Have a nice time{' '}
             </Animatable.Text>
             <Icon_
               name={'heart'}
@@ -186,7 +179,8 @@ const Home = ({currentPosition, parkings, navigation}) => {
           </View>
           <Animatable.Text
             animation="pulse"
-            style={{alignSelf: 'center', fontSize: 15}}>To set location kindly press longly on it.
+            style={{alignSelf: 'center', fontSize: 15}}>
+            To set location kindly press longly on it.
           </Animatable.Text>
         </TouchableOpacity>
       </Animated.View>
@@ -194,13 +188,13 @@ const Home = ({currentPosition, parkings, navigation}) => {
   };
   const rightMenu = () => {
     return (
-      <View
+      <Animated.View
         style={{
           position: 'absolute',
           width: 60,
           height: 300,
           borderRadius: 100,
-          top: Dimensions.get('window').height /4,
+          top: Dimensions.get('window').height / 4,
           right: 0,
           borderRadius: 50,
           alignSelf: 'center',
@@ -208,6 +202,7 @@ const Home = ({currentPosition, parkings, navigation}) => {
           alignItems: 'center',
           backgroundColor: 'rgba(255,255,255,.3)',
           paddingVertical: 10,
+          opacity:tripRoutAnim
         }}>
         <View
           style={{
@@ -265,29 +260,39 @@ const Home = ({currentPosition, parkings, navigation}) => {
             onPress={() => navigation.navigate('Places')}
           />
         </View>
-      </View>
+      </Animated.View>
     );
   };
-  const settingLocationInteractionModal = (Name) => {
-   return( <Modal
-    animationType="fade"
-    transparent={true}
-    visible={modalVisibility}
-    >
-    <View style={{backgroundColor:'rgba(67, 39, 110,.5)',flex:1,alignItems:'center',justifyContent:'center'}}>
-    <View style={{flex:1,justifyContent:'center'}}>
-   <Icon2 name='verified' size={150} color='#F6F7F8' style={{alignSelf:'center'}}/>
-  
-     <Text center h2 regular white>`Your ${Name} location is set Successfully`</Text>
-          { ModalVisibility_()}
-   </View>
-  
-    </View>
-    
-  </Modal>)
+  const settingLocationInteractionModal = () => {
+    return (
+      <Modal animationType="fade" transparent={true} visible={modalVisibility}>
+        <View
+          style={{
+            backgroundColor: 'rgba(67, 39, 110,.5)',
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Icon2
+              name="verified"
+              size={150}
+              color="#F6F7F8"
+              style={{alignSelf: 'center'}}
+            />
+
+            <Text center h2 regular white>
+             { `Your ${name} location is set Successfully`}
+            </Text>
+            {ModalVisibility_()}
+          </View>
+        </View>
+      </Modal>
+    );
   };
 
   const fadeAnim = new Animated.Value(0);
+  const tripRoutAnim=new Animated.Value(1);
   const fadeOut = () => {
     // Will change fadeAnim value to 0 in 5 seconds
 
@@ -299,33 +304,55 @@ const Home = ({currentPosition, parkings, navigation}) => {
       setEnableInstruction(false);
     }, 500);
   };
+  const translateComponent = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+
+    Animated.timing(tripRoutAnim, {
+      toValue: 0,
+      duration: 1000,
+    }).start();
+  };
+
+
   const tripRoute = () => {
     return (
-      <Block
-        card
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          top: Dimensions.get('window').height / 2.3,
-          margin: 20,
-          alignSelf: 'center',
-        }}>
-        <Block card color="rgba(255,255,255,.8)">
-          <Block flex={0.3} row style={{justifyContent: 'space-between'}}>
+      <Animated.View style={{
+        position: 'absolute',
+        margin: 20,
+        alignSelf: 'center',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        
+       top: Dimensions.get('window').height / 2.3,
+        transform: [
+        {
+          translateY: tripRoutAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [30,Dimensions.get('window').height],
+          }),
+        },
+      ]}}>
+      <Block card>
+        <Block card color="rgba(255,255,255,.8)" style={{justifyContent:'space-evenly'}}>
+          <Block flex={0.23} row style={{justifyContent: 'space-between'}}>
             <Block
               row
               card
               flex={0.5}
               color={theme.colors.white}
-              style={{marginTop: 10, marginLeft:10, width: 150}}>
+              style={{marginTop: 5, marginLeft: 10, width: 150}}>
               <Block
                 flex={0.38}
                 center
                 middle
                 color={theme.colors.gray4}
-                style={{borderRadius: 100, margin: 5,marginVertical:5, padding: 1}}>
+                style={{
+                  borderRadius: 100,
+                  margin: 5,
+                  marginVertical: 5,
+                  padding: 1,
+                }}>
                 <Icon_
                   name="taxi"
                   size={30}
@@ -339,15 +366,24 @@ const Home = ({currentPosition, parkings, navigation}) => {
               </Block>
             </Block>
             <Block flex={0.25} center middle>
-              <Icon_
+              <TouchableOpacity onPress={()=>{
+                setClicked(0)
+               tripRoutAnim.setValue(1)}}>
+                 <Icon_
                 name={'autorenew'}
                 size={30}
                 color={theme.colors.primary}
               />
+              </TouchableOpacity>
+             
             </Block>
           </Block>
 
-          <Block flex={0.75} row style={{margin: 5, marginBottom: 10,marginTop:10}}>
+          <Block
+            flex={0.65}
+            row
+            
+            style={{margin: 5}}>
             <Block
               color={theme.colors.white}
               card
@@ -355,9 +391,7 @@ const Home = ({currentPosition, parkings, navigation}) => {
               <Text center title regular color="gray">
                 From:
               </Text>
-              <Text>
-                {}
-              </Text>
+              <Text>{}</Text>
             </Block>
             <Block
               card
@@ -377,14 +411,16 @@ const Home = ({currentPosition, parkings, navigation}) => {
           </Button>
         </Block>
       </Block>
+
+      </Animated.View>
     );
   };
-  
-  const ModalVisibility_=()=>{
-     setTimeout(() => {
-      setModalVisibility(false)
-    }, 1000)
-  }
+
+  const ModalVisibility_ = () => {
+    setTimeout(() => {
+      setModalVisibility(false);
+    }, 1500);
+  };
 
   return (
     <View style={{flex: 1, justifyContent: 'space-evenly'}}>
@@ -407,37 +443,36 @@ const Home = ({currentPosition, parkings, navigation}) => {
         doubleClickInterval={0}
         maxOverflow={0}
         centerOn={{x: 0, y: 0, scale: 2}}
-        onLongPress={evt =>{
-          console.log(evt.locationX,evt.locationY)
-          if(targetOrCurrent==='U'){
-            console.log('Long PRess Current Location')
-            //store location in userLocation
-            //request for check the current location
-            settingLocationInteractionModal('current')
-            setTargetLocation('T')
+        onLongPress={evt => {
+          console.log(evt.locationX, evt.locationY);
+          if (clicked===0) {
+            console.log('Long PRess Current Location');
+            setCurrentLocation({xCord:evt.locationX,yCord:evt.locationY}) //store location in current Location
+            setName('current')
+            setModalVisibility(true)
+           
+            setClicked(1);
+     
             //response  failed --> reset succuss -->call modal with verification
             // setTripResponse({
-            //   ... 
+            //   ...
             //   currentResponse:response.data
             // })
-            
-          }else{
-            //store target in userLocation          
-            //request for check the target location
-            //response  failed --> reset succuss -->call modal with verification    
-             // setTripResponse({
-            //   ... 
-            //   currentResponse:response.data
-            // })        
-            settingLocationInteractionModal('target')
+          } else if(clicked===1) {
+            setTargetLocation({xCord:evt.locationX,yCord:evt.locationY})  //store target in userLocation
+            //request for check the all location
+            setName('target')
+            setModalVisibility(true)   
+            translateComponent()         
+            //response  failed --> reset succuss -->call modal with verification
             setTimeout(() => {
-              tripRoute()
-            },1000);
+              setClicked(2);
+              
 
-            
+
+            }, 1600);
           }
-          //request userLocation
-        } }
+        }}
         onClick={evt => {
           console.log('Long Pressssssssssssssssssssssssss');
           console.log(evt);
@@ -458,15 +493,16 @@ const Home = ({currentPosition, parkings, navigation}) => {
           source={require('_assets/images/realMap.png')}
         />
       </ImageZoom>
-
-      {/* {tripRoute()} */}
-       {enableInstruction?instructionComponent():null}
-     {tripRoute()}
+      {enableInstruction?instructionComponent():null}
+      {modalVisibility?settingLocationInteractionModal():null}
      
-
-     {/* markerComponent() */}
-
-      {/*setYourLocationButton()*/}
+      {
+      (clicked<3)?rightMenu():null
+    
+    
+  }
+      {(clicked===2)?translateComponent():null} 
+      {(clicked===2)?tripRoute():null} 
 
       {/* {clicked === 1 ? rightMenu()
        : clicked === 3 ? (
