@@ -8,7 +8,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import {theme, apis} from '../../constants';
 import deviceStorage from '../../services/deviceStorage';
 
-// import validation from 'validation.js'
 
 const validation = {
   email: {

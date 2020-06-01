@@ -1,21 +1,25 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
+import {NavigationActions} from 'react-navigation';
 import React, {Component} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   TouchableOpacity,
   Image,
   SafeAreaView,
   ScrollView,
+  FlatList,
   ImageBackground,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Icon2 from 'react-native-vector-icons/SimpleLineIcons';
+import Iconn from 'react-native-vector-icons/AntDesign';
 import i20 from '_assets/images/i20.png';
+import {theme} from '../constants'
+import {Text,Block} from '../components/atoms'
+
 
 import {createStackNavigator} from 'react-navigation-stack';
 import {createDrawerNavigator, DrawerItems} from 'react-navigation-drawer';
@@ -24,9 +28,10 @@ import {DrawerActions} from 'react-navigation-drawer';
 import HomeScreen from '_scenes/home';
 import SetAddressScreen from '_scenes/setAddress';
 import AvailablePlacesScreen from '_scenes/AvailablePlaces';
-import Profile from '_scenes/profile';
-
+import SettingScreen from '_scenes/setting'
 import AboutScreen from '_scenes/about';
+import LogoutScreen from '_scenes/logout';
+
 import Trips from '_scenes/trips';
 import WalletScreen from '_scenes/wallet';
 import OffersScreen from '_scenes/offers';
@@ -34,15 +39,15 @@ import NotificationScreen from '_scenes/notifications';
 import HelpScreen from '_scenes/help';
 import ProfileScreen from '_scenes/profile';
 
-const TabNavigatorConfig = {
-  initialRouteName: 'Home',
-  header: null,
-  headerMode: 'none',
-};
+// const TabNavigatorConfig = {
+//   initialRouteName: 'Home',
+//   header: null,
+//   headerMode: 'none',
+// };
 export const NavigationDrawerStructure = ({onClick}) => (
-  <View style={{flexDirection: 'row'}}>
+  <View style={{flexDirection: 'row', backgroundColor:'rgba(0,0,0,.1)'}}>
     <TouchableOpacity onPress={onClick} style={{padding: 10}}>
-      <Icon name="th-list" size={30} color="#FF8900" />
+      <Iconn name="menuunfold" size={30} color={theme.colors.primary} />
     </TouchableOpacity>
   </View>
 );
@@ -109,14 +114,67 @@ const AboutStack = createStackNavigator(
   // }
 );
 
+
+
+
+
 const CustomDrawer = props => {
+  const data1=[
+    {route:'Home',icon:'home',id:0,color:theme.colors.primary},
+    {route:'Offers',icon:'gift',id:3,color:theme.colors.primary},
+    {route:'Trips',icon:'car',id:4,color:theme.colors.primary},
+    {route:'Packages',icon:'tagso',id:5,color:theme.colors.primary},
+    {route:'Wallet',icon:'creditcard',id:6,color:theme.colors.primary},
+    {route:'Help',icon:'question',id:2,color:theme.colors.primary},
+    {route:'About',icon:'infocirlceo',id:1,color:theme.colors.primary},
+  ]
+const data2=[
+  {route:'Setting',icon:'setting',id:7,color:theme.colors.gray},
+  {route:'Profile',icon:'profile',id:8,color:theme.colors.gray},
+  {route:'Logout',icon:'logout',id:9,color:theme.colors.gray}
+]
+  const navigateToScreen = (route) => () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: route
+    });
+    props.navigation.dispatch(navigateAction);
+  }
+  const renderItem=({item})=>{
+    return(
+      <TouchableOpacity style={{flex:1,flexDirection:'row',padding:8,marginBottom:5}} onPress={navigateToScreen(item.route)}>
+      <View style={{flex:.25,alignContent:'flex-start'}}>
+      <Iconn name={item.icon} size={27} style={{color:item.color}}/>
+      </View>
+      <View style={{flex:.5,justifyContent:'center'}}>
+     <Text regular black style={{fontSize:17}}>{item.route}</Text>
+      </View>
+      
+    </TouchableOpacity>
+    )
+
+  }
+  const renderItem2=({item})=>{
+    return(
+      <TouchableOpacity style={{flex:1,flexDirection:'row',padding:10,marginBottom:5}} onPress={navigateToScreen(item.route)}>
+      <View style={{flex:.25,alignContent:'flex-start'}}>
+      <Iconn name={item.icon} size={27} style={{color:item.color}}/>
+      </View>
+      <View style={{flex:.5,justifyContent:'center'}}>
+     <Text regular content black>{item.route}</Text>
+      </View>
+      
+    </TouchableOpacity>
+    )
+
+  }
   return (
     <SafeAreaView style={{flex: 1}}>
+      <View style={{backgroundColor:theme.colors.primary}}>
       <View
         style={{
-          backgroundColor: 'rgba(255, 137, 0 ,.3)',
+          backgroundColor: 'rgba(255, 255, 255 ,.6)',
           height: 150,
-          marginBottom: 0,
+          
           alignItems: 'flex-start',
           padding: 0,
           flexDirection: 'row',
@@ -124,42 +182,47 @@ const CustomDrawer = props => {
         }}>
         <Image
           source={i20}
-          style={{width: '40%', height: '100%', borderRadius: 10}}
+          style={{width: '35%', height: '70%', borderRadius: 100,marginLeft:10}}
         />
-        <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+        <View style={{flexDirection: 'column', justifyContent: 'center', marginHorizontal:5}}>
           <Text
+          regular
+          h3
+          black
             style={{
-              fontWeight: 'bold',
-              fontSize: 20,
-              color: 'gray',
               alignSelf: 'center',
+             
             }}>
             {' '}
             Mahmoud Samy
           </Text>
-          <Text style={{fontWeight: 'normal', fontSize: 15, color: 'gray'}}>
-            {' '}
+          <Text style={{fontWeight: 'normal', fontSize: 15, color: theme.colors.gray3}}>
+            {'  '}
             @Ibn_Samy
           </Text>
         </View>
-        {/* <TouchableOpacity style={{width:40,height:40,backgroundColor:'white',borderRedius:26,          justifyContent:'center',alignItems:'center'
-}}>
-        
-          </TouchableOpacity> */}
+        </View>
       </View>
-      <ScrollView style={{flex: 1}}>
-        <DrawerItems {...props} />
-      </ScrollView>
-      <View style={{flex: 0.4, backgroundColor: 'white'}}>
-        <TouchableOpacity style={{flexDirection: 'column', flex: 1}}>
-          <Text>Log out</Text>
-          <Icon
-            name="sign-out"
-            size={30}
-            style={{color: 'purple'}}
-            
-          />
-        </TouchableOpacity>
+      <View style={{flex:1,marginHorizontal:20,justifyContent:'space-between'}}>
+        <View style={{flex:1}}>
+        <FlatList
+          data={data1}
+          renderItem={({item}) => renderItem({item})}
+          keyExtractor={item => item.id}
+        />
+          </View> 
+          <View style={{flex:.6 }}>
+            <View style={{borderWidth:.5,borderColor:theme.colors.gray2}}></View>
+            <View style={{marginTop:10}}>
+        <FlatList
+          data={data2}
+          renderItem={({item}) => renderItem2({item})}
+          keyExtractor={item => item.id}
+        />              
+            </View>
+
+          </View> 
+
       </View>
     </SafeAreaView>
   );
@@ -172,68 +235,44 @@ const AppNavigator = createDrawerNavigator(
   {
     Home: {
       screen: HomeStack,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon name="home" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
+    },
+    Logout: {
+      screen: LogoutScreen,
+   
+    },
+    Setting: {
+      screen: SettingScreen,
+      
     },
 
     About: {
       screen: AboutStack,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon name="user-secret" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
     },
     Help: {
       screen: HelpScreen,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon name="question" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
     },
     Trips: {
       screen: Trips,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon name="taxi" size={30} style={{color: tintColor}} />
-        ),
-      },
+      
     },
-    Notification: {
+    Packages: {
       screen: NotificationScreen,
-      navigationOptions: ({navigation}) => ({
-        drawerIcon: ({tintColor}) => (
-          <Icon name="bell-o" size={30} style={{color: tintColor}} />
-        ),
-      }),
+     
     },
     Offers: {
       screen: OffersScreen,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon name="gift" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
     },
     Wallet: {
       screen: WalletScreen,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon2 name="wallet" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
     },
     Profile: {
       screen: ProfileScreen,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => (
-          <Icon2 name="profile" size={30} style={{color: tintColor}} />
-        ),
-      },
+     
     },
   },
   {
