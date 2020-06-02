@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {theme, apis} from '../../constants';
 import deviceStorage from '../../services/deviceStorage';
-
+import SnackBar from 'react-native-snackbar-component';
 
 const validation = {
   email: {
@@ -37,7 +37,7 @@ export default (CreateAccountScreen = ({navigation}) => {
   const firstRender = useRef(true);
   const [loading, setLoading] = useState(false);
   const [userToken, setUserToken] = useState(null);
-  const [errors, setErrors] = useState('');
+  const [errors, setErrors] = useState(null);
 
   const [Upper, setUpper] = useState(false);
   const [Email, setEmail] = useState('');
@@ -45,7 +45,7 @@ export default (CreateAccountScreen = ({navigation}) => {
   const [Password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [Confirmed, setConfirmed] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [alphabet, setAlphabet] = useState(false);
   const [wrong_email, setwrong_email] = useState(false);
   const [email_existence, setEmail_existence] = useState(false);
@@ -67,33 +67,30 @@ export default (CreateAccountScreen = ({navigation}) => {
     }
   };
 
-  const validConfirmedPassword = async() => {
-    var Confirmed_ = false;
-    if (Password === confirmPassword || confirmPassword === '') {
-      setConfirmed(true);
+  const validConfirmedPassword = async () => {
+    if (Password === confirmPassword) {
+      setConfirmed(false);
       setDisabled(false);
 
       return true;
     } else {
-      setConfirmed(false);
+      setConfirmed(true);
 
       setDisabled(true);
       return false;
     }
   };
 
-  const validPassword = async() => {
+  const validPassword = async () => {
     if (complexPasswordRegex.test(Password)) {
       // it's a valid password
       setSpecialCharacters(false);
       setNumber(false);
       setUpper(false);
-    }
-    else{
+    } else {
       setSpecialCharacters(true);
       setNumber(true);
       setUpper(true);
-
     }
   };
   const updateSecureTextEntry = () => {
@@ -142,7 +139,9 @@ export default (CreateAccountScreen = ({navigation}) => {
     if (confirmPassword === '') {
       setempty3(true);
     }
-    const x = validPassword() && validEmail() && validConfirmedPassword();
+    // const x = validPassword()
+    // const y= validEmail()
+    // const z= validConfirmedPassword();
     // if (
     //   Confirmed === true ||
     //   wrong_email === true ||
@@ -155,9 +154,9 @@ export default (CreateAccountScreen = ({navigation}) => {
     //   return;
     // }
 
-    // if (x) {
+    if (empty1 !== true && empty2 !== true && empty3 !== true) {
       setLoading(true);
-      setErrors('');
+      setErrors(null);
       axios
         .post('https://reqres.in/api/register', {
           email: Email,
@@ -168,16 +167,16 @@ export default (CreateAccountScreen = ({navigation}) => {
           deviceStorage.saveKey('id_token', response.token);
           setUserToken(response.token);
           navigation.navigate('BasicInfo');
-
         })
         .catch(error => {
           console.log(error);
           setLoading(false);
-          setErrors('Registration Failed');
+          setErrors(error);
           // Handle returned errors here
         });
-
-    // }
+    } else {
+      return;
+    }
   };
 
   return (
@@ -278,11 +277,9 @@ export default (CreateAccountScreen = ({navigation}) => {
             </Animatable.View>
           )}
 
-{specialCharacters && (
+          {specialCharacters && (
             <Animatable.View animation="bounceIn">
-              <Text accent>
-                {' '}
-                ** Password must be at least 8 characters              </Text>
+              <Text accent> ** Password must be at least 8 characters </Text>
             </Animatable.View>
           )}
 
@@ -315,11 +312,12 @@ export default (CreateAccountScreen = ({navigation}) => {
               value={confirmPassword}
               onChangeText={text => {
                 setConfirmPassword(text);
-                setempty3(false);
                 validConfirmedPassword();
+                setempty3(false);
+
               }}
               style={styles.textInput}
-              // onBlur={validConfirmedPassword}
+               onBlur={validConfirmedPassword}
               secureTextEntry={confirm_secureTextEntry ? true : false}
               underlineColorAndroid={
                 Confirmed ? 'red' : confirmPassword === '' ? 'gray' : '#ba55d3'
@@ -350,24 +348,46 @@ export default (CreateAccountScreen = ({navigation}) => {
           {!loading ? (
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
               <Button
-                gradient={disabled}
-                disabled={!disabled}
+                gradient={!disabled}
+                disabled={disabled}
                 onPress={() => {
                   move();
                   //  checkEmailExistence();
                 }}>
-                <Text center semibold gray={!disabled} white={disabled}>
+                <Text center semibold gray={disabled} white={!disabled}>
                   Create Account
                 </Text>
               </Button>
             </Block>
           ) : (
-            <Loading />
+            <Loading size="large" />
           )}
 
-          <Text style={{textAlign: 'center', color: '#242a37'}}>
+          {/* <Text style={{textAlign: 'center', color: '#242a37',}}>
             Need Support?
-          </Text>
+          </Text> */}
+
+          {errors === null ? (
+            <Text gray3 caption center />
+          ) : (
+            //   <Text  gray
+            //   caption
+            // center>{errors}</Text>
+            <Animatable.View animation="fadeInLeft">
+              <SnackBar
+                visible={true}
+                textMessage="Error"
+                actionHandler={() => {
+                  console.log('snackbar button clicked!');
+                }}
+                actionText="Try Again"
+                backgroundColor="#D8D8D9"
+                containerStyle={{borderRadius: 10}}
+                accentColor="#ba55d3"
+                messageColor="#ba55d3"
+              />
+            </Animatable.View>
+          )}
         </Block>
       </Block>
     </>

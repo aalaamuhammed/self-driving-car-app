@@ -24,13 +24,8 @@ import Icon2 from 'react-native-vector-icons/Octicons';
 
 import * as Animatable from 'react-native-animatable';
 
-<<<<<<< HEAD
 const HomeScreen = ({currentPosition, parkings, navigation}) => {
-  const [clicked, setClicked] = useState(1);
-=======
-const Home = ({currentPosition, parkings, navigation}) => {
   const [clicked, setClicked] = useState(0);
->>>>>>> 08eaaa82792fb3e3d3f8d83963f5f650c91a425a
   const [startRide, setStartRide] = useState(false);
   const [selectCar, setSelectCar] = useState(false);
   const [rateTrip, setRateTrip] = useState(false);
