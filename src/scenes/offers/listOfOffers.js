@@ -99,7 +99,7 @@ export default (ScreenContent = ({navigation}) => {
             borderTopRightRadius: 0,
             marginVertical: 30,
           }}>
-          <Text h1 center regular bold>
+          <Text h1 center regular bold gray4>
             Offers
           </Text>
         </Block>

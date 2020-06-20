@@ -7,6 +7,7 @@ const sign_in_api='http://barq-api.herokuapp.com/api/signInUser'
 const code_api='http://barq-api.herokuapp.com/api/sendCode'
 const notifications_api='http://barq-api.herokuapp.com/api/notifications'
 const offers_api='http://barq-api.herokuapp.com/api/offers'
+const places_api='http://barq-api.herokuapp.com/api/places'
 export{
     email_validation_api,
     users_api,
@@ -16,5 +17,6 @@ export{
     sign_in_api,
     code_api,
     notifications_api,
-    offers_api
+    offers_api,
+    places_api
 }

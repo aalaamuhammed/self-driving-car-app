@@ -7,5 +7,12 @@ export {default as CarOrders} from './CarOrders'
 export {default as CardDataFlatList} from './CardDataFlatList'
 export {default as CardsFlatList} from './CardsFlatList'
 export {default as VerifyModal} from './VerifyModal'
+export {default as Instructions} from './instructions'
+export {default as SetYourLocationButton} from './setYourLocationButton'
+export {default as FavPlacesRightMenu} from './favPlacesRightMenu'
+export {default as TripRoute} from './tripRoute'
+
+
+
 
 

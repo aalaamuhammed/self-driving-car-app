@@ -88,7 +88,7 @@ export default (help = ({navigation}) => {
             borderTopRightRadius: 0,
             marginVertical: 30,
           }}>
-          <Text h1 center regular>
+          <Text h1 center regular gray4>
             Help
           </Text>
         </Block>
