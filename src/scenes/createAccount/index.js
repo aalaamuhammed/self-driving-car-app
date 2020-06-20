@@ -1,14 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
-import {Button, Block, Text} from '_atoms';
+import {Button, Block, Text, Loading} from '_atoms';
 import axios from 'axios';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {theme, apis} from '../../constants';
-//import deviceStorage from '../../services/deviceStorage'; 
-
-// import validation from 'validation.js'
+import deviceStorage from '../../services/deviceStorage';
+import SnackBar from 'react-native-snackbar-component';
 
 const validation = {
   email: {
@@ -30,24 +29,25 @@ const validation = {
     },
   },
 };
-const characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '{', '}'];
-const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-const complexPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const complexPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 export default (CreateAccountScreen = ({navigation}) => {
   const firstRender = useRef(true);
-  const [click, setClick] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+  const [errors, setErrors] = useState(null);
+
   const [Upper, setUpper] = useState(false);
   const [Email, setEmail] = useState('');
   const [number, setNumber] = useState(false);
   const [Password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [Confirmed, setConfirmed] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
   const [alphabet, setAlphabet] = useState(false);
-  const [correct_email, setCorrect_email] = useState(false);
+  const [wrong_email, setwrong_email] = useState(false);
   const [email_existence, setEmail_existence] = useState(false);
   const [specialCharacters, setSpecialCharacters] = useState(false);
   const [secureTextEntry, setSecureText] = useState(true);
@@ -67,102 +67,30 @@ export default (CreateAccountScreen = ({navigation}) => {
     }
   };
 
-  const validConfirmedPassword = () => {
-    var Confirmed_ = false;
-    if (Password === confirmPassword || confirmPassword === '') {
-      Confirmed_ = false;
-    } else {
-      Confirmed_ = true;
-      setDisabled(true);
-    }
-    if (Confirmed_) {
-      setConfirmed(!Confirmed_);
-      setDisabled(true);
-
-      return false;
-    } else {
-      setConfirmed(!Confirmed_);
+  const validConfirmedPassword = async () => {
+    if (Password === confirmPassword) {
+      setConfirmed(false);
       setDisabled(false);
 
       return true;
+    } else {
+      setConfirmed(true);
+
+      setDisabled(true);
+      return false;
     }
   };
 
-  const validPassword = () => {
-    var specialCharacters_ = false,
-      Upper_ = false,
-      number_ = false;
-
-    if (
-      Password.includes('!') ||
-      Password.includes('@') ||
-      Password.includes('#') ||
-      Password.includes('$') ||
-      Password.includes('%') ||
-      Password.includes('^') ||
-      Password.includes('&') ||
-      Password.includes('*') ||
-      Password.includes('+') ||
-      Password.includes('-') ||
-      Password.includes('<') ||
-      Password.includes('>') ||
-      Password.includes('£') ||
-      Password.includes('/') ||
-      Password.includes('~') ||
-      Password === ''
-    ) {
-      console.log('ok');
-      specialCharacters_ = false;
-    } else {
-      specialCharacters_ = true;
-    }
-
-    // if (Password.includes('A') || Password === '') {
-    //   console.log('ok');
-    //   Upper_ = false;
-    // } else {
-    //   Upper_ = true;
-    // }
-
-    if (
-      Password.includes('1') ||
-      Password.includes('2') ||
-      Password.includes('3') ||
-      Password.includes('4') ||
-      Password.includes('5') ||
-      Password.includes('6') ||
-      Password.includes('7') ||
-      Password.includes('8') ||
-      Password.includes('9') ||
-      Password.includes('0') ||
-      Password === ''
-    ) {
-      console.log('ok');
-      number_ = false;
-    } else {
-      number_ = true;
-    }
-
-    // if (number_ || specialCharacters_) {
-    //   console.log('there is a mistake he should not navigate');
-
-    //   // setUpper(Upper_);
-    //   setSpecialCharacters(specialCharacters_);
-    //   setNumber(number_);
-    //   return false;
-    // } else {
-    //   console.log('there is a No mistake he should navigate');
-    //   // setUpper(Upper_);
-    //   setSpecialCharacters(specialCharacters_);
-    //   setNumber(number_);
-
-    //   return true;
-    // }
-
-    if(complexPasswordRegex.test(Password)){
+  const validPassword = async () => {
+    if (complexPasswordRegex.test(Password)) {
       // it's a valid password
-          setSpecialCharacters(false);
-            setNumber(false);
+      setSpecialCharacters(false);
+      setNumber(false);
+      setUpper(false);
+    } else {
+      setSpecialCharacters(true);
+      setNumber(true);
+      setUpper(true);
     }
   };
   const updateSecureTextEntry = () => {
@@ -184,29 +112,19 @@ export default (CreateAccountScreen = ({navigation}) => {
   };
 
   const validEmail = async () => {
-    var correct_email_ = false;
-
     if (emailRegex.test(Email)) {
-      console.log('ok');
+      console.log('there is a No mistake he should navigate');
+
       setCheck_textInputChange(true);
-
-      correct_email_ = false;
+      setwrong_email(false);
+      return true;
     } else {
-      correct_email_ = true;
-      setCheck_textInputChange(false);
-    }
-
-    if (correct_email_) {
       console.log('there is a mistake he should not navigate');
-      setCorrect_email(correct_email_);
+
+      setCheck_textInputChange(false);
+      setwrong_email(true);
 
       return false;
-    } else {
-      console.log('there is a No mistake he should navigate');
-      setCorrect_email(correct_email_);
-
-      console.log('after cheeeeck');
-      return true;
     }
   };
 
@@ -221,19 +139,43 @@ export default (CreateAccountScreen = ({navigation}) => {
     if (confirmPassword === '') {
       setempty3(true);
     }
-    const x = validPassword() && validEmail() && validConfirmedPassword();
-    if (
-      Confirmed === true ||
-      correct_email === true ||
-      specialCharacters === true ||
-      number === true ||
-      Email === '' ||
-      Password === '' ||
-      confirmPassword === ''
-    ) {
-      return;
+    // const x = validPassword()
+    // const y= validEmail()
+    // const z= validConfirmedPassword();
+    // if (
+    //   Confirmed === true ||
+    //   wrong_email === true ||
+    //   specialCharacters === true ||
+    //   number === true ||
+    //   Email === '' ||
+    //   Password === '' ||
+    //   confirmPassword === ''
+    // ) {
+    //   return;
+    // }
+
+    if (empty1 !== true && empty2 !== true && empty3 !== true) {
+      setLoading(true);
+      setErrors(null);
+      axios
+        .post('https://reqres.in/api/register', {
+          email: Email,
+          password: Password,
+        })
+        .then(response => {
+          console.log(response.token);
+          deviceStorage.saveKey('id_token', response.token);
+          setUserToken(response.token);
+          navigation.navigate('BasicInfo');
+        })
+        .catch(error => {
+          console.log(error);
+          setLoading(false);
+          setErrors(error);
+          // Handle returned errors here
+        });
     } else {
-      navigation.navigate('BasicInfo');
+      return;
     }
   };
 
@@ -243,8 +185,6 @@ export default (CreateAccountScreen = ({navigation}) => {
         <Text h2 bold>
           Create Account
         </Text>
-        {/* {(Email!==''&&Password!==''&& confirmPassword!=='') ? this.setState({disabled:true}):this.setState({disabled:false}) } */}
-        {/* this.setState({disabled:true})   */}
 
         <Block middle>
           <View style={styles.action}>
@@ -256,17 +196,17 @@ export default (CreateAccountScreen = ({navigation}) => {
                 console.log(res.key, ' is focus');
               }}
               keyboardType="email-address"
-              autoCorrect={false}
               multiline={false}
               placeholder="Email"
               underlineColorAndroid={
-                correct_email ? 'red' : Email === '' ? 'gray' : '#ba55d3'
+                wrong_email ? 'red' : Email === '' ? 'gray' : '#ba55d3'
               }
               onBlur={validEmail}
               value={Email}
               onChangeText={val => {
                 textInputChange(val);
                 setempty1(false);
+                validEmail();
               }}
             />
             {!check_textInputChange ? null : (
@@ -288,7 +228,7 @@ export default (CreateAccountScreen = ({navigation}) => {
             </Animatable.View>
           )}
 
-          {correct_email && (
+          {wrong_email && (
             <Animatable.View animation="bounceIn">
               <Text accent> ** Please check your email</Text>
             </Animatable.View>
@@ -306,6 +246,7 @@ export default (CreateAccountScreen = ({navigation}) => {
               value={Password}
               onChangeText={text => {
                 setPassword(text);
+                validPassword();
                 setempty2(false);
               }}
               style={styles.textInput}
@@ -338,18 +279,24 @@ export default (CreateAccountScreen = ({navigation}) => {
 
           {specialCharacters && (
             <Animatable.View animation="bounceIn">
+              <Text accent> ** Password must be at least 8 characters </Text>
+            </Animatable.View>
+          )}
+
+          {specialCharacters && (
+            <Animatable.View animation="bounceIn">
               <Text accent>
                 {' '}
                 ** Password should contain at least one special Character{' '}
               </Text>
             </Animatable.View>
           )}
-          {/* {Upper && (
+          {Upper && (
             <Text accent>
               {' '}
               ** Password should contain at least one Upper case Character{' '}
             </Text>
-          )} */}
+          )}
           {number && (
             <Animatable.View animation="bounceIn">
               <Text accent>
@@ -365,12 +312,12 @@ export default (CreateAccountScreen = ({navigation}) => {
               value={confirmPassword}
               onChangeText={text => {
                 setConfirmPassword(text);
+                validConfirmedPassword();
                 setempty3(false);
 
-                validConfirmedPassword();
               }}
               style={styles.textInput}
-              // onBlur={validConfirmedPassword}
+               onBlur={validConfirmedPassword}
               secureTextEntry={confirm_secureTextEntry ? true : false}
               underlineColorAndroid={
                 Confirmed ? 'red' : confirmPassword === '' ? 'gray' : '#ba55d3'
@@ -397,31 +344,50 @@ export default (CreateAccountScreen = ({navigation}) => {
               <Text accent> ** They are not identical</Text>
             </Animatable.View>
           )}
-          <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-            <Button
-              gradient={disabled}
-              disabled={!disabled}
-              onPress={() => {
-                move();
-                //  checkEmailExistence();
-              }}>
-              <Text center semibold gray={!disabled} white={disabled}>
-                Create Account
-              </Text>
-            </Button>
-          </Block>
 
-          {/* <TouchableOpacity
-          style={styles.buttonContainer2}
-          onPress={() => this.props.navigation.navigate('Terms')}>
-          <Text style={{textAlign: 'center', paddingTop: 5, color: 'white'}}>
-            Create account
-          </Text>
-        // </TouchableOpacity> */}
+          {!loading ? (
+            <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
+              <Button
+                gradient={!disabled}
+                disabled={disabled}
+                onPress={() => {
+                  move();
+                  //  checkEmailExistence();
+                }}>
+                <Text center semibold gray={disabled} white={!disabled}>
+                  Create Account
+                </Text>
+              </Button>
+            </Block>
+          ) : (
+            <Loading size="large" />
+          )}
 
-          <Text style={{textAlign: 'center', color: '#242a37'}}>
+          {/* <Text style={{textAlign: 'center', color: '#242a37',}}>
             Need Support?
-          </Text>
+          </Text> */}
+
+          {errors === null ? (
+            <Text gray3 caption center />
+          ) : (
+            //   <Text  gray
+            //   caption
+            // center>{errors}</Text>
+            <Animatable.View animation="fadeInLeft">
+              <SnackBar
+                visible={true}
+                textMessage="Error"
+                actionHandler={() => {
+                  console.log('snackbar button clicked!');
+                }}
+                actionText="Try Again"
+                backgroundColor="#D8D8D9"
+                containerStyle={{borderRadius: 10}}
+                accentColor="#ba55d3"
+                messageColor="#ba55d3"
+              />
+            </Animatable.View>
+          )}
         </Block>
       </Block>
     </>

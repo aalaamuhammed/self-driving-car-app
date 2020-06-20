@@ -36,15 +36,15 @@ const WelcomeScreen = ({navigation}) => {
     <View style={styles.container}>
       <StatusBar backgroundColor="#43276E" barStyle="light-content" />
 
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Animatable.Image
           animation="bounceIn"
-          duraton="1500"
+          duration={1500}
           source={require('_assets/images/brq.png')}
           style={{width: 350, height: 350}}
           resizeMode="stretch"
         />
-      </View>
+      </View> */}
       {/* <Block center flex={1} color='#43276E'> */}
       {/* <Text h1 center bold>
             Your Taxi 

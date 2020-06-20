@@ -9,16 +9,17 @@ import TermsScreen from '_scenes/terms';
 import BasicInfoScreen from '_scenes/basicInfo';
 import PhoneNumberScreen from '_scenes/phoneNumber';
 import VerificationCodeScreen from '_scenes/verificationCode';
-
+import WhereToGoScreen from '_scenes/whereToGo';
 
 
 const AuthNavigatorConfig = {
-  initialRouteName: 'Welcome',
+  initialRouteName: 'WhereToGo',
   header: null,
   headerMode: 'none',
 };
 
 const RouteConfigs = {
+  WhereToGo:WhereToGoScreen,
   Welcome:WelcomeScreen,
   Login:LoginScreen,
   ForgotPassword:ForgotScreen,

@@ -16,8 +16,19 @@ import ImageZoom from 'react-native-image-pan-zoom';
 import {theme, apis} from '../../constants';
 import axios from 'axios';
 import {NavigationDrawerStructure} from '_navigations/app-navigator.js';
+<<<<<<< HEAD
 const Home = ({currentPosition, parkings, navigation}) => {
  // const [clicked, setClicked] = useState(0);
+=======
+import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon_ from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/Octicons';
+
+import * as Animatable from 'react-native-animatable';
+
+const HomeScreen = ({currentPosition, parkings, navigation}) => {
+  const [clicked, setClicked] = useState(0);
+>>>>>>> 1b2a03cc9e9aa86cb293b1ff95d2024d14df53dc
   const [startRide, setStartRide] = useState(false);
   const [selectCar, setSelectCar] = useState(false);
   const [rateTrip, setRateTrip] = useState(false);
@@ -265,7 +276,7 @@ const Home = ({currentPosition, parkings, navigation}) => {
   );
 };
 
-export default Home;
+export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
