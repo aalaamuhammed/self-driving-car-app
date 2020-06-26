@@ -2,13 +2,14 @@ import React,{useState} from 'react'
 import { View,Modal} from 'react-native'
 import Icon2 from 'react-native-vector-icons/Octicons';
 import {Text} from '_atoms'
-const modal = ({visible}) => {
-    const [modalVisibility, setModalVisibility] = useState(visible);
+const modal = () => {
+    const [modalVisibility, setModalVisibility] = useState(true);
         const visibilityPeriod=()=>{
             setTimeout(() => {
                 setModalVisibility(false);
               }, 1500)
         }
+        console.log('Modal Here')
         return (
           <Modal animationType="fade" transparent={true} visible={modalVisibility}>
             <View
@@ -27,7 +28,7 @@ const modal = ({visible}) => {
                 />
     
                 <Text center h2 regular white>
-                  'Your hahah location is set Successfully'
+                  'Your location is set Successfully'
                 </Text>
                 {visibilityPeriod()}
               </View>

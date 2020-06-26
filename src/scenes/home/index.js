@@ -55,6 +55,7 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
 
   ])
   const [i, setI] = useState(0)
+  const [visible, setVisible] = useState(false)
   const [badReq, setBadReq] = useState(false)
 
   const changeState = clicked => {
@@ -227,13 +228,15 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
           console.log(clicked)
           if (clicked === 0) {
             setName('current');
-    
+            setVisible(false)
             checkLocation(evt);
             setClicked(1);
+            setVisible(true)
           } else if (clicked === 1) {
+            setVisible(false)
             checkLocation(evt);
             setName('target');
-
+            setVisible(true)
             translateComponent();
             setTimeout(() => {
               setClicked(2);
@@ -246,10 +249,11 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
         />
       </ImageZoom>
         <Instructions i={i} badReq={badReq}/>
+        <Marker/>
        {clicked < 3 ?  <FavPlacesRightMenu tripRoutAnim={tripRoutAnim} navigation={navigation}/>  : null}
        {clicked === 2 ? translateComponent() : null}
        {clicked === 2 ? <TripRoute currentLocationDetails={currentLocationDetails} targetLocationDetails={targetLocationDetails} tripRoutAnim={tripRoutAnim}/> : null}    
-       <Modal/>
+       {(visible)?<Modal/>:null}
        
        {/* : clicked === 3 ? (
         <RenderStars changeState={changeState} />

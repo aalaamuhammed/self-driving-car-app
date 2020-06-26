@@ -115,9 +115,9 @@ export default (help = ({navigation}) => {
         <Block middle style={{alignItems: 'flex-start'}}>
           <Button
             center
-            shadow
+            gradient
             style={{
-              padding: 10,
+              
               paddingVertical: 30,
               borderBottomLeftRadius: 0,
               borderTopLeftRadius: 0,

@@ -116,8 +116,8 @@ export default class App extends Component {
           </View>
           
           <Text>{'   '}limited Price Per Ride {item.limitedPricePerRide}.</Text>
-          <Text>{'   '}number Of Gift Codes {item.numberOfGiftCodes}.</Text>
-          <Text>{'   '}numberOfRides {item.numberOfRides}.</Text>
+          <Text>{'   '}number of Gift Codes {item.numberOfGiftCodes}.</Text>
+          <Text>{'   '}number of Rides {item.numberOfRides}.</Text>
           <Text>{'   '}price {item.price}.</Text>
         </View>
         <View

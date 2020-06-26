@@ -83,40 +83,22 @@ export default  Details =({navigation})=> {
                 
                 justifyContent: 'space-evenly',
               }}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={{
-                  backgroundColor: theme.colors.primary,
-                  borderRadius: theme.sizes.radius,
-                }}
-                onPress={() => navigation.navigate('ListOfOffers')}>
-                <Text
-                  style={{
-                    paddingHorizontal: 40,
-                    paddingVertical: 10,
-                    fontSize: 20,
-                    color: 'white',
-                  }}>
-                  Apply
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={{
-                  backgroundColor: theme.colors.primary,
-                  borderRadius: theme.sizes.radius,
-                }}
-                onPress={() => navigation.navigate('ListOfOffers')}>
-                <Text
-                  style={{
-                    paddingHorizontal: 40,
-                    paddingVertical: 10,
-                    fontSize: 20,
-                    color: 'white',
-                  }}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
+               
+              
+                   <Block style={{flex:1,marginHorizontal:25}}>
+                    <Button gradient>
+                      <Text center title white>
+                        Apply
+                      </Text>
+                    </Button>
+                  </Block>
+                  <Block style={{flex:1,marginHorizontal:15}}>
+                    <Button gradient  onPress={() => navigation.navigate('ListOfOffers')}>
+                      <Text center title white>
+                        Cancel
+                      </Text>
+                    </Button>
+                  </Block>
             </View>
           </View>
         </Animated.View>

@@ -50,7 +50,7 @@ export default (ViewCard = ({navigation}) => {
             flex={1}
             color="white"
             card
-            style={{padding: 15, paddingVertical: 20}}>
+            style={{padding: 15, paddingVertical: 20,borderBottomLeftRadius:0,borderBottomRightRadius:0}}>
             <Text title>How much do you want to add?</Text>
             <TextInput
               // onSubmitEditing={this.props.focusNext}
