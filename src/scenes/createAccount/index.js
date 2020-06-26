@@ -172,6 +172,7 @@ export default (CreateAccountScreen = ({navigation}) => {
           console.log(error);
           setLoading(false);
           setErrors(error);
+
           // Handle returned errors here
         });
     } else {
@@ -349,7 +350,7 @@ export default (CreateAccountScreen = ({navigation}) => {
             <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
               <Button
                 gradient={!disabled}
-                disabled={disabled}
+                disabledAs_Style={disabled}
                 onPress={() => {
                   move();
                   //  checkEmailExistence();

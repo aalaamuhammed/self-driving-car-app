@@ -11,7 +11,8 @@ class Button extends Component {
       style,
       opacity,
       gradient,
-      disabled,
+      disabledAs_Style,
+      disableCantMove,
       color,
       startColorGradient,
       endColorGradient,
@@ -50,7 +51,7 @@ class Button extends Component {
         </TouchableOpacity>
       );
     }
-    if (disabled) {
+    if (disabledAs_Style) {
       return (
         <TouchableOpacity
           style={buttonStyles}
@@ -67,6 +68,25 @@ class Button extends Component {
         </TouchableOpacity>
       );
     }
+    if (disableCantMove) {
+      return (
+        <TouchableOpacity
+          style={buttonStyles}
+          activeOpacity={opacity}
+          disabled='true'
+          {...props}>
+          <LinearGradient
+            start={start}
+            end={end}
+            locations={locations}
+            style={buttonStyles}
+            colors={[startColorDisabled, endColorDisabled]}>
+            {children}
+          </LinearGradient>
+        </TouchableOpacity>
+      );
+    }
+
     return (
       <TouchableOpacity
         style={buttonStyles}

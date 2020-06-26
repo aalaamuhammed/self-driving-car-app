@@ -112,11 +112,16 @@ const ForgotScreen = ({navigation}) => {
           )}
 
           <Block middle flex={0.2} margin={[0, theme.sizes.padding]}>
-            <Button onPress={() => navigation.navigate('Login')}>
-              <Text gray caption center>
+            {/* <Button onPress={() => navigation.navigate('Login')}> */}
+              <Text gray caption center
+                          size={15}
+
+                          style={{textDecorationLine: 'underline'}}
+
+              onPress={() => navigation.navigate('Login')}>
                 Back to Login
               </Text>
-            </Button>
+            {/* </Button> */}
           </Block>
         </Block>
       </Block>

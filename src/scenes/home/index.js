@@ -34,13 +34,21 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
   const [move, setMove] = useState(true);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [enableInstruction, setEnableInstruction] = useState(true);
-  const [currentLocation, setCurrentLocation] = useState({xCord: null,yCord: null,});
-  const [targetLocation, setTargetLocation] = useState({xCord: null,yCord: null});
+  const [currentLocation, setCurrentLocation] = useState({
+    xCord: null,
+    yCord: null,
+  });
+  const [targetLocation, setTargetLocation] = useState({
+    xCord: null,
+    yCord: null,
+  });
   const [markerMovementEnable, setMarkerMovementEnable] = useState(true);
-  const [tripResponse, setTripResponse] = useState({currentResponse: '',targetResponse: ''});
-  const [name, setName] = useState('') 
- 
- 
+  const [tripResponse, setTripResponse] = useState({
+    currentResponse: '',
+    targetResponse: '',
+  });
+  const [name, setName] = useState('');
+
   const changeState = clicked => {
     setClicked(clicked);
   };
@@ -202,7 +210,7 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
           alignItems: 'center',
           backgroundColor: 'rgba(255,255,255,.3)',
           paddingVertical: 10,
-          opacity:tripRoutAnim
+          opacity: tripRoutAnim,
         }}>
         <View
           style={{
@@ -282,7 +290,7 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
             />
 
             <Text center h2 regular white>
-             { `Your ${name} location is set Successfully`}
+              {`Your ${name} location is set Successfully`}
             </Text>
             {ModalVisibility_()}
           </View>
@@ -292,7 +300,7 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
   };
 
   const fadeAnim = new Animated.Value(0);
-  const tripRoutAnim=new Animated.Value(1);
+  const tripRoutAnim = new Animated.Value(1);
   const fadeOut = () => {
     // Will change fadeAnim value to 0 in 5 seconds
 
@@ -313,105 +321,105 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
     }).start();
   };
 
-
   const tripRoute = () => {
     return (
-      <Animated.View style={{
-        position: 'absolute',
-        margin: 20,
-        alignSelf: 'center',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        
-       top: Dimensions.get('window').height / 2.3,
-        transform: [
-        {
-          translateY: tripRoutAnim.interpolate({
-            inputRange: [0, 1],
-            outputRange: [30,Dimensions.get('window').height],
-          }),
-        },
-      ]}}>
-      <Block card>
-        <Block card color="rgba(255,255,255,.8)" style={{justifyContent:'space-evenly'}}>
-          <Block flex={0.23} row style={{justifyContent: 'space-between'}}>
-            <Block
-              row
-              card
-              flex={0.5}
-              color={theme.colors.white}
-              style={{marginTop: 5, marginLeft: 10, width: 150}}>
+      <Animated.View
+        style={{
+          position: 'absolute',
+          margin: 20,
+          alignSelf: 'center',
+          bottom: 0,
+          left: 0,
+          right: 0,
+
+          top: Dimensions.get('window').height / 2.3,
+          transform: [
+            {
+              translateY: tripRoutAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [30, Dimensions.get('window').height],
+              }),
+            },
+          ],
+        }}>
+        <Block card>
+          <Block
+            card
+            color="rgba(255,255,255,.8)"
+            style={{justifyContent: 'space-evenly'}}>
+            <Block flex={0.23} row style={{justifyContent: 'space-between'}}>
               <Block
-                flex={0.38}
-                center
-                middle
-                color={theme.colors.gray4}
-                style={{
-                  borderRadius: 100,
-                  margin: 5,
-                  marginVertical: 5,
-                  padding: 1,
-                }}>
-                <Icon_
-                  name="taxi"
-                  size={30}
-                  style={{color: theme.colors.primary}}
-                />
+                row
+                card
+                flex={0.5}
+                color={theme.colors.white}
+                style={{marginTop: 5, marginLeft: 10, width: 150}}>
+                <Block
+                  flex={0.38}
+                  center
+                  middle
+                  color={theme.colors.gray4}
+                  style={{
+                    borderRadius: 100,
+                    margin: 5,
+                    marginVertical: 5,
+                    padding: 1,
+                  }}>
+                  <Icon_
+                    name="taxi"
+                    size={30}
+                    style={{color: theme.colors.primary}}
+                  />
+                </Block>
+                <Block middle>
+                  <Text regular title>
+                    Ride Path
+                  </Text>
+                </Block>
               </Block>
-              <Block middle style={{}}>
-                <Text regular title>
-                  Ride Path
+              <Block flex={0.25} center middle>
+                <TouchableOpacity
+                  onPress={() => {
+                    setClicked(0);
+                    tripRoutAnim.setValue(1);
+                  }}>
+                  <Icon_
+                    name={'autorenew'}
+                    size={30}
+                    color={theme.colors.primary}
+                  />
+                </TouchableOpacity>
+              </Block>
+            </Block>
+
+            <Block flex={0.65} row style={{margin: 5}}>
+              <Block
+                color={theme.colors.white}
+                card
+                style={{marginHorizontal: 5}}>
+                <Text center title regular color="gray">
+                  From:
+                </Text>
+                <Text>{}</Text>
+              </Block>
+              <Block
+                card
+                color={theme.colors.white}
+                style={{marginHorizontal: 5}}>
+                <Text center title regular color="gray">
+                  To:
                 </Text>
               </Block>
             </Block>
-            <Block flex={0.25} center middle>
-              <TouchableOpacity onPress={()=>{
-                setClicked(0)
-               tripRoutAnim.setValue(1)}}>
-                 <Icon_
-                name={'autorenew'}
-                size={30}
-                color={theme.colors.primary}
-              />
-              </TouchableOpacity>
-             
-            </Block>
           </Block>
-
-          <Block
-            flex={0.65}
-            row
-            
-            style={{margin: 5}}>
-            <Block
-              color={theme.colors.white}
-              card
-              style={{marginHorizontal: 5}}>
-              <Text center title regular color="gray">
-                From:
+          <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
+            <Button gradient>
+              <Text center semibold white>
+                confirm
               </Text>
-              <Text>{}</Text>
-            </Block>
-            <Block
-              card
-              color={theme.colors.white}
-              style={{marginHorizontal: 5}}>
-              <Text center title regular color="gray">
-                To:
-              </Text>
-            </Block>
+            </Button>
           </Block>
         </Block>
-        <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-          <Button gradient>
-            <Text center semibold white>
-              confirm
-            </Text>
-          </Button>
-        </Block>
-      </Block>
-
       </Animated.View>
     );
   };
@@ -445,31 +453,28 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
         centerOn={{x: 0, y: 0, scale: 2}}
         onLongPress={evt => {
           console.log(evt.locationX, evt.locationY);
-          if (clicked===0) {
+          if (clicked === 0) {
             console.log('Long PRess Current Location');
-            setCurrentLocation({xCord:evt.locationX,yCord:evt.locationY}) //store location in current Location
-            setName('current')
-            setModalVisibility(true)
-           
+            setCurrentLocation({xCord: evt.locationX, yCord: evt.locationY}); //store location in current Location
+            setName('current');
+            setModalVisibility(true);
+
             setClicked(1);
-     
+
             //response  failed --> reset succuss -->call modal with verification
             // setTripResponse({
             //   ...
             //   currentResponse:response.data
             // })
-          } else if(clicked===1) {
-            setTargetLocation({xCord:evt.locationX,yCord:evt.locationY})  //store target in userLocation
+          } else if (clicked === 1) {
+            setTargetLocation({xCord: evt.locationX, yCord: evt.locationY}); //store target in userLocation
             //request for check the all location
-            setName('target')
-            setModalVisibility(true)   
-            translateComponent()         
+            setName('target');
+            setModalVisibility(true);
+            translateComponent();
             //response  failed --> reset succuss -->call modal with verification
             setTimeout(() => {
               setClicked(2);
-              
-
-
             }, 1600);
           }
         }}
@@ -493,16 +498,13 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
           source={require('_assets/images/realMap.png')}
         />
       </ImageZoom>
-      {enableInstruction?instructionComponent():null}
-      {modalVisibility?settingLocationInteractionModal():null}
-     
-      {
-      (clicked<3)?rightMenu():null
-    
-    
-  }
-      {(clicked===2)?translateComponent():null} 
-      {(clicked===2)?tripRoute():null} 
+      {enableInstruction ? instructionComponent() : null}
+      {modalVisibility ? settingLocationInteractionModal() : null}
+
+      {clicked < 3 ? rightMenu() : null}
+
+      {clicked === 2 ? translateComponent() : null}
+      {clicked === 2 ? tripRoute() : null}
 
       {/* {clicked === 1 ? rightMenu()
        : clicked === 3 ? (

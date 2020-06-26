@@ -70,7 +70,9 @@ const WelcomeScreen = ({navigation}) => {
         ]}
         animation="fadeInUpBig">
         <Block middle flex={0.5} margin={[50, theme.sizes.padding * 1]}>
-          <Button gradient onPress={() => navigation.navigate('Login')}>
+          <Button gradient 
+          
+          onPress={() => navigation.navigate('Home')}>
             <Text center semibold white>
               Login
             </Text>
@@ -98,7 +100,7 @@ const WelcomeScreen = ({navigation}) => {
         </TouchableOpacity>
       </Animatable.View>
 
-      {showTerms1 && <RenderTerms changeState={this.changeState} />}
+      {showTerms1 && <RenderTerms changeState={changeState} />}
     </View>
   );
 };

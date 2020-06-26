@@ -24,7 +24,7 @@ export default class SetAddressScreen extends Component {
             autoCorrect={false}
             multiline={false}
             placeholder="Address"
-            underlineColorAndroid={'#0094FC'}
+            underlineColorAndroid={'#ba55d3'}
             value={this.state.Address}
             onChangeText={text => {
               this.setState({Address: text});

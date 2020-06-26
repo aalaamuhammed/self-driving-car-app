@@ -9,9 +9,11 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
 } from 'react-native';
-import {Button, Text, Block, Input} from '_atoms';
-import {theme} from '../../constants';
+import {Button, Text, Block, Loading} from '_atoms';
+import {theme, apis} from '../../constants';
 import * as Animatable from 'react-native-animatable';
+import SnackBar from 'react-native-snackbar-component';
+import axios from 'axios';
 
 export default (BasicInfo = ({navigation, changeState}) => {
   const [city, setCity] = useState('');
@@ -23,45 +25,69 @@ export default (BasicInfo = ({navigation, changeState}) => {
   const [empty3, setempty3] = useState(false);
   const [empty4, setempty4] = useState(false);
 
-  const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [errors, setErrors] = useState(null);
+  const [disabled, setDisabled] = useState(true);
 
-  const handleSignUp = () => {
-    const errors_ = [];
+  // const handleSignUp = () => {
+  //   const errors_ = [];
 
-    Keyboard.dismiss();
+  //   Keyboard.dismiss();
 
-    setLoading(true);
-    // check with backend API or with some static data
-    if (!city) errors.push('city');
-    if (!username) errors.push('username');
-    if (!country) errors.push('country');
-    setErrors(errors_);
-    setLoading(true);
-    if (!errors_.length) {
-      Alert.alert(
-        'Success!',
-        'Your account has been created',
-        [
-          {
-            text: 'Continue',
-            onPress: () => {
-              navigation.navigate('Browse');
-            },
-          },
-        ],
-        {cancelable: false},
-      );
+  //   setLoading(true);
+  //   // check with backend API or with some static data
+  //   if (!city) errors.push('city');
+  //   if (!username) errors.push('username');
+  //   if (!country) errors.push('country');
+  //   setErrors(errors_);
+  //   setLoading(true);
+  //   if (!errors_.length) {
+  //     Alert.alert(
+  //       'Success!',
+  //       'Your account has been created',
+  //       [
+  //         {
+  //           text: 'Continue',
+  //           onPress: () => {
+  //             navigation.navigate('Browse');
+  //           },
+  //         },
+  //       ],
+  //       {cancelable: false},
+  //     );
+  //   }
+  // };
+  const register = () => {
+    if (PhoneNumber === '') {
+      setempty1(true);
+    } else {
+      setLoading(true);
+      setErrors(null);
+      // navigation.navigate('VerificationCode');
+
+      axios
+        .post(apis.users_api, {
+          PhoneNumber: PhoneNumber,
+        })
+        .then(response => {
+          console.log(response.data);
+          navigation.navigate('PhoneNumber');
+        })
+        .catch(error => {
+          console.log(error);
+          setLoading(false);
+          setErrors(error);
+          // Handle returned errors here
+        });
     }
   };
 
-  const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
+  // const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
   return (
     <>
       <Block padding={[20, theme.sizes.base]}>
         <Block padding={[0, theme.sizes.base]}>
-          <Text h1 bold>
+          <Text h2 bold>
             Sign Up
           </Text>
           <Block middle>
@@ -144,7 +170,7 @@ export default (BasicInfo = ({navigation, changeState}) => {
                 }}
                 placeholder="Address"
                 name="Address"
-                onBlur={() => setDisabled(true)}
+                onBlur={() => setDisabled(false)}
               />
               {empty4 && (
                 <Animatable.View animation="bounceIn">
@@ -152,44 +178,79 @@ export default (BasicInfo = ({navigation, changeState}) => {
                 </Animatable.View>
               )}
             </View>
+            {!loading ? (
+              <Block middle flex={0.5} margin={[10, theme.sizes.padding]}>
+                <Button
+                  gradient={!disabled}
+                  disabledAs_Style={disabled}
+                  onPress={() => {
+                    if (
+                      username === '' ||
+                      city === '' ||
+                      country === '' ||
+                      address === ''
+                    ) {
+                      if (username === '') {
+                        setempty1(true);
+                      }
 
-            <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
-              <Button
-                disabled={!disabled}
-                gradient={disabled}
-                onPress={() => {
-                  if (
-                    username === '' ||
-                    city === '' ||
-                    country === '' ||
-                    address === ''
-                  ) {
-                    if (username === '') {
-                      setempty1(true);
-                    }
+                      if (country === '') {
+                        setempty2(true);
+                      }
+                      if (city === '') {
+                        setempty3(true);
+                      }
+                      if (address === '') {
+                        setempty4(true);
+                      }
+                    } else {
+                      setLoading(true);
+                      setErrors(null);
+                      // navigation.navigate('VerificationCode');
 
-                    if (country === '') {
-                      setempty2(true);
+                      axios
+                        .post(apis.users_api, {
+                          // username:username,
+                          // country:country,
+                          // city:city,
+                          address: address,
+                        })
+                        .then(response => {
+                          console.log(response.data);
+                          navigation.navigate('PhoneNumber');
+                        })
+                        .catch(error => {
+                          console.log(error);
+                          setLoading(false);
+                          setErrors(error);
+                          // Handle returned errors here
+                        });
                     }
-                    if (city === '') {
-                      setempty3(true);
-                    }
-                    if (address === '') {
-                      setempty4(true);
-                    }
-                  } else {
-                    navigation.navigate('PhoneNumber');
-                  }
-                }}>
-                <Text center h3 semibold gray={!disabled} white={disabled}>
-                  Next
-                </Text>
-              </Button>
-            </Block>
-
-            <Text style={{textAlign: 'center', color: '#242a37'}}>
-              Need Support?
-            </Text>
+                  }}>
+                  <Text center h3 semibold gray={disabled} white={!disabled}>
+                    Next
+                  </Text>
+                </Button>
+              </Block>
+            ) : (
+              <Loading size="large" />
+            )}
+            {errors === null ? null : (
+              <Animatable.View animation="fadeInLeft">
+                <SnackBar
+                  visible={true}
+                  textMessage="Error"
+                  actionHandler={() => {
+                    console.log('snackbar button clicked!');
+                  }}
+                  actionText="Try Again"
+                  backgroundColor="#D8D8D9"
+                  containerStyle={{borderRadius: 10,marginTop:20}}
+                  accentColor="#ba55d3"
+                  messageColor="#ba55d3"
+                />
+              </Animatable.View>
+            )}
           </Block>
         </Block>
       </Block>
