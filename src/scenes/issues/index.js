@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
   StyleSheet,
-  Text,
+  
   View,
   TextInput,
   Image,
@@ -15,9 +15,9 @@ import Accordion from 'react-native-collapsible/Accordion';
 import i20 from '_assets/images/i20.png';
 import Icon from 'react-native-vector-icons/AntDesign';
 import axios from 'axios'
-import {apis} from '../../constants'
+import {apis,theme} from '../../constants'
 import {OrangeHeader} from '_molecules';
-
+import {Button, Block, Text} from '_atoms';
 export default  App=({navigation})=>  {
   
     const Height = Dimensions.get('window').height
@@ -43,12 +43,14 @@ export default  App=({navigation})=>  {
           duration={400}
           style={[styles.header, isActive ? styles.active : styles.inactive]}
           transition="backgroundColor">
-          <View style={{margin: 10}}>
+          <View 
+          style={{margin: 10}}
+          >
             <Animatable.Text
               style={{
                 textAlign: 'center',
                 fontSize: 20,
-                fontWeight: 'bold',
+                
               }}
               animation={'bounceIn'}>
               {section.title}
@@ -57,16 +59,16 @@ export default  App=({navigation})=>  {
           {!isActive ? (
             <Icon
               name="right"
-              style={{alignSelf: 'center'}}
-              size={25}
-              color="#FF8900"
+              style={{alignSelf: 'center',marginRight:5}}
+              size={20}
+              color={theme.colors.primary}
             />
           ) : (
             <Icon
               name="minus"
-              style={{alignSelf: 'center'}}
-              size={25}
-              color="#FF8900"
+              style={{alignSelf: 'center',marginRight:5}}
+              size={20}
+              color={theme.colors.primary}
             />
           )}
         </Animatable.View>
@@ -109,10 +111,34 @@ export default  App=({navigation})=>  {
   // }
   
    
-    const a = (
-      <View style={styles.container}>
-        <View style={{flex: 1}}>
-          <Accordion
+
+    return (
+      <ScrollView contentContainerStyle={{flex:1}}>
+      <Block bottom middle color={'primary'}>
+      <Block flex={0.2} row right>
+        <Block
+          middle
+          card
+          flex={0.5}
+          color={'rgba(255,255,255,.6)'}
+          style={{
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            marginVertical: 30,
+          }}>
+          <Text h1 center regular gray4>
+             Issue
+          </Text>
+        </Block>
+      </Block>
+      <Block
+        flex={0.75}
+        card
+       
+        color="white"
+        style={{borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}>
+          <View>
+           <Accordion
             activeSections={activeSections}
             sections={CONTENT}
             touchableComponent={TouchableOpacity}
@@ -120,22 +146,15 @@ export default  App=({navigation})=>  {
             renderHeader={renderHeader}
             renderContent={renderContent}
             duration={400}
-            underlayColor={'#ffff'}
+          //  underlayColor={'#ffff'}
             onChange={setSections}
             sectionContainerStyle={{
               margin: 20,
-              shadowColor: '#000',
-
-              borderWidth: 1,
-              borderColor: '#FF8900',
-              borderRadius: 10,
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2,
-              elevation: 1.5,
+             
+              borderWidth: .5,
+              borderColor: theme.colors.gray2,
+              borderRadius: theme.sizes.radius,
+             
             }}
           />
         </View>
@@ -144,27 +163,22 @@ export default  App=({navigation})=>  {
             height: Height / 4.5,
             margin: 20,
             marginVertical: 5,
-            borderRadius: 2,
-            shadowColor: '#000',
-
-            shadowOffset: {
-              width: 0,
-              height: 1,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 5.22,
-            elevation: 2,
+            borderRadius: theme.sizes.radius,
+            borderWidth:.5,
+            borderColor:theme.colors.gray2,
+            
           }}>
           <TextInput
-            //   placeholder = {item.title}
             onChangeText={text => {
               console.log(text);
             }}
+           placeholder={'write your issue'}
+            multiline={true}
             autoComplete="off"
             autoCapitalize="none"
             autoCorrect={false}
             //   keyboardType={item.keyboardType}
-            style={{}}
+            style={{marginLeft:5}}
           />
         </View>
         <View
@@ -174,39 +188,20 @@ export default  App=({navigation})=>  {
             justifyContent: 'space-evenly',
             marginHorizontal: 7,
           }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={{
-              backgroundColor: '#FF8900',
-              borderRadius: 10,
-              alignItems: 'center',
-              flex: 1,
-              margin: 10,
-            }}
-            onPress={() => {
-              //postIssue()
-            }}>
-            <Text
-              style={{
-                paddingHorizontal: 12,
-                paddingVertical: 10,
-                fontSize: 20,
-                color: 'white',
-              }}>
+          <Block middle flex={1} margin={[0, theme.sizes.padding]}>
+          <Button gradient>
+            <Text center  title white>
               Send
             </Text>
-          </TouchableOpacity>
+          </Button>
+        </Block>
         </View>
-      </View>
-    );
-    return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <OrangeHeader
-          com={a}
-          title={'Issues'}
-          move={() => navigation.toggleDrawer()}
-        />
-      </View>
+        
+
+          </Block>
+          </Block>
+
+      </ScrollView>
     );
   }
 
@@ -215,9 +210,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(255,255,255,1)',
-    //   alignItems: 'center',
-    // justifyContent: 'center',
-    //  borderWidth:5
+
   },
   Container: {
     flex: 3,
@@ -233,11 +226,9 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    //  padding: 10,
+
     alignItems: 'flex-start',
-    // borderWidth:.5,
-    borderRadius: 10,
+
   },
 
   headerText: {
@@ -247,34 +238,10 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255,255,255,1)',
+
   },
-  textStyle: {
-    fontSize: 45,
-    fontStyle: 'normal',
-    textAlign: 'center',
-    textDecorationStyle: 'double',
-    fontWeight: 'bold',
-    textAlignVertical: 'center',
-    color: '#F6F7F8',
-  },
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  iconStyle: {
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingEnd: 15,
-    paddingStart: 15,
-  },
-  animatedHeaderContainer: {
-    //position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
+
+
+
 });

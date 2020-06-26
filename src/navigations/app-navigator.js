@@ -129,7 +129,7 @@ const CustomDrawer = props => {
     {route:'Wallet',icon:'creditcard',id:6,color:theme.colors.primary},
     
     {route:'Help',icon:'bulb1',id:2,color:theme.colors.primary},
-    {route:'Issue',icon:'meh',id:1,color:theme.colors.primary},
+    {route:'Issues',icon:'meh',id:1,color:theme.colors.primary},
     
   ]
 const data2=[
@@ -150,7 +150,7 @@ const data2=[
       <Iconn name={item.icon} size={27} style={{color:item.color}}/>
       </View>
       <View style={{flex:.5,justifyContent:'center'}}>
-     <Text regular black style={{fontSize:17}}>{item.route}</Text>
+     <Text regular primary style={{fontSize:17}}>{item.route}</Text>
       </View>
       
     </TouchableOpacity>
@@ -164,7 +164,7 @@ const data2=[
       <Iconn name={item.icon} size={27} style={{color:item.color}}/>
       </View>
       <View style={{flex:.5,justifyContent:'center'}}>
-     <Text regular content black>{item.route}</Text>
+     <Text regular content gray>{item.route}</Text>
       </View>
       
     </TouchableOpacity>
@@ -254,7 +254,7 @@ const AppNavigator = createDrawerNavigator(
       screen: AboutStack,
      
     },
-    Issue: {
+    Issues: {
       screen: IssueScreen,
      
     },

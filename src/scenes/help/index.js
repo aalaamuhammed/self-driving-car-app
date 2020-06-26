@@ -88,7 +88,7 @@ export default (help = ({navigation}) => {
             borderTopRightRadius: 0,
             marginVertical: 30,
           }}>
-          <Text h1 center regular>
+          <Text h1 center regular gray4>
             Help
           </Text>
         </Block>
@@ -115,9 +115,9 @@ export default (help = ({navigation}) => {
         <Block middle style={{alignItems: 'flex-start'}}>
           <Button
             center
-            shadow
+            gradient
             style={{
-              padding: 10,
+              
               paddingVertical: 30,
               borderBottomLeftRadius: 0,
               borderTopLeftRadius: 0,

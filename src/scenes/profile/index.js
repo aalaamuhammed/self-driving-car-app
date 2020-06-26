@@ -4,7 +4,6 @@ import {
   TouchableOpacity,
   TextInput,
   AppRegistry,
-  Text,
   View,
   StyleSheet,
   Dimensions,
@@ -15,6 +14,8 @@ import {
   ImageBackground,
   Picker,
 } from 'react-native';
+import {Block, Text, Button} from '_atoms';
+import {theme} from '../../constants';
 // import DatePicker from 'react-native-date-picker';
 import CheckBox from 'react-native-check-box';
 import i20 from '_assets/images/i20.png';
@@ -27,7 +28,7 @@ const HEADER_MIN_HEIGHT = 100;
 const HEADER_MAX_HEIGHT = 150;
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
- const Profile = () => {
+const Profile = () => {
   // states
   const [id, setId] = useState(0);
   const [user, setUser] = useState({
@@ -37,6 +38,8 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
     gender: null, //0 => female 1=> male
     birthDate: null,
   });
+  const [userName, setUserName] = useState('');
+  const [userMail, setUserMail] = useState('');
   const [data, setData] = useState([
     {
       type: 'list',
@@ -64,7 +67,9 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
     {
       type: 'list',
       title: 'Date of birth :',
-      keyboardType: 'picker',
+      placeholder: 'YYY/MM/DD',
+
+      //keyboardType: 'picker',
       key: 3,
     },
     {type: 'list', title: 'Gender :', keyboardType: 'check-box', key: 4},
@@ -87,18 +92,12 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   };
   const saveDate = (item, text) => {
     if (item.key === 0) {
-      setUser(prevState => ({
-        ...prevState.user, // keep all other key-value pairs
-        name: text,
-      }));
+      setUserName(text);
     }
 
     // return new object jasper object
     else if (item.key === 1) {
-      setUser(prevState => ({
-        ...prevState.user, // keep all other key-value pairs
-        mail: text,
-      }));
+      setUserMail(text);
     }
 
     // return new object jasper object
@@ -219,7 +218,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
         ) : item.keyboardType === 'check-box' ? (
           <View style={{flexDirection: 'row', flex: 1}}>
             <CheckBox
-              style={{flex: 1, padding: 10}}
+              style={{flex: 0.5, padding: 10}}
               onClick={() => {
                 setMale(prevMale => !prevMale);
                 setFemale(false);
@@ -229,11 +228,11 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
               leftText={'Male'}
               leftTextStyle={{fontSize: 15}}
               checkBoxColor={'gray'}
-              checkedCheckBoxColor={'orange'}
+              checkedCheckBoxColor={theme.colors.primary}
             />
 
             <CheckBox
-              style={{flex: 1, padding: 10}}
+              style={{flex: 0.5, padding: 10}}
               onClick={() => {
                 setMale(false);
                 setFemale(prevFemale => !prevFemale);
@@ -241,43 +240,24 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
                 saveDate(item, '0');
               }}
               isChecked={female}
-              leftText={'female'}
+              leftText={'Female'}
               leftTextStyle={{fontSize: 15}}
               checkBoxColor={'gray'}
-              checkedCheckBoxColor={'orange'}
+              checkedCheckBoxColor={theme.colors.primary}
             />
           </View>
         ) : null}
       </View>
     ) : (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          marginVertical: 10,
-        }}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={{
-            backgroundColor: '#FF8900',
-            borderRadius: 10,
-            flex: 1,
-            alignItems: 'center',
-          }}
-          onPress={() => props.navigation.navigate('ListOfOffers')}>
-          <Text
-            style={{
-              paddingHorizontal: 12,
-              paddingVertical: 10,
-              fontSize: 20,
-              color: 'white',
-            }}>
-            Save
-          </Text>
-        </TouchableOpacity>
-      </View>
+     
+        <Block middle flex={0.5} margin={[0, theme.sizes.padding]}>
+            <Button gradient onPress={() => props.navigation.navigate('ListOfOffers')}>
+              <Text center title white>
+                Save
+              </Text>
+            </Button>
+          </Block>
+     
     );
   };
 
@@ -304,7 +284,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   });
   const translateYI = scrollYAnimatedValue.interpolate({
     inputRange: [0, 120 - 90],
-    outputRange: [0, -(windowHeight + 10)],
+    outputRange: [0, -(windowHeight + 20)],
     extrapolate: 'clamp',
   });
   const translateXI = scrollYAnimatedValue.interpolate({
@@ -319,11 +299,25 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   });
 
   return (
-    <Animated.View style={styles.mainContainer}>
-      <View style={{flex: 1, padding: 10, justifyContent: 'center'}}>
+    <Animated.View
+      style={[styles.mainContainer, {backgroundColor: theme.colors.primary}]}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          marginTop: HEADER_MAX_HEIGHT - 25,
+          padding: 10,
+          borderRadius: 20,
+          backgroundColor: theme.colors.white,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+        }}>
         <AnimatedFlatList
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT + 50}}
+          contentContainerStyle={{
+            paddingTop: 100,
+            borderRadius: theme.sizes.radius,
+          }}
           data={data}
           renderItem={({item}) => render_Item(item)}
           keyExtractor={(item, index) => item + index}
@@ -339,10 +333,10 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
         />
       </View>
 
-      <Animated.View
+      <View
         style={[
           styles.animatedHeaderContainer,
-          {height: 120, backgroundColor: '#FF8900'},
+          {height: 120, backgroundColor: theme.colors.primary},
         ]}
       />
 
@@ -350,7 +344,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
         style={{
           position: 'absolute',
           top: windowHeight,
-          left: windowWidth,
+          left: windowWidth - 10,
           width: windowWidth + windowHeight,
           height: windowHeight + windowWidth,
           alignItems: 'center',
@@ -369,13 +363,13 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
           }}
         />
         <Animated.View style={{transform: [{translateY: translateYT}]}}>
-          <Text style={[styles.textStyle]}>{user.name}</Text>
+          <Text style={[styles.textStyle]}>{userName}</Text>
           <Text
             style={[
               styles.textStyle,
               {color: 'gray', fontWeight: '200', fontSize: 15},
             ]}>
-            {user.mail}
+            {userMail}
           </Text>
         </Animated.View>
       </Animated.View>
@@ -393,7 +387,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
   );
 };
 
-export default Profile
+export default Profile;
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -405,8 +399,8 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     textAlign: 'center',
     textDecorationStyle: 'dotted',
-    fontWeight: 'normal',
-    fontWeight: '700',
+    fontWeight: 'bold',
+    color: 'gray',
     textAlignVertical: 'center',
   },
   mainContainer: {

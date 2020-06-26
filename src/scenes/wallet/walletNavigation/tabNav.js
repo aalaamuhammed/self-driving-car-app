@@ -14,37 +14,35 @@ const topTabNav = createMaterialTopTabNavigator(
   },
   {
     tabBarPosition: 'top',
-    tabBarOptions: {
-      //btaa3 el-tab kolo bkol mafeeeh
-      activeTintColor: theme.colors.black,
-      activeBackgroundColor: theme.colors.white,
-      upperCaseLabel: false,
-      borderRadius: theme.sizes.radius,
-      indicatorStyle: {
-        width: 0,
-      },
-      tabStyle: {
-        backgroundColor: theme.colors.white,
-      },
-      style: {
-        borderRadius: theme.sizes.radius,
+    swipeEnabled:false,
 
-        backgroundColor: theme.colors.gray4,
-        elevation: 0,
+    tabBarOptions:{
+      pressColor:'rgba(255,255,255,0)',
+      inactiveTintColor:'gray',
+      activeTintColor:'black',
+
+
+      indicatorStyle:{
+       
+          height: '100%',
+        backgroundColor:theme.colors.gray4,
+        borderRadius:theme.sizes.radius
       },
-      labelStyle: {
-        fontSize: 17,
-        fontStyle: 'italic',
-        color: theme.colors.gray,
+      style:{
+        marginHorizontal:10,
+        marginVertical:5,
+        borderRadius:theme.sizes.radius,
+        elevation:0,
+    
+        backgroundColor:'white'
+
+        
       },
-      initialRouteName: 'payment',
     },
-    style: {
-      backgroundColor: theme.colors.white,
-      borderRadius: theme.sizes.radius,
-      marginTop: 25,
-      marginBottom: 10,
-    },
+    style:{
+      marginTop:10
+    }
+
   },
 );
 export default topTabNav;

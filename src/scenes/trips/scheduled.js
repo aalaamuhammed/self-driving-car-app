@@ -1,29 +1,42 @@
-import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  FlatList,
-  TextInput,
-  StyleSheet,
-  SectionList,
-} from 'react-native';
-import * as axios from 'axios';
+import React, { Component } from 'react'
+import { View,Text, FlatList,TextInput,StyleSheet,SectionList } from 'react-native'
 
+import {Block, Button} from '_atoms';
+import {theme,apis} from '../../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
-export default class Scheduled extends Component {
+import * as axios from 'axios';
+export default class transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      DATA: [],
+      DATA:[
+        {
+          title: 'Today',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+        {
+          title: 'Tomorrow',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+       
+        {
+          title: '25/2/2020',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+      ]};
     };
-  }
+  
 
   get = async () => {
     try {
      
       const response = await axios.get(
-        'http://192.168.1.4:3000/taxiApp/trips/scheduled',
+        'http://192.168.1.4:3000/taxiApp/trips/history',
       );
+     
       this.setState({DATA: response.data});
      
     } catch (error) {
@@ -32,35 +45,38 @@ export default class Scheduled extends Component {
   };
   componentDidMount = () => {
     {
-      this.get();
+    //  this.get();
     }
-  };
-  Item({title}) {
+  }
+  Item({ title }) {
     return (
       <View style={styles.item}>
-        <Icon name="taxi" size={15} style={{ color: '#FF8900', paddingRight:5 }}/>
+        
+        <Icon name="taxi" size={15} style={{ color: theme.colors.primary, paddingRight:5 }}>
+          </Icon>
+        
         <Text style={styles.dist}> {title.dist} </Text>
         <Text style={styles.region}> {title.region} </Text>
       </View>
     );
   }
-
-  render() {
-    return (
-      <View style={{flex: 1,backgroundColor:'#F6F7F8'}}>
-        <SectionList
-          sections={this.state.DATA}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({item}) => <this.Item title={item} />}
-          renderSectionHeader={({section: {title}}) => (
-            <View style={styles.headerStyle}>
-              <Text style={styles.header}>{title}</Text>
-            </View>
-          )}
-        />
-      </View>
-    );
-  }
+    render() {
+        return (
+          <Block card style={{borderBottomLeftRadius:0,borderBottomRightRadius:0}} color={theme.colors.white}>
+      <SectionList
+        sections={this.state.DATA}
+        style={{margin:10}}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({ item }) => <this.Item title={item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <View style={styles.headerStyle}>
+          <Text style={styles.header}>{title}</Text>
+          </View>
+        )}
+      />
+      </Block>
+        )
+    }
 }
 const styles = StyleSheet.create({
   container: {
@@ -68,44 +84,50 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   item: {
+    
     marginVertical: 2,
-    flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 5,
-    position: 'relative',
-    alignItems: 'center',
-    paddingHorizontal: 25,
+    flex: 1, 
+    flexDirection: 'row', 
+    paddingVertical:5,
+    position: "relative",
+    alignItems:'center',
+    paddingHorizontal:15,
+
+    
   },
   header: {
     fontSize: 25,
     color:'gray',
-    fontWeight: 'normal',
+    fontWeight:'normal'
   },
   dist: {
-    fontSize: 20,
-    color: '#000000',
-    fontFamily: 'normal',
-    textDecorationStyle: 'solid',
-    fontWeight: 'normal',
+    fontSize: 19,
+    color:'#000000',
+    fontFamily:'normal',
+    textDecorationStyle:'solid',
+    fontWeight:'normal'
+
   },
   region: {
-    fontSize: 18,
-    color: '#d6d7da',
-    fontFamily: 'normal',
-    textDecorationStyle: 'solid',
-    fontWeight: 'normal',
+    fontSize: 16,
+    color:'#d6d7da',
+    fontFamily:'normal',
+    textDecorationStyle:'solid',
+    fontWeight:'normal'
+
   },
-  headerStyle: {
+  headerStyle:{
+   
     marginVertical: 5,
-    flex: 1,
+    flex: 1, 
     flexDirection: 'row',
-    justifyContent: 'space-between',
-
-    position: 'relative',
+    justifyContent: 'space-between', 
+    
+    position: "relative",
     paddingHorizontal: 15,
-
+   
     borderRadius: 3,
-    borderBottomWidth: 0.8,
-    borderColor: '#d6d7da',
-  },
-});
+    borderBottomWidth:.8,
+    borderColor: '#d6d7da'
+  }
+})

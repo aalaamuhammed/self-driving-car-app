@@ -26,7 +26,7 @@ export default class Card_of_favourites extends Component {
               <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.navigate('Address')}>
-                  <Icon name='place.image' size={40}/>
+                  <Icon name= {place.image} size={40}/>
                 </TouchableOpacity>
 
                 <View

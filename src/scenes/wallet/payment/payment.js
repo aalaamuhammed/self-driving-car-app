@@ -8,15 +8,15 @@ import {theme} from '../../../constants';
 export default class payment extends Component {
   render() {
     return (
-      <Block card color={theme.colors.gray4}>
+      <Block card color={theme.colors.white}>
         <Block row style={styles.secblock} card>
           <Block
-            color={theme.colors.gray4}
+            color={theme.colors.white}
             style={{borderRadius: theme.sizes.radius, margin: 20}}>
             <TouchableOpacity
               style={styles.iconstyle}
               onPress={() => this.props.navigation.navigate('addMoney')}>
-              <Icon1 name="credit" size={50} />
+              <Icon1 name="credit"  style={{color:theme.colors.primary}} size={50} />
               <Text gray content>
                 Add Money
               </Text>
@@ -24,7 +24,7 @@ export default class payment extends Component {
           </Block>
 
           <Block
-            color={theme.colors.gray4}
+            color={theme.colors.white}
             style={{borderRadius: theme.sizes.radius, margin: 20}}>
             <TouchableOpacity
               style={styles.iconstyle}
@@ -32,7 +32,7 @@ export default class payment extends Component {
                 this.props.navigation.navigate('viewCard');
                 console.log('viw cards');
               }}>
-              <Icon1 name="credit-card" size={60} />
+              <Icon1 name="credit-card" style={{color:theme.colors.primary}} size={60} />
               <Text content gray>
                 View Cards
               </Text>

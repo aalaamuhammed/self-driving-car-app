@@ -26,6 +26,8 @@ class Button extends Component {
       ...props
     } = this.props;
 
+   
+
     const buttonStyles = [
       styles.button,
       shadow && styles.shadow,
@@ -37,18 +39,18 @@ class Button extends Component {
     if (gradient) {
       return (
         <TouchableOpacity
+        style={buttonStyles}
+        activeOpacity={opacity}
+        {...props}>
+        <LinearGradient
+          start={start}
+          end={end}
+          locations={locations}
           style={buttonStyles}
-          activeOpacity={opacity}
-          {...props}>
-          <LinearGradient
-            start={start}
-            end={end}
-            locations={locations}
-            style={buttonStyles}
-            colors={[startColorGradient, endColorGradient]}>
-            {children}
-          </LinearGradient>
-        </TouchableOpacity>
+          colors={[startColorGradient, endColorGradient]}>
+          {children}
+        </LinearGradient>
+      </TouchableOpacity>
       );
     }
     if (disabledAs_Style) {

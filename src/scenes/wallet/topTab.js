@@ -29,7 +29,7 @@ export default class TopTabScreen extends Component {
               borderTopRightRadius: 0,
               marginVertical: 30,
             }}>
-            <Text h1 center regular>
+            <Text h1 center regular gray4>
               Wallet
             </Text>
           </Block>
@@ -38,21 +38,22 @@ export default class TopTabScreen extends Component {
           flex={0.27}
           card
           middle
-          color={theme.colors.gray3}
+          color={theme.colors.white}
           style={{marginHorizontal: 100, marginBottom: 20}}>
           <Block flex={0.6} center middle>
-            <Text bod gray h3>
+            <Text bod primary h3>
               Your balance
             </Text>
             <Block row center middle>
-              <Text style={{fontSize: 50}}>{this.state.balance}</Text>
-              <Text style={{fontSize: 15, alignSelf: 'flex-end'}}>EGP</Text>
+              <Text primary style={{fontSize: 50}}>{this.state.balance}</Text>
+              <Text primary style={{fontSize: 15, alignSelf: 'flex-end'}}>EGP</Text>
             </Block>
           </Block>
         </Block>
         <Block
           style={{flex: 0.5, marginBottom: 80, marginHorizontal: 25}}
-          card>
+          card
+          >
           <TopTabNav navigation={this.props.navigation} />
         </Block>
       </Block>

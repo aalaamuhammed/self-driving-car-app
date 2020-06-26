@@ -1,16 +1,16 @@
 import React, {Component, useState} from 'react';
 import {
-  Text,
   View,
   Modal,
-  Button,
+  TextInput,
   TouchableOpacity,
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
 import {OrangeHeader, CardDataFlatList, VerifyModal} from '_molecules';
 import axios from 'axios';
-import {apis} from '../../../constants';
+import {apis, theme} from '../../../constants';
+import {Block, Button, Text} from '_atoms';
 
 export default class AddCardModal extends Component {
   constructor(props) {
@@ -160,15 +160,90 @@ export default class AddCardModal extends Component {
       </View>
     );
     return (
-      <View style={{flex: 1}}>
-        <OrangeHeader
-          title="Wallet"
-          navigation={this.props.navigation}
-          move={this.move}
-          com={a}
+      <Block color='gray'>
+     <Block card color='white' flex={.3} style={{marginHorizontal:20}}>
+         <TextInput
+          // onSubmitEditing={this.props.focusNext}
+          style={styles.textInput}
+          onFocus={res => {
+            console.log(res.key, ' is focus');
+          }}
+          keyboardType="email-address"
+          autoCorrect={false}
+          multiline={false}
+          placeholder="Cardholder Name"
+          underlineColorAndroid={
+            theme.colors.gray2 
+          }
+       //   onBlur={}//func
+          //value={}
+          onChangeText={val => {
+           
+          }}
         />
-      </View>
-    );
+        <TextInput
+          // onSubmitEditing={this.props.focusNext}
+          style={styles.textInput}
+          onFocus={res => {
+            console.log(res.key, ' is focus');
+          }}
+          keyboardType="email-address"
+          autoCorrect={false}
+          multiline={false}
+          placeholder="Card Number"
+          underlineColorAndroid={
+            theme.colors.gray2 
+          }
+       //   onBlur={}//func
+          //value={}
+          onChangeText={val => {
+           
+          }}
+        />
+         <TextInput
+          // onSubmitEditing={this.props.focusNext}
+          style={styles.textInput}
+          onFocus={res => {
+            console.log(res.key, ' is focus');
+          }}
+          keyboardType="email-address"
+          autoCorrect={false}
+          multiline={false}
+          placeholder="Expiration Date"
+          underlineColorAndroid={
+            theme.colors.gray2 
+          }
+       //   onBlur={}//func
+          //value={}
+          onChangeText={val => {
+           
+          }}
+        />
+         <TextInput
+          // onSubmitEditing={this.props.focusNext}
+          style={styles.textInput}
+          onFocus={res => {
+            console.log(res.key, ' is focus');
+          }}
+          keyboardType="email-address"
+          autoCorrect={false}
+          multiline={false}
+          placeholder="CVV"
+          underlineColorAndroid={
+            theme.colors.gray2 
+          }
+       //   onBlur={}//func
+          //value={}
+          onChangeText={val => {
+           
+          }}
+        />
+
+      </Block>
+
+
+      </Block>
+     );
   }
 }
 
