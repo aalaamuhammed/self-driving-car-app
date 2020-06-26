@@ -8,10 +8,10 @@ import {theme} from '../../../constants';
 export default class payment extends Component {
   render() {
     return (
-      <Block card color={theme.colors.gray4}>
+      <Block card color={theme.colors.white}>
         <Block row style={styles.secblock} card>
           <Block
-            color={theme.colors.gray4}
+            color={theme.colors.white}
             style={{borderRadius: theme.sizes.radius, margin: 20}}>
             <TouchableOpacity
               style={styles.iconstyle}
@@ -24,7 +24,7 @@ export default class payment extends Component {
           </Block>
 
           <Block
-            color={theme.colors.gray4}
+            color={theme.colors.white}
             style={{borderRadius: theme.sizes.radius, margin: 20}}>
             <TouchableOpacity
               style={styles.iconstyle}

@@ -1,48 +1,68 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList,TextInput,StyleSheet,SectionList } from 'react-native'
+import { View,Text, FlatList,TextInput,StyleSheet,SectionList } from 'react-native'
+
+import {Block, Button} from '_atoms';
+import {theme,apis} from '../../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as axios from 'axios';
-
-export default class History extends Component {
+export default class transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      DATA:[]};
-  }
+      DATA:[
+       
+        {
+          title: 'Yesterday',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+       
+        {
+          title: '2/2/2020',
+          data: [{dist:'El-Galaa St.',region:'Tanta,Qism 1,El-Bahr St.'}
+          , {dist:'El-bahr St.',region:'Tanta,Qism 1,El-Bahr St.'}],
+        },
+      ]};
+    };
+  
 
-  get = async () => {
-    try {
-     
-      const response = await axios.get(
-        'http://192.168.1.4:3000/taxiApp/trips/history',
-      );
-     
-      this.setState({DATA: response.data});
-     
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  componentDidMount = () => {
-    {
-      this.get();
-    }
-  };
+    get = async () => {
+      try {
+       
+        const response = await axios.get(
+          apis.users_api,
+        );
+        this.setState({CONTENT: response.data});
+     console.log(response.data)
+     console.log('CONTENT',this.state.CONTENT)
+       
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    componentDidMount = () => {
+      
+        this.get();
+      
+    };
   Item({ title }) {
     return (
       <View style={styles.item}>
-        <Icon name="taxi" size={15} style={{ color: '#FF8900', paddingRight:5 }}/>
+        
+        <Icon name="taxi" size={15} style={{ color: theme.colors.primary, paddingRight:5 }}>
+          </Icon>
+        
         <Text style={styles.dist}> {title.dist} </Text>
         <Text style={styles.region}> {title.region} </Text>
       </View>
     );
   }
-
-  render() {
-    return (
-      <View style={{flex:1,backgroundColor:'#F6F7F8'}}>
+    render() {
+        return (
+          <Block card style={{borderBottomLeftRadius:0,borderBottomRightRadius:0}} color={theme.colors.white}>
       <SectionList
         sections={this.state.DATA}
+        style={{margin:10}}
         keyExtractor={(item, index) => item + index}
         renderItem={({ item }) => <this.Item title={item} />}
         renderSectionHeader={({ section: { title } }) => (
@@ -51,11 +71,9 @@ export default class History extends Component {
           </View>
         )}
       />
-      </View>
-    
- 
-    )
-  }
+      </Block>
+        )
+    }
 }
 const styles = StyleSheet.create({
   container: {
@@ -110,7 +128,3 @@ const styles = StyleSheet.create({
     borderColor: '#d6d7da'
   }
 })
-
-
-
-

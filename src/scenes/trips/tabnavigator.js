@@ -4,32 +4,45 @@ import History from './history'
 import Scheduled from './scheduled'
 import { createBottomTabNavigator,createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import React, { Component } from 'react'
-import { Text, View , TouchableOpacity } from 'react-native'
+import {theme,apis} from '../../constants';
 
 
 
-  
-  const TopTab=createMaterialTopTabNavigator(
-   { history : {
-        screen: History
-    
-      },
-      scheduled: {
-        screen: Scheduled
-      }
-    },{
-        tabBarPosition:'top',
-        tabBarOptions: {
-          style: {
-           backgroundColor: '#FF8900',
-           
-          },
-          labelStyle: {
-            fontSize: 17,
-            fontStyle:'italic'
-          },
+const topTabNav = createMaterialTopTabNavigator(
+  {
+    History: History,
+    Scheduled: {
+      screen: Scheduled,
+    },
+  },
+  {
+    tabBarPosition: 'top',
+    initialRouteName:'History',
+    swipeEnabled:false,
+
+    tabBarOptions:{
+      pressColor:'rgba(255,255,255,0)',
+      inactiveTintColor:'gray',
+      activeTintColor:'black',
+
+
+      indicatorStyle:{
        
-        },
+          height: '100%',
+        backgroundColor:theme.colors.gray4,
+        borderRadius:theme.sizes.radius
+      },
+      style:{
+        marginHorizontal:10,
+        marginVertical:5,
+        borderRadius:theme.sizes.radius,
+        elevation:0,
+    
+        backgroundColor:'white'
 
-    });
-export default AppContainer = createAppContainer(TopTab);
+        
+      },
+    }
+  },
+);
+export default topTabNav;

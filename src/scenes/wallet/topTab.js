@@ -38,7 +38,7 @@ export default class TopTabScreen extends Component {
           flex={0.27}
           card
           middle
-          color={theme.colors.gray3}
+          color={theme.colors.white}
           style={{marginHorizontal: 100, marginBottom: 20}}>
           <Block flex={0.6} center middle>
             <Text bod primary h3>
@@ -52,7 +52,8 @@ export default class TopTabScreen extends Component {
         </Block>
         <Block
           style={{flex: 0.5, marginBottom: 80, marginHorizontal: 25}}
-          card>
+          card
+          >
           <TopTabNav navigation={this.props.navigation} />
         </Block>
       </Block>

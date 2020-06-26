@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import {  View,Modal } from 'react-native'
 import Icon1 from 'react-native-vector-icons/Octicons'
 export default class VerifyModal extends Component {
- render() {
+  visibilityPeriod=()=>{
+    setTimeout(() => {
+        this.setState({visibility:false})
+      
+      }, 1500)
+}
+
+  render() {
    return (
     <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
       <Modal
@@ -13,7 +20,7 @@ export default class VerifyModal extends Component {
       <View style={{flex:1,justifyContent:'center',alignItems:'center',margin:50}}>     
        <Icon1 
         name='verified' 
-        size={80} 
+        size={150} 
         color='rgba(255, 137, 0 ,1)'
         style={{
          alignSelf:'center',
@@ -29,7 +36,8 @@ export default class VerifyModal extends Component {
          },
          shadowOpacity: 0.25,
          shadowRadius: 3.84,
-         elevation: 5,}} />  
+         elevation: 5,}} />
+         {this.visibilityPeriod()}  
          </View>
        </Modal>
     </View>

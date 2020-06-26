@@ -1,77 +1,53 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet, FlatList} from 'react-native';
 import noti3 from '_assets/images/didi1.webp';
 import didi1 from '_assets/images/DIDI2.png';
 import TouchableScale from 'react-native-touchable-scale';
 import {Button, Block, Text} from '_atoms';
 import {theme} from '../../constants';
-import * as axios from 'axios';
-import {apis} from '../../constants';
+
 
 const DATA = [
   {
     image: didi1,
-    tile: 'New Offer',
-    left: false,
-    key: 1,
-    offerContent:
-      'New User Offer - Get EGP 5 Credit;{/n} Book Rides In Egypt From EGP 100. Most Used Careem Voucher Code 2020. Total Offers, 2. Online Code, 1.',
+    left: true,
+    key: 0,
+    body: "Get 15% Discount Per Ride",
+    code: "BARQ375GO",
+    //startingDate: "2020-06-01T00:00:00.000Z",
+   
   },
 
   {
     image: noti3,
-    tile: 'New Offer',
-    left: true,
-    key: 3,
-    offerContent:
-      'New User Offer - Get EGP 5 Credit; Book Rides In Egypt From EGP 100. Most Used Careem Voucher Code 2020. Total Offers, 2. Online Code, 1.',
-  },
-  {
-    image: didi1,
-    tile: 'New Offer',
     left: false,
-    key: 4,
-    offerContent:
-      'New User Offer - Get EGP 5 Credit; Book Rides In Egypt From EGP 100. Most Used Careem Voucher Code 2020. Total Offers, 2. Online Code, 1.',
+    key: 1,
+    body: "Get 20% Discount Per Ride",
+    code: "BARQ320GO",
   },
   {
     image: didi1,
-    tile: 'New Offer',
     left: true,
-    key: 5,
-    offerContent:
-      'New User Offer - Get EGP 5 Credit; Book Rides In Egypt From EGP 100. Most Used Careem Voucher Code 2020. Total Offers, 2. Online Code, 1.',
+    key: 2,
+  },
+  {
+    image: didi1,
+    left: false,
+    key: 3,
   },
 ];
-export default (ScreenContent = ({navigation}) => {
-  const getOffer = async () => {
-    try {
-      const response = await axios.get(apis.offers_api);
-      //  this.setState({DATA: response.data});
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  // componentDidMount = () => {
-  //   {
-  //     this.getOffer();
-  //   }
-  // };
+export default ScreenContent = ({navigation}) => {
+  
 
   const renderItem = ({item}) => {
     return (
-      <Block
-        color={theme.colors.gray4}
-        card
-        middle
-        flex={0.5}
-        style={[
-          {marginVertical: 15},
-          item.left ? styles.styleRight : styles.styleLeft,
-        ]}>
+     
         <TouchableScale
-          style={{borderRadius: theme.sizes.radius, margin: 10}}
+          style={[{
+            flex:0.5,
+            borderRadius: theme.sizes.radius,
+             //margin: 10,
+             marginVertical: 15}]}
           activeScale={0.7}
           friction={7}
           onPress={() =>
@@ -80,9 +56,9 @@ export default (ScreenContent = ({navigation}) => {
               active: true,
             })
           }>
-          <Image style={styles.imgOnCard} source={item.image} />
+          <Image style={[styles.imgOnCard,item.left ? styles.styleRight : styles.styleLeft]} source={item.image} />
         </TouchableScale>
-      </Block>
+    
     );
   };
 
@@ -99,7 +75,7 @@ export default (ScreenContent = ({navigation}) => {
             borderTopRightRadius: 0,
             marginVertical: 30,
           }}>
-          <Text h1 center regular bold gray4>
+          <Text h1 center  gray4>
             Offers
           </Text>
         </Block>
@@ -122,24 +98,24 @@ export default (ScreenContent = ({navigation}) => {
       </Block>
     </Block>
   );
-});
+};
 
 const styles = StyleSheet.create({
   styleLeft: {
-    marginLeft: 20,
+    marginLeft: 30,
     borderBottomRightRadius: 0,
     borderTopRightRadius: 0,
     alignItems: 'flex-start',
   },
   styleRight: {
-    marginRight: 20,
+    marginRight: 30,
     borderBottomLeftRadius: 0,
     borderTopLeftRadius: 0,
     alignItems: 'flex-end',
   },
 
   imgOnCard: {
-    width: 350,
+    width: 330,
     height: 200,
     borderRadius: 20,
   },

@@ -43,7 +43,9 @@ export default  App=({navigation})=>  {
           duration={400}
           style={[styles.header, isActive ? styles.active : styles.inactive]}
           transition="backgroundColor">
-          <View style={{margin: 10}}>
+          <View 
+          style={{margin: 10}}
+          >
             <Animatable.Text
               style={{
                 textAlign: 'center',
@@ -130,7 +132,7 @@ export default  App=({navigation})=>  {
         </Block>
       </Block>
       <Block
-        flex={0.8}
+        flex={0.75}
         card
        
         color="white"
@@ -188,8 +190,8 @@ export default  App=({navigation})=>  {
           }}>
           <Block middle flex={1} margin={[0, theme.sizes.padding]}>
           <Button gradient>
-            <Text center regular title white>
-              send
+            <Text center  title white>
+              Send
             </Text>
           </Button>
         </Block>

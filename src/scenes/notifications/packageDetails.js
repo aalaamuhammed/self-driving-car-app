@@ -1,4 +1,4 @@
-import React,{useEffect}  from 'react';
+import React  from 'react';
 import {
   TouchableOpacity,
   View,
@@ -9,13 +9,9 @@ import {
   Dimensions,
 } from 'react-native';
 import {Button, Block, Text} from '_atoms';
-import {theme,apis} from '../../constants';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import * as axios from 'axios';
-
+import {theme} from '../../constants';
 const {width, height} = Dimensions.get('window');
 export default  Details =({navigation})=> {
-  
   
     AnimatedOpacity = new Animated.Value(0);
 
@@ -47,18 +43,12 @@ export default  Details =({navigation})=> {
               ],
             },
           ]}>
-          <View style={{flex:.65, borderRadius: theme.sizes.radius}}>
+          <View style={{flex: 0.3, borderRadius: theme.sizes.radius}}>
             <Image style={styles.imgOnCard} source={item.image} />
           </View>
-          <View style={{justifyContent:'space-between', flex: 1}}>
-            <Block bottom flex={2} >
-              <Block flex={1}  style={{borderRadius:theme.sizes.radius,margin:10,paddingStart:10,paddingTop:10,paddingEnd:10,}}  color={'white'}>
-                <Text>Here is again the most Popular offer for our loyal customers.</Text>
-                 <Text>{item.body}.</Text>
-                 <Text>code: {item.code}.</Text>
-              </Block>
-
-              {/* <Text
+          <View style={{justifyContent: 'space-evenly', flex: 1,}}>
+            <Block bottom flex={1} >
+              <Text
                 style={{
                  
                   margin: 20,
@@ -69,14 +59,13 @@ export default  Details =({navigation})=> {
                   backgroundColor: 'white',
                   borderRadius: theme.sizes.radius,
                 }}>
-                {}{item.body} 
-              {' '}code :{item.code}
-              </Text> */}
+                {item.offerContent}
+              </Text>
             </Block>
 
             <View
               style={{
-                flex: 1,
+                flex: 0.4,
                 paddingBottom: 20,
                 alignItems: 'center',
                 flexDirection: 'row',
@@ -127,10 +116,10 @@ export default  Details =({navigation})=> {
 const styles = StyleSheet.create({
   imgOnCard: {
     width: width - 60,
-    height: 180,
+    height: 200,
     borderRadius: theme.sizes.radius,
     margin: 15,
-    
+
     // borderColor: '#d6d7db',
     // borderWidth: 0.5,
   },

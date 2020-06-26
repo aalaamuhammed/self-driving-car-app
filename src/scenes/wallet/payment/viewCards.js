@@ -17,108 +17,113 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 //import OrangeHeader from '.../components/orangeheader'
 
-export default ViewCard = ({navigation}) => {
+export default (ViewCard = ({navigation}) => {
   const [visibility, setVisibility] = useState(false);
- 
-  const [counter, setCounter] = useState(1)
-  const [DATA, setDATA] = useState([{id:0}]);
+
+  const [counter, setCounter] = useState(1);
+  const [DATA, setDATA] = useState([{id: 0}]);
   const [width, setWidth] = useState(Dimensions.get('window').width / 2);
   const [height, setHeight] = useState(Dimensions.get('window').height / 2);
 
-  const move = () => {
-    navigation.navigate('topTab');
-    // addCard={()=>this.props.navigation.navigate('addCard')}
-    //cardDetails={()=>this.props.navigation.navigate('cardDetails')}
-  };
-  const renderItem = ({item}) => {
-    return (
-      <Block
-        color={theme.colors.gray4}
-        card
-        middle
-        flex={0.5}
-        style={[
-          {marginVertical: 15},
-          item.left ? styles.styleRight : styles.styleLeft,
-        ]}>
-        <TouchableScale
-          style={{borderRadius: theme.sizes.radius, margin: 10}}
-          activeScale={0.7}
-          friction={7}
-          onPress={() =>
-            navigation.navigate('OfferDetails', {
-              item: item,
-              active: true,
-            })
-          }>
-           <Image style={styles.imgOnCard} source={item.image} />
-        </TouchableScale>
-      </Block>
-    );
-  };
-
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
-      <Block color={theme.colors.gray4}>
-        <Block
+      <Block color={theme.colors.primary}  style={{flex:1}}>
+        {/* <Block
           card
-          flex={0.75}
+          flex={2}
           color={theme.colors.primary}
-          style={{margin: 10, marginTop: 20}}>
-          <Block flex={0.25} middle style={{marginLeft: 5}} card>
-            <Text regular h1 left gray4>
-              {' '}
-              Credit Cards
-            </Text>
-          </Block>
-          <Block center>
-            <FlatList
-              horizontal
-              pagingEnabled
-              scrollEnabled
-              showsHorizontalScrollIndicator={false}
-              scrollEventThrottle={16}
-              snapToAlignment="center"
-              data={DATA}
-              keyExtractor={(item, index) => item + index}
-              style={{margin: 17}}
-              renderItem={({item,index}) => [
-                <Block
-                  card
-                  color={theme.colors.gray4}
-                  style={{
-                    width: 300,
-                    height: 365,
-                    justifyContent: 'space-around',
-                    padding: 10,
-                    alignSelf: 'center',
-                  }}>
-                    <Block flex={.3} style={{marginBottom:10 }}>
-                    <TouchableOpacity
-                      activeOpacity={0.5}
-                      style={{flex: 1,alignSelf:'flex-end',margin:2,padding:5,justifyContent:'center'}}
-                      onPress={()=>{
-                        if(DATA.length>1){
-                        console.log('hhhshshshs')
-                         const id =item.id
-                         console.log(id,index)
-                        const newList = DATA.filter((item) => item.id !== id);
+          style={{borderTopLeftRadius:0,borderTopRightRadius:0}}
+          > */}
+        <Block flex={0.5} middle style={{marginLeft: 5}}>
+          <Text regular h1 left gray4>
+            {' '}
+            Credit Cards
+          </Text>
+        </Block>
+        <Block center  flex={2}>
+          <FlatList
+            horizontal
+            pagingEnabled
+            scrollEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            snapToAlignment="center"
+            data={DATA}
+            keyExtractor={(item, index) => item + index}
+            contentContainerStyle={{justifyContent: 'center'}}
+            renderItem={({item, index}) => [
+              <Block
+                card
+                color={theme.colors.gray4}
+                style={{
+                  width: 300,
+                  height: 365,
+                  justifyContent: 'space-around',
+                  padding: 10,
+
+                  //  alignSelf: 'center',
+                }}>
+                <Block flex={0.3} row bottom style={{marginBottom: 10}}>
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={{
+                    //  flex: 1,
+                      alignSelf: 'flex-end',
+                      margin: 1,
+                      padding:2,
+                      
+                      
+                    }}
+                    onPress={() => {
+                      if (DATA.length > 1) {
+                        console.log('hhhshshshs');
+                        const id = item.id;
+                        console.log(id, index);
+                        const newList = DATA.filter(item => item.id !== id);
                         setDATA(newList);
                         setTimeout(() => {
-                          console.log(DATA)
-                        }, 2000);}
-                      }}>
-                      <Icon
-                        name="minuscircleo"
-                        size={20}
-                        style={{color:theme.colors.primary}}
-                       
-                      />
-                    </TouchableOpacity>
-                    </Block>
-                   
+                          console.log(DATA);
+                        }, 2000);
+                      }
+                    }}>
+                    <Icon
+                      name="minuscircleo"
+                      size={20}
+                      style={{color: theme.colors.primary}}
+                    />
                  
-                  <Block flex={3.5}>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    const newData = DATA.concat({id: counter});
+                    setDATA(newData);
+                    setCounter(counter => counter + 1);
+                    setTimeout(() => {
+                      console.log(DATA);
+                    }, 2000);
+                  }}
+                  style={{
+                   // flex: 1,
+                    alignSelf: 'flex-end',
+                    margin: 1,
+                    padding: 2,
+                    //flexDirection:'row',
+                    
+                  }}>
+                  <Icon
+                      name="pluscircleo"
+                      size={20}
+                      
+                      style={{
+                        color: theme.colors.primary,
+                        alignSelf: 'flex-end',
+                      }}
+                    />
+                  </TouchableOpacity>
+                </Block>
+
+                <Block flex={3.5}>
                   <TextInput
                     // onSubmitEditing={this.props.focusNext}
                     style={styles.textInput}
@@ -147,8 +152,8 @@ export default ViewCard = ({navigation}) => {
                     //value={}
                     onChangeText={val => {}}
                   />
-                 
-                   <TextInput
+
+                  <TextInput
                     // onSubmitEditing={this.props.focusNext}
                     style={styles.textInput}
                     onFocus={res => {
@@ -191,37 +196,33 @@ export default ViewCard = ({navigation}) => {
                     //value={}
                     onChangeText={val => {}}
                   />
-                  <Block  style={{marginHorizontal:50}}>
-                    <Button color='primary'>
-                      <Text center regular white>Done</Text>
+                  <Block style={{marginHorizontal: 50}}>
+                    <Button gradient>
+                      <Text center title white>
+                        Done
+                      </Text>
                     </Button>
-                    </Block>
-
-
                   </Block>
-                </Block>,
-              ]}
-            />
-          </Block>
+                </Block>
+              </Block>,
+            ]}
+          />
         </Block>
-
-        <Block flex={0.2} row left middle>
+        {/* <Block flex={1} color={'white'} middle>
           <Block
-            color="primary"
-            flex={0.65}
-            center
-            middle
+            flex={1}
             card
             style={{
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
-              marginVertical: 30,
+
+              //  marginVertical: 55,
             }}>
             <Button
-              color="primary"
+              gradient
+              //  style={{flex:1}}
               onPress={() => {
-               navigation.navigate('addMoney')
-               
+                navigation.navigate('addMoney');
               }}>
               <Text center gray4 h3>
                 {' '}
@@ -229,7 +230,31 @@ export default ViewCard = ({navigation}) => {
               </Text>
             </Button>
           </Block>
-          <Block middle center style={{flex:.3}}>
+          <Block
+            flex={1}
+            card
+            style={
+              {
+                //  marginVertical: 55,
+                //  marginHorizontal:10,
+              }
+            }>
+            <Button
+              gradient
+              //  style={{flex:1}}
+              onPress={() => {
+                navigation.navigate('addMoney');
+              }}>
+              <Text center gray4 h3>
+                {' '}
+                Manage Your Wallet{' '}
+              </Text>
+            </Button>
+          </Block>
+            </Block>*/}
+      </Block>
+ 
+      {/* {/* <Block middle center style={{flex:.3}}>
             <Icon 
             name='pluscircleo' 
             size={60}
@@ -243,12 +268,12 @@ export default ViewCard = ({navigation}) => {
               }, 2000);}}
                
             style={{color:theme.colors.primary,alignSelf:'flex-end'}}/>
-          </Block>
-        </Block>
-      </Block>
+          </Block> */}
+
+      {/* </Block> */}
     </ScrollView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   styleLeft: {
@@ -270,54 +295,3 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-
-//  const a = <CardsFlatList  DATA={this.state.DATA}  />
-// <View style={{flex:1}}>
-//                    <OrangeHeader title="Wallet" move={this.move} com={a} />
-
-//           </View>
-
-/*
-            <FlatList
-              horizontal={true}
-              data={this.state.DATA}
-              keyExtractor={(item, index) => item + index}
-              renderItem={({item}) => [
-                <View>
-                  {item === null ? (
-                    <View
-                      style={{
-                        flex: 0.5,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderStyle: 'dashed',
-                        borderWidth: 2,
-                        padding: 80,
-                        borderRadius: theme.sizes.radius,
-                        borderColor: '#ADACF1',
-                        margin: 25,
-                      }}>
-                      <TouchableOpacity onPress={()=>this.props.navigation.navigate('addCard')}>
-                        <Text style={{color: '#8D8D8D'}}>ADD CARD</Text>
-                      </TouchableOpacity>
-                    </View>
-                  ) : (
-                    <View
-                      style={{
-                        flex: 0.5,
-                        margin: 25,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: theme.sizes.radius,
-                      }}>
-                      <TouchableOpacity>
-                        <ImageBackground
-                          style={{width: 350, height: 200}}
-                          source={item.image}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                </View>,
-              ]}
-            />*/

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList,TextInput,StyleSheet,SectionList,Switch } from 'react-native'
-import {OrangeHeader} from '_molecules';
-
+import {  View, FlatList,TextInput,StyleSheet,SectionList,Switch } from 'react-native'
+import {Block, Text} from '_atoms';
+import {theme} from '../../constants';
 export default class Setting extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +41,7 @@ export default class Setting extends Component {
             <Switch 
             thumbColor={ '#E9E7E7' }
             value={this.state.switchData[index].value}
-            trackColor={{true:'#FF8900'}}
+            trackColor={{true:theme.colors.primary}}
             onValueChange = {(value)=>this.updateItem(index,{value:value})}
         
            />
@@ -50,27 +50,57 @@ export default class Setting extends Component {
         );
       }
       render() {
-          const a =
-          <View style={{flex:1,alignItems:'center',paddingTop:5}}>
-          <SectionList
-            sections={this.state.DATA}
-            keyExtractor={(item, index) => item + index}
-            renderItem={({ item }) =><this.Item title={item} />}
-            renderSectionHeader={({ section: { title } }) => ( 
-              <View style={[styles.headerStyle,title.border? styles.border:styles.notBorder]}>
-              <Text style={styles.header}>{title.label}</Text>
-              </View>
-            )}
-          />
-          </View>
+         
         return (
           
-        <View style={{flex:1}}>
-            <OrangeHeader 
-            com={a}
-            title={'Package'} move={ ()=>this.props.navigation.toggleDrawer()}/>
+        // <View style={{flex:1}}>
+        //     <OrangeHeader 
+        //     com={a}
+        //     title={'Package'} move={ ()=>this.props.navigation.toggleDrawer()}/>
+        // </View>
+        <Block bottom middle color={'primary'}>
+      <Block flex={0.2} row right>
+        <Block
+          middle
+          card
+          flex={0.52}
+          color={'rgba(255,255,255,.6)'}
+          style={{
+            borderBottomRightRadius: 0,
+            borderTopRightRadius: 0,
+            marginVertical: 30,
+           
+          }}>
+          <Text h1 center regular bold gray4>
+            Settings
+          </Text>
+        </Block>
+      </Block>
+      <Block
+        flex={0.75}
+        card
+        middle
+        style={{
+          
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+         
+        }}>
+       
+        <View style={{flex:1,alignItems:'center',paddingTop:5,backgroundColor:theme.colors.white,borderRadius:theme.sizes.radius,borderBottomLeftRadius:0,borderBottomRightRadius:0}}>
+        <SectionList
+          sections={this.state.DATA}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({ item }) =><this.Item title={item} />}
+          renderSectionHeader={({ section: { title } }) => ( 
+            <View style={[styles.headerStyle,title.border? styles.border:styles.notBorder]}>
+            <Text style={styles.header}>{title.label}</Text>
+            </View>
+          )}
+        />
         </View>
-     
+     </Block>
+     </Block>
         )
       }
 }
@@ -95,7 +125,7 @@ const styles = StyleSheet.create({
     },
     header: {
       fontSize: 25,
-      color:'#FF8900',
+      color:theme.colors.primary,
       fontWeight:'bold'
     },
     dist: {
