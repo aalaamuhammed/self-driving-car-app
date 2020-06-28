@@ -68,7 +68,7 @@ const parkingsSpots = [
   },
   {
     id: 2,
-    name: 'Shevroliah',
+    name: 'Chevrolet Aveo',
 
     title: 'Parking 2',
     startingPrice: 7,

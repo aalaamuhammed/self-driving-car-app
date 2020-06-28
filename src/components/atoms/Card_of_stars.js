@@ -5,6 +5,8 @@ import Block from './Block';
 import {theme} from '../../constants';
 import {favouritePlaces} from '../../constants/mocks';
 import {Rating, AirbnbRating} from 'react-native-ratings';
+import Icon_ from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 export default class Card_of_favourites extends Component {
   ratingCompleted(rating) {
@@ -16,23 +18,26 @@ export default class Card_of_favourites extends Component {
     const cardStyles = [styles.card, style];
 
     return (
-      <Block color={color || theme.colors.white} style={cardStyles} {...props}>
+      <Block color={"white" || theme.colors.white} style={cardStyles} {...props}>
         <View
           style={{
+
             flexDirection: 'row',
             marginRight: 0,
             padding: 2,
             backgroundColor: 'white',
           }}>
           <View style={{margin: 5, backgroundColor: 'white', marginLeft: 0}}>
-            <Text size={17} bold>
+            <Text size={17} bold >
               You reached your destination
             </Text>
           </View>
-          <View style={{margin: 1, backgroundColor: 'white'}}>
-            <Image
-              source={require('_assets/images/i40.png')}
-              style={{width: 20, height: 35, resizeMode: 'contain'}}></Image>
+          <View style={{margin: 1, backgroundColor: "white"}}>
+          <Icon_
+                    name="check"
+                    size={25}
+                    // style={{color: theme.colors.secondary}}
+                  />
           </View>
         </View>
         <View
@@ -49,7 +54,7 @@ export default class Card_of_favourites extends Component {
 
     
         <AirbnbRating
-          reviewColor="#0094FC"
+          reviewColor="#ba55d3"
           reviews={['Terrible', 'Bad', 'Good', 'Very Good', 'Wow', 'Amazing']}
           onFinishRating={this.ratingCompleted}
 

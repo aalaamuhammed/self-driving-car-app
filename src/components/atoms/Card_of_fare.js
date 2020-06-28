@@ -13,9 +13,9 @@ export default class Card_of_fare extends Component {
     const cardStyles = [styles.card, style];
 
     return (
-      <Block color={color || theme.colors.white} style={cardStyles} {...props}>
+      <Block color={"white" || theme.colors.white} style={cardStyles} {...props}>
          
-        <Text bold h3 center primary>Your fare is 32 EGP</Text>
+        <Text bold h3 center secondary>Your fare is 32 EGP</Text>
 
         {children}
       </Block>

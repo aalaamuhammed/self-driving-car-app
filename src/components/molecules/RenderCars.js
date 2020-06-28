@@ -83,12 +83,12 @@ class RenderCars extends Component {
             </Text>
             <Text>{item.timeToarrive} min till arrive</Text>
             <Text>Verification Code{' '}  
-            <Text primary>{item.verificationCode}</Text>
+            <Text secondary>{item.verificationCode}</Text>
 
 
             </Text>
-            <Text>Car license code isssss
-            <Text primary> {item.licenseCode}</Text>
+            <Text>Car license code is
+            <Text secondary> {item.licenseCode}</Text>
 
             </Text>
          
@@ -143,11 +143,12 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     paddingBottom: theme.sizes.base * 3,
+
   },
   parking: {
     marginBottom: 40,
     // flexDirection: 'row',
-    backgroundColor: theme.colors.white,
+    backgroundColor: 'rgba(255,255,255,.8)',
     borderRadius: 20,
     padding: theme.sizes.base,
     marginHorizontal: theme.sizes.base * 2,

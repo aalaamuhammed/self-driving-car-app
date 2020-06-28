@@ -52,7 +52,7 @@ export default (SetAddressScreen = ({navigation}) => {
           autoCorrect={false}
           multiline={false}
           placeholder="Street"
-          underlineColorAndroid={'#0094FC'}
+          underlineColorAndroid={theme.colors.primary}
           value={address.street}
           onChangeText={text => {
             setAddress({
