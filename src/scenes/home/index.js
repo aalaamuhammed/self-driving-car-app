@@ -249,12 +249,12 @@ const HomeScreen = ({currentPosition, parkings, navigation}) => {
         />
       </ImageZoom>
         <Instructions i={i} badReq={badReq}/>
-        {/* <Marker/> */}
+         <Marker/> 
        {clicked < 3 ?  <FavPlacesRightMenu tripRoutAnim={tripRoutAnim} navigation={navigation}/>  : null}
-       {/* {clicked <3  ? <RenderCars/>: null} */}
+         {/* {clicked <3  ? <RenderCars/>: null}   */}
 
        {clicked === 2 ? translateComponent() : null}
-       {/* {clicked <3 ? <TripRoute currentLocationDetails={currentLocationDetails} targetLocationDetails={targetLocationDetails} tripRoutAnim={tripRoutAnim}/> : null}     */}
+        {clicked <3 ? <TripRoute currentLocationDetails={currentLocationDetails} targetLocationDetails={targetLocationDetails} tripRoutAnim={tripRoutAnim}/> : null}     
        {(visible)?<Modal/>:null}
        
        {/* : clicked === 3 ? (
